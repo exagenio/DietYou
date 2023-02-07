@@ -1,0 +1,15 @@
+.theme-btn {
+  color: white;
+  border-radius: 70px;
+  background: #EA8E17;
+  padding: 10px 25px;
+}
+.feather {
+    width: 35px;
+    height: 35px;
+    stroke: currentColor;
+    stroke-width: 1;
+    /* stroke-linecap: round; */
+    /* stroke-linejoin: round; */
+    fill: none;
+  }
