@@ -16,6 +16,36 @@ a{
   background: #EA8E17;
   padding: 10px 25px;
 }
+
+.theme-btn:hover{
+  background: #D8D8D8;
+}
+
+.secndry-btn {
+  
+  border-radius: 10px;
+  background: #EA8E17;
+  padding: 10px 25px;
+}
+
+.secndry-btn:hover{
+  background: #D8D8D8;
+}
+
+.alt-btn {
+  font-weight: 500;
+  color: black;
+  border-radius: 10px;
+  border: solid 1px;
+  border-color:#545454;
+  background: #00000000;
+  padding: 10px 25px;
+}
+
+.alt-btn:hover{
+  background: #EA8E17;
+  color: white;
+}
 .feather {
     width: 35px;
     height: 35px;
