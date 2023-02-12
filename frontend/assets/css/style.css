@@ -1,3 +1,12 @@
+body{
+  font-family: 'Roboto';
+}
+a{
+  color: black;
+  font-weight: 500;
+}
+
+
 .theme-btn {
   color: white;
   border-radius: 70px;
@@ -12,4 +21,4 @@
     /* stroke-linecap: round; */
     /* stroke-linejoin: round; */
     fill: none;
-  }
+}
