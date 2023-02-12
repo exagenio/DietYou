@@ -5,6 +5,9 @@ a{
   color: black;
   font-weight: 500;
 }
+.background-dark{
+  background-color: #D8D8D8;
+}
 
 
 .theme-btn {
