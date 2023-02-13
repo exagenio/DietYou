@@ -55,3 +55,11 @@ a{
     /* stroke-linejoin: round; */
     fill: none;
 }
+.process-title{
+  font-size: 20px;
+  font-weight: bold;
+}
+.process-subtitle{
+  color: gray;
+  font-size: 15px;
+}
