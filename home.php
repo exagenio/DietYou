@@ -1,30 +1,3 @@
-
-<?php 
-include "backend/db.php";
-include "backend/functions.php"; 
-    if($_POST["submit"]){
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-        $name = $_POST["fullName"];
-
-        $checkValidate = userValidate($username);
-        if($password && $username && $name){
-            if($checkValidate){
-                echo "Sorry username is already taken";
-            }else{
-                $query =   "INSERT INTO users (email, password, firstname, lastname ) VALUES('$username','$password','$name', '$name')";
-                $query = mysqli_query($connection, $query); 
-                if($query){
-                    echo "entered";
-                }else{
-                    die("query failed".mysqli_error($connection));
-                }
-            }
-        }else{
-            echo"asda ada da";
-        }
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +8,6 @@ include "backend/functions.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/signup.css">
 </head>
 <body>
     <nav class="container">
@@ -56,28 +28,69 @@ include "backend/functions.php";
         </div>
     </nav>
 
-
-    <section class="d-flex py-4 align-items-center justify-content-center background-dark ">
-        <div class="py-4 formMainWrap">
-            <h1>Sign Up</h1>
-            <p>Already have an Account? <span><a class="login_link" href="">Login</a></span></p>
-            <form class="login-form" action="signup.php" method="post">
-                <div class="d-flex flex-column justify-content-center form-wrap">
-                    <input type="text" name="fullName" id="" placeholder="Full Name">
-                    <input type="email" name="username" id="" placeholder="Email">
-                    <input type="password" class="form-control" name="password" id="" placeholder="Password">
-                    <input type="submit" name="submit" class="btn secndry-btn my-4">
+    <!--first body part-->
+    <section class="background-dark pt-4">
+        <div class="container pt-4">
+            <div class="row" style="height: 500px;">
+              <div class="col d-flex align-items-center justify-content-center" >
+                <div>
+                    <h1>Enjoy a Healthy</h1>
+                    <h1>Life Without</h1>
+                    <h1>NCDs</h1>
+                    <div style="padding: 25px 0px;">
+                        <h5>Let yourself be guided by out experts</h5>
+                        <h5>and your wellness goals will be within reach</h5>
+                    </div>
+                    <button type="button" class="btn btn-warning rounded-pill px-4 py-1.5 text-white" style="font-weight: 700" >Sign In</button>
+                    <p style="font-size:x-small; padding: 15px 0px;;">It's quick and free<p>
                 </div>
-            </form>
-            <div class="row d-flex justify-content-center align-items-center">
-                <hr class="col-5">
-                <p class="col-2 text-center">OR</p>
-                <hr class="col-5">
+              </div>
+              <div class="col d-flex align-items-center ">
+                <img src="assets/img/pic-1.png" width="80%" alt="Stayfit" class="p-3">
+
+                <!--add position relative or absolute and bring the picture close the the text if desired-->
+              </div>
             </div>
-            <div class="d-flex flex-column justify-content-center form-wrap">
-                <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center signin-btns"><img height="35" src="assets/img/Google.png" alt="google">  Continue with Google</button>
-                <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center signin-btns"><img height="35" src="assets/img/fb.png" alt="google">  Continue with Facebook</button>
-                <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center signin-btns"><img height="35" src="assets/img/apple.png" alt="google">  Continue with Apple</button>
+          </div>
+    </section>
+
+    <!-- second part of the home page -->
+    <section class="background-dark pt-2">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="my-2 text-center">
+                    <p style="font-weight: bolder;">How it works</p>
+                    <p style="font-size: 30px; color: gray;">You Tell Us Your Goals</p>
+                    <p style="font-size: 30px; font-weight: bolder;">We'll Help You Get There</p>
+                </div>
+                <div class="row m-5 text-center">
+                    <div class="col">
+                        <img  src="/assets/img/undraw_Questions_re_1fy7-min.png" width="100%" alt="">
+                        <p class="process-title">Take the quiz</p>
+                        <p class="pt-4 process-subtitle">The free quiz only takes a few minutes </p>
+                    </div>
+                    <div class="col">
+                        <img  src="/assets/img/undraw_Dev_focus_re_6iwt-min.png" width="100%" alt="">
+                        <p class="process-title">Get your personalized <br>plan</p>
+                        <p class="process-subtitle">We'll create a meal plan that matches your preference and needs </p>
+                    </div>
+                    <div class="col">
+                        <img  src="/assets/img/undraw_To_do_list_re_9nt7-min.png" width="100%" alt="">
+                        <p class="process-title">Take it one step at <br>a time</p>
+                        <p class="process-subtitle">Our expert guidance keeps you right on track </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+    
+    <section class="background-dark pt-3">
+        <div class="container-pt2">
+            <div class="d-flex flex-column align-items-center justify-content-center py-4">
+                <button type="button" class="btn btn-warning rounded-pill px-4 py-1.5 text=white" style="font-weight: 700">Get Started</button>
             </div>
         </div>
     </section>

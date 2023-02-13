@@ -1,30 +1,3 @@
-
-<?php 
-include "backend/db.php";
-include "backend/functions.php"; 
-    if($_POST["submit"]){
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-        $name = $_POST["fullName"];
-
-        $checkValidate = userValidate($username);
-        if($password && $username && $name){
-            if($checkValidate){
-                echo "Sorry username is already taken";
-            }else{
-                $query =   "INSERT INTO users (email, password, firstname, lastname ) VALUES('$username','$password','$name', '$name')";
-                $query = mysqli_query($connection, $query); 
-                if($query){
-                    echo "entered";
-                }else{
-                    die("query failed".mysqli_error($connection));
-                }
-            }
-        }else{
-            echo"asda ada da";
-        }
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +8,7 @@ include "backend/functions.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/signup.css">
+    <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
     <nav class="container">
@@ -59,14 +32,14 @@ include "backend/functions.php";
 
     <section class="d-flex py-4 align-items-center justify-content-center background-dark ">
         <div class="py-4 formMainWrap">
-            <h1>Sign Up</h1>
-            <p>Already have an Account? <span><a class="login_link" href="">Login</a></span></p>
-            <form class="login-form" action="signup.php" method="post">
+            <h1>Login</h1>
+            <p>New to DietYou? <span><a href="">Signup</a></span></p>
+            <form class="login-form" action="" method="post">
                 <div class="d-flex flex-column justify-content-center form-wrap">
-                    <input type="text" name="fullName" id="" placeholder="Full Name">
-                    <input type="email" name="username" id="" placeholder="Email">
-                    <input type="password" class="form-control" name="password" id="" placeholder="Password">
-                    <input type="submit" name="submit" class="btn secndry-btn my-4">
+                    <input type="email" name="" id="" placeholder="Email">
+                    <input type="password" name="" id="" placeholder="Password">
+                    <a href="http://">Forgot your password?</a>
+                    <button class="btn secndry-btn my-4">Log in</button>
                 </div>
             </form>
             <div class="row d-flex justify-content-center align-items-center">
@@ -75,9 +48,9 @@ include "backend/functions.php";
                 <hr class="col-5">
             </div>
             <div class="d-flex flex-column justify-content-center form-wrap">
-                <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center signin-btns"><img height="35" src="assets/img/Google.png" alt="google">  Continue with Google</button>
-                <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center signin-btns"><img height="35" src="assets/img/fb.png" alt="google">  Continue with Facebook</button>
-                <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center signin-btns"><img height="35" src="assets/img/apple.png" alt="google">  Continue with Apple</button>
+                <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center"><img height="35" src="assets/img/Google.png" alt="google">  Continue with Google</button>
+                <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center"><img height="35" src="assets/img/fb.png" alt="google">  Continue with Facebook</button>
+                <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center"><img height="35" src="assets/img/apple.png" alt="google">  Continue with Apple</button>
             </div>
         </div>
     </section>
