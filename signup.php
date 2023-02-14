@@ -2,6 +2,7 @@
 <?php 
 include "backend/db.php";
 include "backend/functions.php"; 
+debug_to_console("sdadasd");
     if($_POST["submit"]){
         $username = $_POST["username"];
         $password = $_POST["password"];
