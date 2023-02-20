@@ -51,7 +51,8 @@ include "backend/functions.php";
                             `;
                             echo ' <div class="alert alert-danger" role="alert"> This email is already registered. Please try again!</div>';
                         }else{
-                            $query =   "INSERT INTO users (email, password, firstname, lastname ) VALUES('$username','$password','$name', '$name')";
+                            $pass = password_hash($password, PASSWORD_DEFAULT);
+                            $query =   "INSERT INTO users (email, password, firstname, lastname ) VALUES('$username','$pass','$name', '$name')";
                             $query = mysqli_query($connection, $query); 
                             if($query){
                                 $message ='<div class="alert alert-success" role="alert"> You have succesfully signed up to the website. Now you can<a href="#" class="alert-link">Log in</a>. to the application.</div>';
