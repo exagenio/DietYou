@@ -78,3 +78,15 @@ a{
 .edesc{
   padding-left: 40px;
 }
+
+body::-webkit-scrollbar{
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track{
+  background: #EA8E17;
+}
+
+body::-webkit-scrollbar-thumb{
+  background: #865515;
+} 
