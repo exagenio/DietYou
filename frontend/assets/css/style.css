@@ -63,3 +63,18 @@ a{
   color: gray;
   font-size: 15px;
 }
+.expect {
+  padding-left: 50px;;
+  padding-bottom: 20px;
+}
+.rounded-image {
+  border-radius: 20px;
+}
+.ehead{
+  padding-left: 40px;
+  font-size: 40px;
+  font-weight: bold;
+}
+.edesc{
+  padding-left: 40px;
+}
