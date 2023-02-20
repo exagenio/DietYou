@@ -2,16 +2,14 @@
 <?php 
 include "backend/db.php";
 include "backend/functions.php"; 
-debug_to_console("sdadasd");
     if($_POST["submit"]){
         $username = $_POST["username"];
         $password = $_POST["password"];
         $name = $_POST["fullName"];
-
-        $checkValidate = userValidate($username);
+        $testUser = userExist($username);
         if($password && $username && $name){
-            if($checkValidate){
-                echo "Sorry username is already taken";
+            if($testUser){
+                echo "have a user";
             }else{
                 $query =   "INSERT INTO users (email, password, firstname, lastname ) VALUES('$username','$password','$name', '$name')";
                 $query = mysqli_query($connection, $query); 
