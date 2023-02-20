@@ -2,27 +2,6 @@
 <?php 
 include "backend/db.php";
 include "backend/functions.php"; 
-    if($_POST["submit"]){
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-        $name = $_POST["fullName"];
-        $testUser = userExist($username);
-        if($password && $username && $name){
-            if($testUser){
-                echo "have a user";
-            }else{
-                $query =   "INSERT INTO users (email, password, firstname, lastname ) VALUES('$username','$password','$name', '$name')";
-                $query = mysqli_query($connection, $query); 
-                if($query){
-                    echo "entered";
-                }else{
-                    die("query failed".mysqli_error($connection));
-                }
-            }
-        }else{
-            echo"asda ada da";
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,11 +33,38 @@ include "backend/functions.php";
             </div>
         </div>
     </nav>
-
-
     <section class="d-flex py-4 align-items-center justify-content-center background-dark ">
         <div class="py-4 formMainWrap">
             <h1>Sign Up</h1>
+            <?php
+                if($_POST["submit"]){
+                    $username = $_POST["username"];
+                    $password = $_POST["password"];
+                    $name = $_POST["fullName"];
+                    $testUser = userExist($username);
+                    if($password && $username && $name){
+                        if($testUser){
+                            $message =`
+                            <div class="alert alert-danger" role="alert">
+                                This email is already registered. Please try again!
+                            </div>
+                            `;
+                            echo ' <div class="alert alert-danger" role="alert"> This email is already registered. Please try again!</div>';
+                        }else{
+                            $query =   "INSERT INTO users (email, password, firstname, lastname ) VALUES('$username','$password','$name', '$name')";
+                            $query = mysqli_query($connection, $query); 
+                            if($query){
+                                $message ='<div class="alert alert-success" role="alert"> You have succesfully signed up to the website. Now you can<a href="#" class="alert-link">Log in</a>. to the application.</div>';
+                                echo $message;
+                            }else{
+                                die("query failed".mysqli_error($connection));
+                            }
+                        }
+                    }else{
+                        echo"asda ada da";
+                    }
+                }
+            ?>
             <p>Already have an Account? <span><a class="login_link" href="">Login</a></span></p>
             <form class="login-form" action="signup.php" method="post">
                 <div class="d-flex flex-column justify-content-center form-wrap">
@@ -108,9 +114,8 @@ include "backend/functions.php";
         </div>
         <p class="py-2">DietYou © 2023</p>
     </footer>
-
-
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script>
         feather.replace()

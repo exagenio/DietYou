@@ -63,3 +63,10 @@ a{
   color: gray;
   font-size: 15px;
 }
+
+.message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
