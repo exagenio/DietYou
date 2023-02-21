@@ -21,4 +21,14 @@ function validate_pw($password, $hash){
     //     false;
     // }
 }
+
+function logout_user($username){
+    if($_SESSION["userVerified"]){
+        // remove all session variables
+        session_unset();
+        
+        // destroy the session
+        session_destroy();
+    }
+}
 ?>
