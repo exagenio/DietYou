@@ -17,5 +17,5 @@ function userExist($username){
     } else {
        return true;
     }
-    };
+};
 ?>

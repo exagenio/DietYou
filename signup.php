@@ -1,7 +1,8 @@
 
 <?php 
 include "backend/db.php";
-include "backend/functions.php"; 
+include "backend/functions.php";
+include "backend/crypt.php"; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +52,7 @@ include "backend/functions.php";
                             `;
                             echo ' <div class="alert alert-danger" role="alert"> This email is already registered. Please try again!</div>';
                         }else{
-                            $pass = password_hash($password, PASSWORD_DEFAULT);
+                            $pass = crypt($password, '$2a$07$usesomesillystringforsalt$');
                             $query =   "INSERT INTO users (email, password, firstname, lastname ) VALUES('$username','$pass','$name', '$name')";
                             $query = mysqli_query($connection, $query); 
                             if($query){

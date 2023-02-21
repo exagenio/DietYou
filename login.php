@@ -1,3 +1,8 @@
+<?php 
+include "backend/db.php";
+include "backend/functions.php"; 
+include "backend/crypt.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,12 +39,29 @@
         <div class="py-4 formMainWrap">
             <h1>Login</h1>
             <p>New to DietYou? <span><a href="">Signup</a></span></p>
-            <form class="login-form" action="" method="post">
+
+            <?php
+                if($_POST["submit"]){
+                    $username = $_POST["username"];
+                    $password = $_POST["password"];
+                    $find = "SELECT password FROM users where email = '$username'";
+                    $findQuery = mysqli_query($connection, $find);
+                    $row = mysqli_fetch_row($findQuery);
+                    $hash = $row["password"];
+                    if (validate_pw($password,$hash)) {
+                        echo 'Password is valid!';
+                    } else {
+                        echo 'Invalid password.';
+                    }
+                }
+            ?>
+
+            <form class="login-form" action="login.php" method="post">
                 <div class="d-flex flex-column justify-content-center form-wrap">
-                    <input type="email" name="" id="" placeholder="Email">
-                    <input type="password" name="" id="" placeholder="Password">
+                    <input type="email" name="username" id="" placeholder="Email">
+                    <input type="password" name="password" id="" placeholder="Password">
                     <a href="http://">Forgot your password?</a>
-                    <button class="btn secndry-btn my-4">Log in</button>
+                    <input type="submit" name="submit" class="btn secndry-btn my-4">
                 </div>
             </form>
             <div class="row d-flex justify-content-center align-items-center">
