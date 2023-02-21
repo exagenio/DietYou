@@ -39,7 +39,6 @@ include "backend/crypt.php"
         <div class="py-4 formMainWrap">
             <h1>Login</h1>
             <p>New to DietYou? <span><a href="">Signup</a></span></p>
-
             <?php
                 if($_POST["submit"]){
                     $username = $_POST["username"];
@@ -62,7 +61,6 @@ include "backend/crypt.php"
                     }
                 }
             ?>
-
             <form class="login-form" action="login.php" method="post">
                 <div class="d-flex flex-column justify-content-center form-wrap">
                     <input type="email" name="username" id="" placeholder="Email">
