@@ -52,7 +52,7 @@ include "backend/crypt.php";
                             `;
                             echo ' <div class="alert alert-danger" role="alert"> This email is already registered. Please try again!</div>';
                         }else{
-                            $pass = crypt($password, '$2a$07$usesomesillystringforsalt$');
+                            $pass = encrypt_pw($password);
                             $query =   "INSERT INTO users (email, password, firstname, lastname ) VALUES('$username','$pass','$name', '$name')";
                             $query = mysqli_query($connection, $query); 
                             if($query){

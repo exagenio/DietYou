@@ -47,11 +47,18 @@ include "backend/crypt.php"
                     $find = "SELECT password FROM users where email = '$username'";
                     $findQuery = mysqli_query($connection, $find);
                     $row = mysqli_fetch_row($findQuery);
-                    $hash = $row["password"];
-                    if (validate_pw($password,$hash)) {
-                        echo 'Password is valid!';
+                    if (mysqli_num_rows($findQuery) == 0) {
+                        echo ' <div class="alert alert-danger" role="alert"> Invalid username or a password. Please try again!</div>';
                     } else {
-                        echo 'Invalid password.';
+                        $hash = $row["password"];
+                    if (validate_pw($password,$row[0])) {
+                        session_start();
+                        $_SESSION["username"] = "$username";
+                        $_SESSION["userVerified"] = true;
+                        header('Location: http://localhost/dietYou/dashoard.php');
+                    } else {
+                        echo ' <div class="alert alert-danger" role="alert"> Invalid username or a password. Please try again!</div>';
+                    }
                     }
                 }
             ?>
