@@ -88,8 +88,92 @@ body::-webkit-scrollbar{
 
 body::-webkit-scrollbar-track{
   background: #EA8E17;
-}
+} 
 
 body::-webkit-scrollbar-thumb{
   background: #865515;
 } 
+
+
+
+ul{
+  list-style-type: none;
+
+}
+
+a{
+  text-decoration: none;
+  position: relative;
+  color: #865515;
+  font-size: 14px;
+  display: table;
+  width: 300px;
+  padding: 10px;
+
+
+}
+
+li{
+  position: relative;
+  padding: 10px;
+  right: 20px;
+}
+
+
+.sidenav{
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  position: fixed;
+  top: 92px;
+  
+
+
+  height: 100%;
+  left: 0%;
+  background: #fff;
+  width: 88px;
+  overflow: hidden;
+  transition: width 0.2s linear;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1) ;
+
+}
+
+
+.sidenav i {
+  position: relative;
+  width: 70px;
+  height: 40px;
+  top: 14px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.nav-item{
+  position: relative;
+  padding: 20px;
+  top: 2px;
+}
+
+
+a:hover{
+  background: #eee;
+  color: #EA8E17;
+}
+
+.sidenav:hover{
+  width: 200px;
+  transition: all 0.5s ease;
+}
+
+.log-in{
+  position: relative;;
+  top:100px ;
+}
+
+
+
+
+
+
