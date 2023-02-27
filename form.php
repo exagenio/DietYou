@@ -1,32 +1,21 @@
 <?php
   if($_POST["submit"]){
-    echo "working";
       $age = $_POST["age"];
       $gender = $_POST["gender"];
-      $heightFt = $_POST["ft-height"];
-      $heightIn = $_POST["in-height"];
+      $height = $_POST["height"];
       $ncd = $_POST["ncd"];
       $sleepTime = $_POST["sleepTime"];
       $fitness = $_POST["fitness"];
       $workout = $_POST["workout"];
       $foodType = $_POST["foodType"];
 
-      $find = "SELECT password FROM users where email = '$username'";
-      $findQuery = mysqli_query($connection, $find);
-      $row = mysqli_fetch_row($findQuery);
-      if (mysqli_num_rows($findQuery) == 0) {
-          echo ' <div class="alert alert-danger" role="alert"> Invalid username or a password. Please try again!</div>';
-      } else {
-          $hash = $row["password"];
-      if (validate_pw($password,$row[0])) {
-          session_start();
-          $_SESSION["username"] = "$username";
-          $_SESSION["userVerified"] = true;
-          header('Location: http://localhost/dietYou/dashoard.php');
-      } else {
-          echo ' <div class="alert alert-danger" role="alert"> Invalid username or a password. Please try again!</div>';
-      }
-      }
+      // $find = "SELECT password FROM users where email = '$username'";
+      // $findQuery = mysqli_query($connection, $find);
+      // $row = mysqli_fetch_row($findQuery);
+      // if (mysqli_num_rows($findQuery) == 0) {
+
+      // } else {
+      // }
   }
 ?>
 
@@ -93,9 +82,10 @@
                 <label for="height" class="form-label">What is your height?</label>
                 <div class="input-group">
                     
-                    <input type="number" aria-label="Ft" class="form-control" placeholder="Ft" id="" name="ft-height" required>
-                    <input type="number" aria-label="in" class="form-control" placeholder="in" id="" name="in-height" required>
-                  </div>
+                    <!-- <input type="number" aria-label="Ft" class="form-control" placeholder="Ft" id="" name="ft-height" required>
+                    <input type="number" aria-label="in" class="form-control" placeholder="in" id="" name="in-height" required> -->
+                    <input type="number" class="form-control" id="" name="height" placeholder="cm" required>
+                </div>
                   <br>
 
                   <label for="weight" class="form-label">What is your weight?</label>
@@ -114,6 +104,7 @@
                     <option value="3">Chronic respiratory diseases</option>
                     <option value="4">Elevated blood cholesterol</option>
                     <option value="5">Other</option>
+                    <option value="6">none</option>
                   </select>
                   <br>
 
@@ -127,16 +118,18 @@
                     <option value="4">Over 8 hours</option>
                   </select>
                   <br>
-                  <label for="level" class="form-label">What is your fitness level?</label>
+                  <label for="level" class="form-label">What is your physical activity level?</label>
 
                   <select name="fitness" class="form-control bg-transparent border border-secondary" aria-label="Default select example" required>
                     <option selected disabled></option>
-                    <option value="1">Beginner - I’m new to fitness</option>
-                    <option value="2">Intermediate - I work out 2-3 times a week</option>
-                    <option value="3">Advanced - I have regular workouts</option>
+                    <option value="1.2">Sedentary: Little or no exercise, desk job or mostly sitting activities</option>
+                    <option value="1.375">Lightly active: Light exercise or sports 1-3 days per week, some walking during the day. </option>
+                    <option value="1.55">Moderately active: Moderate exercise or sports 3-5 days per week, active job or daily activities that require more movement.</option>
+                    <option value="1.725">Very active: Hard exercise or sports 6-7 days per week, physically demanding job, or training for a sports event. </option>
+                    <option value="1.9">Extremely active: Hard daily exercise or sports and physical job, or training for an athletic competition multiple times per day.</option>
                   </select>
                   <br>
-                  <label for="work" class="form-label">How much time do you want to workout?</label>
+                  <!-- <label for="work" class="form-label">How much time do you want to workout?</label>
 
                   <select class="form-control bg-transparent border border-secondary" aria-label="Default select example" id="" name="workout" required>
                     <option selected disabled></option>
@@ -145,23 +138,14 @@
                     <option value="3">15-25 min</option>
                     <option value="4">30+ min</option>
                   </select>
-                  <br>
-                  <label for="meal" class="form-label">Do you follow any of the following diets? </label>
-
-                  <select class="form-control bg-transparent border border-secondary" aria-label="Default select example" id="" name="foodType" required>
-                    <option selected disabled></option>
-                    <option value="1">Vegertarian</option>
-                    <option value="2">Vegan</option>
-                    <option value="3">Keto</option>
-                    <option value="4">Mediterranean</option>
-                    <option value="5">lactos-free</option>
-                    <option value="6">Paleo</option>
-                    <option value="7">Low-fat</option>
-                    <option value="8">Low-Carb</option>
-                    <option value="9">Other</option>
-                    <option value="10">No</option>
-                    
-                  </select>
+                  <br> -->
+                  <label for="meal" class="form-label">what type of foods do you eat? </label>
+                  <input type="checkbox" id="vehicle1" name="vehicle1" value="vegetables">
+                  <label for="vehicle1"> Vegetables</label><br>
+                  <input type="checkbox" id="vehicle2" name="vehicle2" value="meats">
+                  <label for="vehicle2"> meats</label><br>
+                  <input type="checkbox" id="vehicle3" name="vehicle3" value="diary">
+                  <label for="vehicle3"> diary products</label><br>
                   
                   <br>
 
