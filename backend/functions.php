@@ -23,7 +23,7 @@ function userExist($username){
 
 //calculate BMI
 function bmiCalculate($height, $weight){
-    $bmi = $weight/($height*$height);
+    $bmi = $weight/(($height*$height)/10000);
     return $bmi;
 }
 
