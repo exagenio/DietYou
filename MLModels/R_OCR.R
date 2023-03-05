@@ -1,21 +1,18 @@
 install.packages("tesseract")
 install.packages("imager")
 
+library(png)
+library(tidyverse)
 library(imager)
 library(tesseract)
 
-img <- load.image("calorie_table.png")
-
-# Pre-process the image to improve OCR accuracy
-img <- grayscale(img)
-img <- threshold(img, "binarize")
+img <- "R.png"
 
 text <- ocr(img)
 
-
 # identifying the words e.g- protein
 protein_regex <- "Protein"
-#chnaged kcal to gram
+#changed kcal to gram
 protein_gram_regex <- "([0-9]+\\.[0-9]+) g"
 protein_kcal_value <- NA
 
