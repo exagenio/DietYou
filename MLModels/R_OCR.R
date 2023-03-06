@@ -1,14 +1,19 @@
 install.packages("tesseract")
-install.packages("imager")
+install.packages("magick")
 
-library(png)
-library(tidyverse)
-library(imager)
+library(magick)
 library(tesseract)
 
-img <- "R.png"
+img <- image_read("calorie_table.png")
+img
 
-text <- ocr(img)
+text <- dfo %>%
+  image_convert(type = 'Grayscale') %>%
+  image_trim(fuzz = 40) %>%
+  image_write(format = 'png', density= '300x300') %>%
+  tesseract::ocr()
+
+cat(text)
 
 # identifying the words e.g- protein
 protein_regex <- "Protein"
