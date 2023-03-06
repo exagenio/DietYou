@@ -4,36 +4,62 @@ install.packages("magick")
 library(magick)
 library(tesseract)
 
-img <- image_read("calorie_table.png")
-img
+dfo <- image_read("calorie_table.png")
 
-text <- dfo %>%
+dfo_processed <- dfo %>%
   image_convert(type = 'Grayscale') %>%
   image_trim(fuzz = 40) %>%
   image_write(format = 'png', density= '300x300') %>%
-  tesseract::ocr()
 
-cat(text)
+text <- tesseract::ocr(dfo_processed)
 
-# identifying the words e.g- protein
-protein_regex <- "Protein"
-#changed kcal to gram
-protein_gram_regex <- "([0-9]+\\.[0-9]+) g"
-protein_kcal_value <- NA
-
-#changed grep1 to grepl
-
-if (grepl(protein_regex, text)) {
-  protein_line <- regexpr(protein_regex, text)
-  protein_line_end <- regexpr("\n", text[protein_line:length:length(text)]) + protein_line - 1
-  protein_line_text <- substr(text, protein_line, protein_line_end)
-  
-  # identfying the kcal value of protein and storing it in a variable
-  #changed grep to grepl
-  if (grepl(protein_gram_regex, protein_line_text)) {
-    protein_gram_match <- regmatches(protein_line_text, regexpr(protein_gram_regex, protein_line_text))
-    protein_gram_value <- as.numeric(gsub(" g", "", protein_gram_match))
+# Extract the gram value in front of the word "protein"
+protein_gram <- NULL
+for (i in seq_along(text)) {
+  if (grepl("protein", tolower(text[i]))) {
+    protein_gram <- gsub("[^0-9.]", "", tolower(text[i+1]))
+    break
   }
 }
-#added print function 
-print(protein_gram_value)
+protein_gram
+
+# Print the extracted gram value
+if (!is.null(protein_gram)) {
+  print(paste("The gram value in front of the word protein is:", protein_gram))
+} else {
+  print("The word protein was not found in the extracted text.")
+}
+
+# Extract the gram value in front of the word "Carbohydrates"
+carbohydrate_gram <- NULL
+for (i in seq_along(text)) {
+  if (grepl("carbohydrates", tolower(text[i]))) {
+    carbohydrate_gram <- gsub("[^0-9.]", "", tolower(text[i+1]))
+    break
+  }
+}
+carbohydrate_gram
+
+# Print the extracted gram value
+if (!is.null(carbohydrate_gram)) {
+  print(paste("The gram value in front of the word Carbohydrates is:", carbohydrate_gram))
+} else {
+  print("The word Carbohydrates was not found in the extracted text.")
+}
+
+# Extract the gram value in front of the word "Fat, Total"
+fats_gram <- NULL
+for (i in seq_along(text)) {
+  if (grepl("fat, total", tolower(text[i]))) {
+    fats_gram <- gsub("[^0-9.]", "", tolower(text[i+1]))
+    break
+  }
+}
+fats_gram
+
+# Print the extracted gram value
+if (!is.null(fats_gram)) {
+  print(paste("The gram value in front of the word Fat is:", fats_gram))
+} else {
+  print("The word Fat was not found in the extracted text.")
+}
