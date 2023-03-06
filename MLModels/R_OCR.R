@@ -29,7 +29,7 @@ print(paste("The gram value in front of the word Carbohydrates is:", carbohydrat
 
 # Extract the gram value in front of the word "fats"
 fats_gram <- gsub("[^0-9.]", "", 
-                           tolower(gsub(",", "", regmatches(text, regexpr("\\fats,total.*[0-9] g", tolower(text))))[1]))
+                           tolower(gsub(",", "", regmatches(text, regexpr("\\total fat.*[0-9] g", tolower(text))))[1]))
 
 # Print the extracted gram value
 print(paste("The gram value in front of the word Fats is:", fats_gram))
