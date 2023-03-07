@@ -96,7 +96,6 @@ include "backend/crypt.php"
             <i class="feather mx-4" data-feather="facebook"></i>
             <i class="feather mx-4" data-feather="youtube"></i>
             <i class="feather mx-4" data-feather="twitter"></i>
-
         </div>
         <div class="my-2">
             <a class="mx-2 text-decoration-none" href="#">About Us</a>
