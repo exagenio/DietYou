@@ -7,5 +7,8 @@ include 'backend/functions.php';
             // $result = bmiCalculate(180,60);
             $this -> assertEquals(18.51851851851852, bmiCalculate(180,60) );
         }
+        public function testTEE(){
+            $this -> assertEquals(1736, TEE(65,180,1.2,"M",25));
+        }
     }
 ?>
