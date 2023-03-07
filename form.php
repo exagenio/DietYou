@@ -99,10 +99,12 @@
                   <select class="form-control bg-transparent border border-secondary" aria-label="Default select example" id="" name="" required>
                     <option selected disabled></option>
                     <option value="1">Diabetes</option>
-                    <option value="2">Cardiovascular disorders</option>
-                    <option value="3">Chronic respiratory diseases</option>
-                    <option value="4">Elevated blood cholesterol</option>
-                    <option value="5">Other</option>
+                    <option value="2">Hyper Tension</option>
+                    <option value="3">Osteoarthritis</option>
+                    <option value="4">Rheumatoid Arthritis</option>
+                    <option value="5">Elevated blood cholesterol</option>
+                    <option value="6">Other</option>
+                    <option value="7">none</option>
                   </select>
                   <br>
 
