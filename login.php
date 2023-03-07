@@ -60,6 +60,7 @@ include "backend/crypt.php"
                     }
                     }
                 }
+                mysqli_close($connection);
             ?>
             <form class="login-form" action="login.php" method="post">
                 <div class="d-flex flex-column justify-content-center form-wrap">
