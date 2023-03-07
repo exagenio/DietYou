@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <nav class="container">
+    <nav class="header sticky-top px-4">
         <div class="row py-3">
             <div class="col-4 d-flex justify-content-start align-items-center">
                 <i class="feather mx-2" data-feather="menu"></i>
@@ -28,8 +28,8 @@
         </div>
     </nav>
 
-    <!-- side nav -->
-    <div>
+     <!-- side nav -->
+     <div>
         <nav class="sidenav">
             <ul>
                 <!-- <li>
@@ -74,6 +74,7 @@
         </nav>
     </div>
 
+
     <!--first body part-->
     <section class="background-dark pt-4">
         <div class="container pt-4">
@@ -88,7 +89,7 @@
                         <h5>and your wellness goals will be within reach</h5>
                     </div>
                     <button type="button" class="btn btn-warning rounded-pill px-4 py-1.5 text-white" style="font-weight: 700" >Sign In</button>
-                    <p style="font-size:x-small; padding: 15px 0px;;">It's quick and free<p>
+                    <p style="font-size:x-small; padding: 15px 0px;;">It's quick and <b>free</b><p>
                 </div>
               </div>
               <div class="col d-flex align-items-center ">
@@ -111,33 +112,62 @@
                 </div>
                 <div class="row m-5 text-center">
                     <div class="col">
-                        <img  src="/assets/img/undraw_Questions_re_1fy7-min.png" width="100%" alt="">
+                        <img  src="assets/img/pic-2.png" class="rounded-image" width="100%" style="height: 200px; width: 300px;" alt="">
                         <p class="process-title">Take the quiz</p>
                         <p class="pt-4 process-subtitle">The free quiz only takes a few minutes </p>
                     </div>
                     <div class="col">
-                        <img  src="/assets/img/undraw_Dev_focus_re_6iwt-min.png" width="100%" alt="">
+                        <img  src="assets/img/pic-3.png" class="rounded-image" width="100%" style="height: 200px; width: 300px;" alt="">
                         <p class="process-title">Get your personalized <br>plan</p>
                         <p class="process-subtitle">We'll create a meal plan that matches your preference and needs </p>
                     </div>
                     <div class="col">
-                        <img  src="/assets/img/undraw_To_do_list_re_9nt7-min.png" width="100%" alt="">
+                        <img  src="assets/img/pic-4.png" class="rounded-image" width="100%" style="height: 200px; width: 300px;" alt="">
                         <p class="process-title">Take it one step at <br>a time</p>
                         <p class="process-subtitle">Our expert guidance keeps you right on track </p>
                     </div>
                 </div>
             </div>
-
-
         </div>
 
     </section>
     
+    <!-- Section 3 of the home page -->
     <section class="background-dark pt-3">
         <div class="container-pt2">
             <div class="d-flex flex-column align-items-center justify-content-center py-4">
                 <button type="button" class="btn btn-warning rounded-pill px-4 py-1.5 text=white" style="font-weight: 700">Get Started</button>
             </div>
+            <div class="my-2 text-center">
+                <p style="font-weight: bolder;">WHY US?</p>
+                <p style="font-size: 30px; font-weight: bolder;">What to expect from us</p>  
+            </div>
+            <div class="d-flex flex-row align-items-center justify-content-center my-4">
+                <div class="expect" style="text-align: center;">
+                    <img src="assets/img/louis-hansel-MlPD-AzZYMg-unsplash-min.jpg" class="rounded-image" alt="Image" style="width:400px; height:200px">
+                </div>
+                <div class="expecttext">
+                    <p style="font-weight: bolder;" class="ehead">Discover the food<br>that works for you</p>
+                    <p class="edesc">We are committed to providing high-quality service and <br>customer satisfaction. Our team is dedicated to making sure that<br> each customer receives the attention and care they deserve.</p>
+                </div>
+            </div>
+            <div class="d-flex flex-row align-items-center justify-content-center my-4">
+                <div class="expect" style="text-align: center;">
+                    <img src="assets/img/8C7DDB37-8102-489B-8106-ACD0B86D2BB0-768x1024 1.jpg" class="rounded-image" alt="Image" style="width:400px; height:200px">
+                </div>
+                <div class="expecttext">
+                    <p style="font-weight: bolder;" class="ehead">Find diet plan based<br>on your location</p>
+                    <p class="edesc">Discover the best food for your area and get a personalized diet <br>plan.</p>
+                </div>
+            </div>
+            <div class="d-flex flex-row align-items-center justify-content-center my-4">
+                <div class="expect" style="text-align: center;">
+                    <img src="assets/img/bruce-mars-gJtDg6WfMlQ-unsplash 1.jpg" class="rounded-image" alt="Image" style="width:400px; height:200px">
+                </div>
+                <div class="expecttext">
+                    <p style="font-weight: bolder;" class="ehead">Find Workouts that<br>suits you</p>
+                    <p class="edesc">Get a unique workout plan that is tailoredto your desired needs</p>
+                </div>
         </div>
     </section>
 

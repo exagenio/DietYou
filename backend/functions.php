@@ -28,6 +28,7 @@ function bmiCalculate($height, $weight){
 }
 
 //calculate total energy requirement per day
+//Male = M      Female = F
 function TEE($weight, $height, $activityFactor, $gender, $age){
     $bmi = bmiCalculate($weight, $height);
     $TEE = 0;

@@ -1,0 +1,21 @@
+.form-wrap input{
+    width: 100%;
+    height: 50px;
+    border: solid 1px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-color:#545454;
+    background-color: #00000000;
+}
+
+.formQuestion{
+    width: 450px;
+    background-color: #00000000;
+}
+
+.alt-btn img{
+    margin-right: 90px;
+}
+
+

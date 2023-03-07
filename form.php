@@ -56,7 +56,6 @@
         
         
         <div class="py-4 formQuestion">
-
             <div class="text-center">
                 <h3>What is the Best diet for Me? </h3>
                 <p> Stop guessing when it comes to your eating plan. 
@@ -64,54 +63,52 @@
             </div>
             <hr>
             <!-- start -->
-            <form class="question-form text-center h5 d-flex flex-column justify-content-center form-wrap" action="form.php" method="post" autocomplete="on" >
+            <form class="question-form text-center h5 d-flex flex-column justify-content-center form-wrap" action="" method="post" autocomplete="on" >
               
                 <label for="gender" class="form-label">What is your gender?</label>
-                <select class="form-control bg-transparent border border-secondary" id="" name="gender" aria-label="Default select example" required>
+                <select class="form-control bg-transparent border border-secondary" id="" name="" aria-label="Default select example" required>
                   <option selected disabled></option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
+                    <option value="non-bianary">Non-Binary</option>
                    
                 </select>
                     <br>
 
                 <label for="age" class="form-label">What is your age?</label>
-                <input type="number" class="form-control" id="" name="age" placeholder="must be an integer" required>
+                <input type="number" class="form-control" id="" name="" placeholder="must be an integer" required>
                   <br>
 
                 <label for="height" class="form-label">What is your height?</label>
                 <div class="input-group">
                     
-                    <!-- <input type="number" aria-label="Ft" class="form-control" placeholder="Ft" id="" name="ft-height" required>
-                    <input type="number" aria-label="in" class="form-control" placeholder="in" id="" name="in-height" required> -->
-                    <input type="number" class="form-control" id="" name="height" placeholder="cm" required>
-                </div>
+                    <input type="number" aria-label="Ft" class="form-control" placeholder="Ft" id="" name="" required>
+                    <input type="number" aria-label="in" class="form-control" placeholder="in" id="" name="" required>
+                  </div>
                   <br>
 
                   <label for="weight" class="form-label">What is your weight?</label>
                   <div class="input-group">
                     
-                    <input type="number" aria-label="kg" class="form-control" placeholder="Kg" id="" name="kg-weight" required>
-                    <input type="number" aria-label="g" class="form-control" placeholder="g" id="" name="g-weight" required>
+                    <input type="number" aria-label="kg" class="form-control" placeholder="Kg" id="" name="" required>
+                    <input type="number" aria-label="g" class="form-control" placeholder="g" id="" name="" required>
                   </div>
                   <br>
 
                   <label for="NCD" class="form-label">What NCD do you have? </label>
-                  <select class="form-control bg-transparent border border-secondary" aria-label="Default select example" id="" name="ncd" required>
+                  <select class="form-control bg-transparent border border-secondary" aria-label="Default select example" id="" name="" required>
                     <option selected disabled></option>
                     <option value="1">Diabetes</option>
-                    <option value="2">Hyper Tension</option>
-                    <option value="3">Osteoarthritis</option>
-                    <option value="4">Rheumatoid Arthritis</option>
-                    <option value="5">Elevated blood cholesterol</option>
-                    <option value="6">Other</option>
-                    <option value="7">none</option>
+                    <option value="2">Cardiovascular disorders</option>
+                    <option value="3">Chronic respiratory diseases</option>
+                    <option value="4">Elevated blood cholesterol</option>
+                    <option value="5">Other</option>
                   </select>
                   <br>
 
                   <label for="sleep" class="form-label">How much sleep do you get?</label>
 
-                  <select class="form-control bg-transparent border border-secondary" aria-label="Default select example" id="" name="sleepTime" required>
+                  <select class="form-control bg-transparent border border-secondary" aria-label="Default select example" id="" name="" required>
                     <option selected disabled></option>
                     <option value="1">Fewer than 5 hours</option>
                     <option value="2">Between 5 and 6 hours</option>
@@ -119,39 +116,64 @@
                     <option value="4">Over 8 hours</option>
                   </select>
                   <br>
-                  <label for="level" class="form-label">What is your physical activity level?</label>
+                  <label for="level" class="form-label">What is your fitness level?</label>
 
-                  <select name="fitness" class="form-control bg-transparent border border-secondary" aria-label="Default select example" required>
+                  <select class="form-control bg-transparent border border-secondary" aria-label="Default select example" required>
                     <option selected disabled></option>
-                    <option value="1.2">Sedentary: Little or no exercise, desk job or mostly sitting activities</option>
-                    <option value="1.375">Lightly active: Light exercise or sports 1-3 days per week, some walking during the day. </option>
-                    <option value="1.55">Moderately active: Moderate exercise or sports 3-5 days per week, active job or daily activities that require more movement.</option>
-                    <option value="1.725">Very active: Hard exercise or sports 6-7 days per week, physically demanding job, or training for a sports event. </option>
-                    <option value="1.9">Extremely active: Hard daily exercise or sports and physical job, or training for an athletic competition multiple times per day.</option>
+                    <option value="1">Beginner - I’m new to fitness</option>
+                    <option value="2">Intermediate - I work out 2-3 times a week</option>
+                    <option value="3">Advanced - I have regular workouts</option>
                   </select>
                   <br>
-                  <!-- <label for="work" class="form-label">How much time do you want to workout?</label>
+                  <label for="work" class="form-label">How much time do you want to workout?</label>
 
-                  <select class="form-control bg-transparent border border-secondary" aria-label="Default select example" id="" name="workout" required>
+                  <select class="form-control bg-transparent border border-secondary" aria-label="Default select example" id="" name="" required>
                     <option selected disabled></option>
                     <option value="1">Let DietMe decide</option>
                     <option value="2">10-15 min</option>
                     <option value="3">15-25 min</option>
                     <option value="4">30+ min</option>
                   </select>
-                  <br> -->
-                  <label for="meal" class="form-label">what type of foods do you eat? </label>
-                  <input type="checkbox" id="vehicle1" name="vehicle1" value="vegetables">
-                  <label for="vehicle1"> Vegetables</label><br>
-                  <input type="checkbox" id="vehicle2" name="vehicle2" value="meats">
-                  <label for="vehicle2"> meats</label><br>
-                  <input type="checkbox" id="vehicle3" name="vehicle3" value="diary">
-                  <label for="vehicle3"> diary products</label><br>
+                  <br>
+                  <label for="meal" class="form-label">What type of food do you eat? </label>
+
+                  <fieldset class="form-control bg-transparent border border-secondary d-flex ">
+                    <div>
+                      <input style="height: fit-content;" type="checkbox" id="" name="" checked>
+                      <label for="">Vegetables</label>
+                    </div>
+                
+                    <div>
+                      <input style="height: fit-content;" type="checkbox" id="" name="">
+                      <label for="">Fruits</label>
+                    </div>
+
+                    <div>
+                      <input style="height: fit-content;" type="checkbox" id="" name="">
+                      <label for="">Eggs</label>
+                    </div>
+
+                    <div>
+                      <input style="height: fit-content;" type="checkbox" id="" name="">
+                      <label for="">Fish</label>
+                    </div>
+
+                    <div>
+                      <input style="height: fit-content;" type="checkbox" id="" name="">
+                      <label for="">Meat</label>
+                    </div>
+
+                    <div>
+                      <input style="height: fit-content;" type="checkbox" id="" name="">
+                      <label for="">Diary <br> Products</label>
+                    </div>
+
+                  </fieldset>
                   
                   <br>
 
                   <div class="col-auto">
-                    <input name="submit" type="submit"class="btn secndry-btn my-4 form-control" placeholder="submit">
+                    <button type="submit"class="btn secndry-btn my-4 form-control">Submit</button>
                   </div>
                   
             </form>
