@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,11 @@
     <title>DietYou</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <link rel="stylesheet" href="frontend/assets/css/style.css">
+
 </head>
+
 <body>
     <nav class="header sticky-top px-4">
         <div class="row py-3">
@@ -28,8 +32,8 @@
         </div>
     </nav>
 
-     <!-- side nav -->
-     <div>
+    <!-- side nav -->
+    <div>
         <nav class="sidenav">
             <ul>
                 <!-- <li>
@@ -39,37 +43,37 @@
                     </a>
                 </li> -->
                 <li><a href="#">
-                    <i data-feather="home"></i>
-                    <span class="nav-item">Home</span>
-                </a></li>
+                        <i data-feather="home"></i>
+                        <span class="nav-item">Home</span>
+                    </a></li>
                 <li><a href="#">
-                    <i data-feather="user"></i>
-                    <span class="nav-item">Profile</span>
-                </a></li>
+                        <i data-feather="user"></i>
+                        <span class="nav-item">Profile</span>
+                    </a></li>
                 <li><a href="#">
-                    <i data-feather="paperclip"></i>
-                    <span class="nav-item">Guides</span>
-                </a></li>
+                        <i data-feather="paperclip"></i>
+                        <span class="nav-item">Guides</span>
+                    </a></li>
                 <li><a href="#">
-                    <i data-feather="book-open"></i>
-                    <span class="nav-item">Meal Plans</span>
-                </a></li>
+                        <i data-feather="book-open"></i>
+                        <span class="nav-item">Meal Plans</span>
+                    </a></li>
                 <li><a href="#">
-                    <i data-feather="clipboard"></i>
-                    <span class="nav-item">Exercise</span>
-                </a></li>
+                        <i data-feather="clipboard"></i>
+                        <span class="nav-item">Exercise</span>
+                    </a></li>
                 <li><a href="#">
-                    <i data-feather="settings"></i>
-                    <span class="nav-item">Settings</span>
-                </a></li>
+                        <i data-feather="settings"></i>
+                        <span class="nav-item">Settings</span>
+                    </a></li>
                 <li><a href="#">
-                    <i data-feather="help-circle"></i>
-                    <span class="nav-item">Help</span>
-                </a></li>
+                        <i data-feather="help-circle"></i>
+                        <span class="nav-item">Help</span>
+                    </a></li>
                 <li><a href="#" class="log-in">
-                    <i data-feather="log-in"></i>
-                    <span class="nav-item">Log In</span>
-                </a></li>  
+                        <i data-feather="log-in"></i>
+                        <span class="nav-item">Log In</span>
+                    </a></li>
             </ul>
         </nav>
     </div>
@@ -79,26 +83,27 @@
     <section class="background-dark pt-4">
         <div class="container pt-4">
             <div class="row" style="height: 500px;">
-              <div class="col d-flex align-items-center justify-content-center" >
-                <div>
-                    <h1>Enjoy a Healthy</h1>
-                    <h1>Life Without</h1>
-                    <h1>NCDs</h1>
-                    <div style="padding: 25px 0px;">
-                        <h5>Let yourself be guided by out experts</h5>
-                        <h5>and your wellness goals will be within reach</h5>
+                <div class="col d-flex align-items-center justify-content-center">
+                    <div>
+                        <h1>Enjoy a Healthy</h1>
+                        <h1>Life Without</h1>
+                        <h1>NCDs</h1>
+                        <div style="padding: 25px 0px;">
+                            <h5>Let yourself be guided by out experts</h5>
+                            <h5>and your wellness goals will be within reach</h5>
+                        </div>
+                        <button type="button" class="btn btn-warning rounded-pill px-4 py-1.5 text-white" style="font-weight: 700">Sign In</button>
+                        <p style="font-size:x-small; padding: 15px 0px;;">It's quick and <b>free</b>
+                        <p>
                     </div>
-                    <button type="button" class="btn btn-warning rounded-pill px-4 py-1.5 text-white" style="font-weight: 700" >Sign In</button>
-                    <p style="font-size:x-small; padding: 15px 0px;;">It's quick and <b>free</b><p>
                 </div>
-              </div>
-              <div class="col d-flex align-items-center ">
-                <img src="assets/img/pic-1.png" width="80%" alt="Stayfit" class="p-3">
+                <div class="col d-flex align-items-center ">
+                    <img src="assets/img/pic-1.png" width="80%" alt="Stayfit" class="p-3">
 
-                <!--add position relative or absolute and bring the picture close the the text if desired-->
-              </div>
+                    <!--add position relative or absolute and bring the picture close the the text if desired-->
+                </div>
             </div>
-          </div>
+        </div>
     </section>
 
     <!-- second part of the home page -->
@@ -112,17 +117,17 @@
                 </div>
                 <div class="row m-5 text-center">
                     <div class="col">
-                        <img  src="assets/img/pic-2.png" class="rounded-image" width="100%" style="height: 200px; width: 300px;" alt="">
+                        <img src="assets/img/pic-2.png" class="rounded-image" width="100%" style="height: 200px; width: 300px;" alt="">
                         <p class="process-title">Take the quiz</p>
                         <p class="pt-4 process-subtitle">The free quiz only takes a few minutes </p>
                     </div>
                     <div class="col">
-                        <img  src="assets/img/pic-3.png" class="rounded-image" width="100%" style="height: 200px; width: 300px;" alt="">
+                        <img src="assets/img/pic-3.png" class="rounded-image" width="100%" style="height: 200px; width: 300px;" alt="">
                         <p class="process-title">Get your personalized <br>plan</p>
                         <p class="process-subtitle">We'll create a meal plan that matches your preference and needs </p>
                     </div>
                     <div class="col">
-                        <img  src="assets/img/pic-4.png" class="rounded-image" width="100%" style="height: 200px; width: 300px;" alt="">
+                        <img src="assets/img/pic-4.png" class="rounded-image" width="100%" style="height: 200px; width: 300px;" alt="">
                         <p class="process-title">Take it one step at <br>a time</p>
                         <p class="process-subtitle">Our expert guidance keeps you right on track </p>
                     </div>
@@ -131,7 +136,7 @@
         </div>
 
     </section>
-    
+
     <!-- Section 3 of the home page -->
     <section class="background-dark pt-3">
         <div class="container-pt2">
@@ -140,7 +145,7 @@
             </div>
             <div class="my-2 text-center">
                 <p style="font-weight: bolder;">WHY US?</p>
-                <p style="font-size: 30px; font-weight: bolder;">What to expect from us</p>  
+                <p style="font-size: 30px; font-weight: bolder;">What to expect from us</p>
             </div>
             <div class="d-flex flex-row align-items-center justify-content-center my-4">
                 <div class="expect" style="text-align: center;">
@@ -168,7 +173,7 @@
                     <p style="font-weight: bolder;" class="ehead">Find Workouts that<br>suits you</p>
                     <p class="edesc">Get a unique workout plan that is tailoredto your desired needs</p>
                 </div>
-        </div>
+            </div>
     </section>
 
     <footer class="d-flex flex-column align-items-center justify-content-center container py-4">
@@ -204,6 +209,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script>
         feather.replace()
-      </script>
+    </script>
 </body>
+
 </html>
