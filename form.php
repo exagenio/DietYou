@@ -182,6 +182,23 @@ echo $_SESSION["userVerified"];
                   
                   <br>
 
+                  <label for="allergies" class="form-label">What kind of alergies you have?</label>
+                  <fieldset class="form-control bg-transparent border border-secondary d-flex">
+                    <div>
+                      <input style="height: fit-content;" type="checkbox" id="" name="lactose intolerance" checked>
+                      <label for="">Lactose intolerance</label>
+                    </div>
+                    <div>
+                      <input style="height: fit-content;" type="checkbox" id="" name="fructose intolerance" checked>
+                      <label for="">Fructose intolerance</label>
+                    </div>
+                    <div>
+                      <input style="height: fit-content;" type="checkbox" id="" name="galactosemia" checked>
+                      <label for="">Galactosemia</label>
+                    </div>
+
+                  </fieldset>
+
                   <div class="col-auto">
                     <input name="submit" type="submit"class="btn secndry-btn my-4 form-control">
                   </div>
