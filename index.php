@@ -32,6 +32,12 @@ if (!file_exists($flag_file)) {
         restrictions VARCHAR(255),
         PRIMARY KEY (id)
     );
+    CREATE TABLE ncds (
+        id INT(11) NOT NULL AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        PRIMARY KEY (id)
+    );
+    INSERT INTO ncds (name) VALUES ('Diabetes'), ('Hyper Tension'), ('Osteoarthritis'), ('Rheumatoid Arthritis');
     SQL;
     
     $createTableQuery = mysqli_multi_query($connection, $createQuery);

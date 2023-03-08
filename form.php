@@ -3,31 +3,35 @@
   session_start();
   $username = $_SESSION['username'];
 echo $_SESSION["userVerified"];
-
+if ((isset($_SESSION['username'])) && $_SESSION["userVerified"] == 1) {
   if($_POST["submit"]){
-      $age = $_POST["age"];
-      $gender = $_POST["gender"];
-      $height = $_POST["height"];
-      $weight = $_POST["weight"];
-      $ncd = $_POST["ncd"];
-      $activityFactor = $_POST["activityFactor"];
-      $workout = $_POST["workout"];
-      $foodType = $_POST["foodType"];
-      $vegetables =$_POST["vegetables"];
-      $meat =$_POST["meat"];
-      echo $age;
-      echo $vegetables;
-      echo $meat;
+    $age = $_POST["age"];
+    $gender = $_POST["gender"];
+    $height = $_POST["height"];
+    $weight = $_POST["weight"];
+    $ncd = $_POST["ncd"];
+    $activityFactor = $_POST["activityFactor"];
+    $workout = $_POST["workout"];
+    $foodType = $_POST["foodType"];
+    $vegetables =$_POST["vegetables"];
+    $meat =$_POST["meat"];
+    echo $age;
+    echo $vegetables;
+    echo $meat;
 
 
-      // $find = "SELECT password FROM users where email = '$username'";
-      // $findQuery = mysqli_query($connection, $find);
-      // $row = mysqli_fetch_row($findQuery);
-      // if (mysqli_num_rows($findQuery) == 0) {
+    // $find = "SELECT password FROM users where email = '$username'";
+    // $findQuery = mysqli_query($connection, $find);
+    // $row = mysqli_fetch_row($findQuery);
+    // if (mysqli_num_rows($findQuery) == 0) {
 
-      // } else {
-      // }
-  }
+    // } else {
+    // }
+}
+} else {
+  // Session variable is not set
+  header('Location: http://localhost/dietYou/login.php');
+}
 ?>
 
 
@@ -110,8 +114,6 @@ echo $_SESSION["userVerified"];
                     <option value="2">Hyper Tension</option>
                     <option value="3">Osteoarthritis</option>
                     <option value="4">Rheumatoid Arthritis</option>
-                    <option value="5">Elevated blood cholesterol</option>
-                    <option value="6">Other</option>
                     <option value="7">none</option>
                   </select>
                   <br>
