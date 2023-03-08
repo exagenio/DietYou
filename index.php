@@ -27,10 +27,10 @@ if (!file_exists($flag_file)) {
     );
     
     CREATE TABLE allergies (
-      id INT(11) NOT NULL AUTO_INCREMENT,
-      name VARCHAR(255) NOT NULL,
-      restrictions VARCHAR(255),
-      PRIMARY KEY (id)
+        id INT(11) NOT NULL AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        restrictions VARCHAR(255),
+        PRIMARY KEY (id)
     );
     SQL;
     
