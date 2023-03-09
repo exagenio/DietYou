@@ -9,6 +9,7 @@ if (!file_exists($flag_file)) {
     $createQuery = <<<SQL
     DROP TABLE IF EXISTS users;
     DROP TABLE IF EXISTS allergies;
+    DROP TABLE IF EXISTS ncds;
     CREATE TABLE users (
         id INT(11) NOT NULL AUTO_INCREMENT,
         email VARCHAR(30) NOT NULL,
@@ -17,12 +18,12 @@ if (!file_exists($flag_file)) {
         password CHAR(255) NOT NULL,
         weight VARCHAR(50),
         height VARCHAR(50),
+        activityFactor VARCHAR(50),
         ncds VARCHAR(255),
         gender VARCHAR(10),
         age VARCHAR(10),
         allergies VARCHAR(255),
         preferences VARCHAR(255),
-        cuisine VARCHAR(255),
         PRIMARY KEY (id)
     );
     
@@ -46,7 +47,7 @@ if (!file_exists($flag_file)) {
         die("Error creating tables: " . mysqli_error($connection));
     }
     echo "Table created successfully";
-    // Create the flag file
+
     file_put_contents($flag_file, 'done');
     mysqli_close($connection);
 }else{

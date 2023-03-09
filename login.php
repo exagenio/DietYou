@@ -1,5 +1,4 @@
 <?php 
-include "backend/db.php";
 include "backend/functions.php"; 
 include "backend/crypt.php"
 ?>
@@ -41,6 +40,7 @@ include "backend/crypt.php"
             <p>New to DietYou? <span><a href="">Signup</a></span></p>
             <?php
                 if($_POST["submit"]){
+                    include "backend/db.php";
                     $username = $_POST["username"];
                     $password = $_POST["password"];
                     $find = "SELECT password FROM users where email = '$username'";
@@ -54,13 +54,14 @@ include "backend/crypt.php"
                         session_start();
                         $_SESSION["username"] = "$username";
                         $_SESSION["userVerified"] = true;
+                        mysqli_close($connection);
                         header('Location: http://localhost/dietYou/dashoard.php');
                     } else {
                         echo ' <div class="alert alert-danger" role="alert"> Invalid username or a password. Please try again!</div>';
                     }
                     }
+                    mysqli_close($connection);
                 }
-                mysqli_close($connection);
             ?>
             <form class="login-form" action="login.php" method="post">
                 <div class="d-flex flex-column justify-content-center form-wrap">

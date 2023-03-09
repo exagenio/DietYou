@@ -1,6 +1,5 @@
 
 <?php 
-include "backend/db.php";
 include "backend/functions.php";
 include "backend/crypt.php"; 
 ?>
@@ -39,6 +38,7 @@ include "backend/crypt.php";
             <h1>Sign Up</h1>
             <?php
                 if($_POST["submit"]){
+                    include "backend/db.php";
                     $username = $_POST["username"];
                     $password = $_POST["password"];
                     $name = $_POST["fullName"];
@@ -65,6 +65,7 @@ include "backend/crypt.php";
                     }else{
                         echo"asda ada da";
                     }
+                    mysqli_close($connection);
                 }
             ?>
             <p>Already have an Account? <span><a class="login_link" href="">Login</a></span></p>

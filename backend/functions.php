@@ -8,6 +8,18 @@ function debug_to_console($data) {
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
 
+function findUser($username, $connection){
+    $find = "SELECT id FROM users where email = '$username'";
+    $findQuery = mysqli_query($connection, $find);
+    $row = mysqli_fetch_row($findQuery);
+    if (mysqli_num_rows($findQuery) == 0) {
+        header('Location: http://localhost/dietYou/login.php');
+    } else {
+        debug_to_console($row[0]);
+        return $row[0];
+    }
+}
+
 //check whether user is already exist
 function userExist($username){
     global $connection;

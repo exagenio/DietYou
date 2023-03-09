@@ -1,36 +1,61 @@
 <?php
-  include "backend/functions.php"; 
-  session_start();
-  $username = $_SESSION['username'];
-echo $_SESSION["userVerified"];
+include "backend/db.php"; 
+include "backend/functions.php"; 
+
+//set session values
+session_start();
+$username = $_SESSION['username'];
+//check the login status of the user
 if ((isset($_SESSION['username'])) && $_SESSION["userVerified"] == 1) {
-  if($_POST["submit"]){
-    $age = $_POST["age"];
-    $gender = $_POST["gender"];
-    $height = $_POST["height"];
-    $weight = $_POST["weight"];
-    $ncd = $_POST["ncd"];
-    $activityFactor = $_POST["activityFactor"];
-    $workout = $_POST["workout"];
-    $foodType = $_POST["foodType"];
-    $vegetables =$_POST["vegetables"];
-    $meat =$_POST["meat"];
-    echo $age;
-    echo $vegetables;
-    echo $meat;
-
-
-    // $find = "SELECT password FROM users where email = '$username'";
-    // $findQuery = mysqli_query($connection, $find);
-    // $row = mysqli_fetch_row($findQuery);
-    // if (mysqli_num_rows($findQuery) == 0) {
-
-    // } else {
-    // }
-}
+  //logged in
 } else {
   // Session variable is not set
   header('Location: http://localhost/dietYou/login.php');
+}
+//get submitted data
+if(isset($_POST["submit"])){
+  $age = $_POST["age"];
+  $gender = $_POST["gender"];
+  $height = $_POST["height"];
+  $weight = $_POST["weight"];
+  $ncd = $_POST["ncd"];
+  $activityFactor = $_POST["activityFactor"];
+
+  //get the allergies array and convert it into a string
+  $allergyString = null;
+  if(isset($_POST["allergies"])){
+    $allergyArray = $_POST["allergies"];
+    $allergyString = implode(',', $allergyArray);
+  }
+
+  //get the preferences array and convert it into a string
+  $preferenceString = null;
+  if(isset($_POST["preference"])){
+
+    $preferenceArray = $_POST["preference"];
+    $preferenceString =  implode(',', $preferenceArray);
+  }
+  //validate the id of the user
+  $id = findUser($username, $connection);
+
+  //update query
+  $updateQuery = <<<SQL
+  UPDATE users SET
+  height = '$height',
+  weight = '$weight',
+  gender = '$gender',
+  age = '$age',
+  activityFactor = '$activityFactor',
+  ncds = '$ncd',
+  preferences = '$preferenceString',
+  allergies = '$allergyString'
+  WHERE id = '$id';
+  SQL;
+
+  $resultUpdate = mysqli_query($connection, $updateQuery);
+  if (!$resultUpdate) {
+    die("Error creating tables: " . mysqli_error($connection));
+  }
 }
 ?>
 
@@ -131,10 +156,11 @@ if ((isset($_SESSION['username'])) && $_SESSION["userVerified"] == 1) {
                   <label for="level" class="form-label">What is your fitness level?</label>
 
                   <select class="form-control bg-transparent border border-secondary" aria-label="Default select example" name="activityFactor" required>
-                    <option selected disabled></option>
-                    <option value="1">Beginner - I’m new to fitness</option>
-                    <option value="2">Intermediate - I work out 2-3 times a week</option>
-                    <option value="3">Advanced - I have regular workouts</option>
+                    <option value="1.2">Sedentary: Little or no exercise, desk job or mostly sitting activities</option>
+                    <option value="1.375">Lightly active: Light exercise or sports 1-3 days per week, some walking during the day. </option>
+                    <option value="1.55">Moderately active: Moderate exercise or sports 3-5 days per week, active job or daily activities that require more movement.</option>
+                    <option value="1.725">Very active: Hard exercise or sports 6-7 days per week, physically demanding job, or training for a sports event. </option>
+                    <option value="1.9">Extremely active: Hard daily exercise or sports and physical job, or training for an athletic competition multiple times per day.</option>
                   </select>
                   <br>
                   <!-- <label for="work" class="form-label">How much time do you want to workout?</label>
@@ -151,32 +177,32 @@ if ((isset($_SESSION['username'])) && $_SESSION["userVerified"] == 1) {
 
                   <fieldset class="form-control bg-transparent border border-secondary d-flex ">
                     <div>
-                      <input style="height: fit-content;" type="checkbox" id="" name="vegetables" checked>
+                      <input style="height: fit-content;" type="checkbox" id="" name="preference[]" value="vege" checked>
                       <label for="">Vegetables</label>
                     </div>
                 
                     <div>
-                      <input style="height: fit-content;" type="checkbox" id="" name="fruits">
+                      <input style="height: fit-content;" type="checkbox" id="" name="preference[]" value="fruits">
                       <label for="">Fruits</label>
                     </div>
 
                     <div>
-                      <input style="height: fit-content;" type="checkbox" id="" name="eggs">
+                      <input style="height: fit-content;" type="checkbox" id="" name="preference[]" value="eggs">
                       <label for="">Eggs</label>
                     </div>
 
                     <div>
-                      <input style="height: fit-content;" type="checkbox" id="" name="fish">
+                      <input style="height: fit-content;" type="checkbox" id="" name="preference[]" value="fish">
                       <label for="">Fish</label>
                     </div>
 
                     <div>
-                      <input style="height: fit-content;" type="checkbox" id="" name="meat">
+                      <input style="height: fit-content;" type="checkbox" id="" name="preference[]" value="meat">
                       <label for="">Meat</label>
                     </div>
 
                     <div>
-                      <input style="height: fit-content;" type="checkbox" id="" name="diary">
+                      <input style="height: fit-content;" type="checkbox" id="" name="preference[]" value="diary">
                       <label for="">Diary <br> Products</label>
                     </div>
 
@@ -187,15 +213,15 @@ if ((isset($_SESSION['username'])) && $_SESSION["userVerified"] == 1) {
                   <label for="allergies" class="form-label">What kind of alergies you have?</label>
                   <fieldset class="form-control bg-transparent border border-secondary d-flex">
                     <div>
-                      <input style="height: fit-content;" type="checkbox" id="" name="lactose intolerance" checked>
+                      <input style="height: fit-content;" type="checkbox" id="" value="lactose intolerance" name="allergies[]">
                       <label for="">Lactose intolerance</label>
                     </div>
                     <div>
-                      <input style="height: fit-content;" type="checkbox" id="" name="fructose intolerance" checked>
+                      <input style="height: fit-content;" type="checkbox" id="" value="fructose intolerance" name="allergies[]" >
                       <label for="">Fructose intolerance</label>
                     </div>
                     <div>
-                      <input style="height: fit-content;" type="checkbox" id="" name="galactosemia" checked>
+                      <input style="height: fit-content;" type="checkbox" id="" value="galactosemia" name="allergies[]" >
                       <label for="">Galactosemia</label>
                     </div>
 
