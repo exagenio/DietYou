@@ -17,7 +17,7 @@ include 'backend/functions.php';
         }
 
         public function testTEEOverWeight(){
-            $this -> assertEquals(2,406, TEE(100,180,1.2,"M",25));
+            $this -> assertEquals(2406, TEE(100,180,1.2,"M",25));
         }
     }
 ?>
