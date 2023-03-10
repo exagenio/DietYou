@@ -19,5 +19,8 @@ include 'backend/functions.php';
         public function testTEEOverWeight(){
             $this -> assertEquals(2406, TEE(100,180,1.2,"M",25));
         }
+
+        public function testProtienCalculate(){
+            $this -> assertEquals(90.0, ProteinCalculator(1800));
+        }
     }
-?>
