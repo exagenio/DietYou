@@ -73,6 +73,17 @@ function ProteinCalculator($TEE){
     return $protein;
 }
 
+function fatCalculator($TEE){
+    $fat = ($TEE*(20/100))/9;
+    return $fat;
+}
+
+function carbCalculator($TEE){
+    $carb = ($TEE*(60/100))/4;
+    return $carb;
+}
+
+
 // function NCDFilter($NCDS){
 //     if($NCDS === null){
 
