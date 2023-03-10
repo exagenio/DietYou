@@ -68,4 +68,15 @@ function TEE($weight, $height, $activityFactor, $gender, $age){
     return $TEE;
 }
 
+function ProteinCalculator($TEE){
+    $protein = ($TEE*(20/100))/4;
+    return $protein;
+}
+
+// function NCDFilter($NCDS){
+//     if($NCDS === null){
+
+//     }
+// }
+
 ?>
