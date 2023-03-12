@@ -83,11 +83,58 @@ function carbCalculator($TEE){
     return $carb;
 }
 
+function allergyFilter($connection, $username){
+    $fullResArray = null;
+    $findAllergQuery = "SELECT allergies FROM users where email = '$username'";
+    $findAllergyResult = mysqli_query($connection, $findAllergQuery);
+    if (mysqli_num_rows($findAllergyResult) == 0) {
+        
+    } else {
+        $Allergyow = mysqli_fetch_row($findAllergyResult);
+        $AllergyString = $Allergyow[0];
+        $allergies = explode(",", $AllergyString);
+        if($allergies[0] != null){
+            if( in_array( "lactose-intolerance" ,$allergies ) ){
+                $findRestrictions = "SELECT restrictions FROM allergies where name = 'lactose-intolerance'";
+                $findQuery = mysqli_query($connection, $findRestrictions);
+                if (mysqli_num_rows($findQuery) == 0) {
+                } else {
+                    $row = mysqli_fetch_row($findQuery);
+                    $lactString = $row[0];
+                    $lactArray = explode(",", $lactString);
+                    $fullResArray = array_merge($fullResArray,$lactArray);
+                }
+            }
+            if( in_array( "galactosemia" ,$allergies ) ){
+                $findRestrictions = "SELECT restrictions FROM allergies where name = 'galactosemia'";
+                $findQuery = mysqli_query($connection, $findRestrictions);
+                if (mysqli_num_rows($findQuery) == 0) {
+                } else {
+                    $row = mysqli_fetch_row($findQuery);
+                    $restrictString = $row[0];
+                    $restrictArray = explode(",", $restrictString);
+                    $fullResArray = array_merge($fullResArray,$restrictArray);
+                }
+            }
+            if( in_array( "fructose-intolerance" ,$allergies ) ){
+                $findRestrictions = "SELECT restrictions FROM allergies where name = 'fructose-intolerance'";
+                $findQuery = mysqli_query($connection, $findRestrictions);
+                if (mysqli_num_rows($findQuery) == 0) {
+                } else {
+                    $row = mysqli_fetch_row($findQuery);
+                    $restrictString = $row[0];
+                    $restrictArray = explode(",", $restrictString);
+                    $fullResArray = array_merge($fullResArray,$restrictArray);
+                }
+            }
+        }
+    }
+    return $fullResArray;
+}
 
-// function NCDFilter($NCDS){
-//     if($NCDS === null){
 
-//     }
+// function mainMeals($TEE, $fat, $carb, $protein){
+//     $mealArray = null;
 // }
 
 ?>
