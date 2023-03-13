@@ -83,15 +83,17 @@ function carbCalculator($TEE){
     return $carb;
 }
 
+//recognize allergies and return all restriction. If there are no allrgies, outcome will be null
 function allergyFilter($connection, $username){
-    $fullResArray = null;
+    $fullResArray = [];
     $findAllergQuery = "SELECT allergies FROM users where email = '$username'";
     $findAllergyResult = mysqli_query($connection, $findAllergQuery);
     if (mysqli_num_rows($findAllergyResult) == 0) {
-        
+
     } else {
         $Allergyow = mysqli_fetch_row($findAllergyResult);
         $AllergyString = $Allergyow[0];
+        echo $AllergyString;
         $allergies = explode(",", $AllergyString);
         if($allergies[0] != null){
             if( in_array( "lactose-intolerance" ,$allergies ) ){
@@ -129,6 +131,8 @@ function allergyFilter($connection, $username){
             }
         }
     }
+    print_r($fullResArray);
+    echo "----------------------- <br>";
     return $fullResArray;
 }
 

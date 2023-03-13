@@ -213,11 +213,11 @@ if(isset($_POST["submit"])){
                   <label for="allergies" class="form-label">What kind of alergies you have?</label>
                   <fieldset class="form-control bg-transparent border border-secondary d-flex">
                     <div>
-                      <input style="height: fit-content;" type="checkbox" id="" value="lactose intolerance" name="allergies[]">
+                      <input style="height: fit-content;" type="checkbox" id="" value="lactose-intolerance" name="allergies[]">
                       <label for="">Lactose intolerance</label>
                     </div>
                     <div>
-                      <input style="height: fit-content;" type="checkbox" id="" value="fructose intolerance" name="allergies[]" >
+                      <input style="height: fit-content;" type="checkbox" id="" value="fructose-intolerance" name="allergies[]" >
                       <label for="">Fructose intolerance</label>
                     </div>
                     <div>
