@@ -9,6 +9,9 @@ class User{
     private $ncds;
     private $age;
     private $gender;
+    private $requiredCarbs;
+    private $requiredProtein;
+    private $requiredFat;
 
     function __construct($username, $connection) {
         if(userExist($username)){
@@ -27,6 +30,11 @@ class User{
                 $this->age = $userInfo[10];
                 $this->BMI = bmiCalculate($this->height, $this->weight );
                 $this->TEE = TEE($this->weight,$this->height,$this->activityFactor,$this->gender,$this->age);
+                $this->requiredCarbs = carbCalculator($this->TEE);
+                $this->requiredFat = fatCalculator($this->TEE);
+                $this->requiredProtein = ProteinCalculator($this->TEE);
+                $this->age = $userInfo[10];
+                $this->age = $userInfo[10];
             }
         }
     }
@@ -63,6 +71,18 @@ class User{
         return $this->age;
     }
 
+    public function getCarbs(){
+        return $this->requiredCarbs;
+    }
+
+    public function getProtein(){
+        return $this->requiredProtein;
+    }
+
+    public function getFat(){
+        return $this->requiredFat;
+    }
+    
 
 }
 ?>
