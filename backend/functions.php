@@ -15,7 +15,6 @@ function findUser($username, $connection){
     if (mysqli_num_rows($findQuery) == 0) {
         header('Location: http://localhost/dietYou/login.php');
     } else {
-        debug_to_console($row[0]);
         return $row[0];
     }
 }
@@ -93,7 +92,6 @@ function allergyFilter($connection, $username){
     } else {
         $Allergyow = mysqli_fetch_row($findAllergyResult);
         $AllergyString = $Allergyow[0];
-        echo $AllergyString;
         $allergies = explode(",", $AllergyString);
         if($allergies[0] != null){
             if( in_array( "lactose-intolerance" ,$allergies ) ){
@@ -131,8 +129,8 @@ function allergyFilter($connection, $username){
             }
         }
     }
-    print_r($fullResArray);
-    echo "----------------------- <br>";
+    // print_r($fullResArray);
+    // echo "----------------------- <br>";
     return $fullResArray;
 }
 

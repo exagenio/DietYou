@@ -1,6 +1,7 @@
 <?php
 include "backend/db.php"; 
 include "backend/functions.php";
+include "classes/User.php";
 
 //set session values
 session_start();
@@ -19,28 +20,30 @@ $findQuery = "SELECT * FROM foods";
 $allergyRestrictions = allergyFilter($connection, $username);
 if(count($allergyRestrictions) >0){
     $filterValues = implode(',', $allergyRestrictions);
-    echo "<br>";
-    echo $filterValues;
-    echo "<br>";
-    echo "<br>";
+    // echo "<br>";
+    // echo $filterValues;
+    // echo "<br>";
+    // echo "<br>";
     $findQuery = "SELECT * FROM foods WHERE food_category NOT IN ($filterValues)";
 }
-echo $findQuery;
-echo "<br>";
-echo "<br>";
+// echo $findQuery;
+// echo "<br>";
+// echo "<br>";
 
 $result = mysqli_query($connection, $findQuery);
 $foods = mysqli_fetch_assoc($result);
-while ($foods) {
-    // loop through the associative array and output each key-value pair
-    foreach ($foods as $key => $value) {
-        echo "$key: $value<br>";
-    }
-    echo "<br>";
-}
+
+// while ($foods) {
+//     foreach ($foods as $key => $value) {
+//         echo "$key: $value<br>";
+//     }
+//     echo "<br>";
+// }
 
 $mainMeals = [];
-for($i = 0; $i<3; $i++){
-    $randomNum = rand(0,count($foods)-1);
-}
+$user = new User($username, $connection);
+// $TEE = TEE($weight, $height, $activityFactor, $gender, $age);
+// for($i = 0; $i<3; $i++){
+//     $randomNum = rand(0,count($foods)-1);
+// }
 ?>
