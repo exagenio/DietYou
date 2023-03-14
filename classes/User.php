@@ -21,7 +21,7 @@ class User{
             } else {
                 $row = mysqli_fetch_row($findQuery);
                 $userInfo = $row;
-                print_r($userInfo);
+                // print_r($userInfo);
                 $this->weight = $userInfo[5];
                 $this->height = $userInfo[6];
                 $this->activityFactor = $userInfo[7];
