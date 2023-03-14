@@ -44,7 +44,7 @@ if($bmi>=30){
 }else if($bmi>=25){
   $TEEreduction = 750;
 }
-$carbTot = (($TEEtot*0.6)-$TEEreduction)/4;
+$carbTot = (($TEEtot*0.55)-$TEEreduction)/4;
 $fatTot = $user->getFat();
 $proteinTot = $user->getProtein();
 $TEEperMeal = ($user->getTEE() - $TEEreduction)*0.32;
@@ -54,20 +54,94 @@ $randomNum = rand(0,count($rows)-1);
 mysqli_free_result($result);
 
 // Use the array of row objects as desired
-foreach ($rows as $row) {
-    echo $row["name"];
-    echo "<br>";
-}
+// foreach ($rows as $row) {
+//     echo $row["name"];
+//     echo "<br>";
+// }
 
+$selectedRandomContainer = [];
 // while(count($mainMeals) <3){
-//   $randomNum = rand(0,count($foods)-1);
-//   print_r($foods[$randomNum]);
+//   $randomNum = rand(0,count($rows)-1);
+//   if( in_array( $randomNum  ,$selectedRandomContainer) ){
+//     continue;
+//   }
+//   $energyRatio = ($rows[$randomNum]["energy"])/$TEEperMeal;
+//   if($energyRatio == 0){
 
-//   $findQuery = mysqli_query($connection, $find);
-//   if (mysqli_num_rows($findQuery) == 0) {
-//   } else {
+//   }else{
+//     $servingRatio = (1/($energyRatio*100))*100;
+//     $proteinContain = ($rows[$randomNum]["protein"])*$servingRatio;
+//     $carbContain = ($rows[$randomNum]["carbohydrate"])*$servingRatio;
+//     $fatContain = ($rows[$randomNum]["fat"])*$servingRatio;
+    
+//     if( ($proteinContain >= ((0.9*$proteinTot)/3)) && ($proteinContain <= ((0.98*$proteinTot)/3)) ){
+//       if(($carbContain >= ((0.9*$carbTot)/3)) && ($carbContain <= ((0.98*$carbTot)/3))){
+//           echo $servingRatio*100;
+//           echo "<br>";
+//           echo "carb = ";
+//           echo $carbContain;
+//           echo "<br>";
+//           echo "protein = ";
+//           echo  $proteinContain ;
+//           echo "<br>";
+//           echo "fat = ";
+//           echo $fatContain ;
+//           echo "<br>";
+//           echo "fat percentage = ";
+//           echo ($fatContain/$fatTot)/3 ;
+//           echo "<br>";
+//           echo "<br>";
+//           array_push($mainMeals, $rows[$randomNum]);
+//           array_push($selectedRandomContainer, $randomNum);
 
+//       }
+//     }
 //   }
 // }
+
+for($i=0; $i<100000; ++$i){
+  $randomNum = rand(0,count($rows)-1);
+  if( in_array( $randomNum  ,$selectedRandomContainer) ){
+    continue;
+  }
+  $energyRatio = ($rows[$randomNum]["energy"])/$TEEperMeal;
+  if($energyRatio == 0){
+
+  }else{
+    $servingRatio = (1/($energyRatio*100))*100;
+    $proteinContain = ($rows[$randomNum]["protein"])*$servingRatio;
+    $carbContain = ($rows[$randomNum]["carbohydrate"])*$servingRatio;
+    $fatContain = ($rows[$randomNum]["fat"])*$servingRatio;
+    
+    if( ($proteinContain >= ((0.86*$proteinTot)/3)) && ($proteinContain <= ((0.98*$proteinTot)/3)) ){
+      if(($carbContain >= ((0.86*$carbTot)/3)) && ($carbContain <= ((0.98*$carbTot)/3))){
+          echo $servingRatio*100;
+          echo "<br>";
+          echo "carb = ";
+          echo $carbContain;
+          echo "<br>";
+          echo "protein = ";
+          echo  $proteinContain ;
+          echo "<br>";
+          echo "fat = ";
+          echo $fatContain ;
+          echo "<br>";
+          echo "fat percentage = ";
+          echo (($fatContain/$fatTot)/3)*100 ;
+          echo "<br>";
+          echo "<br>";
+          array_push($mainMeals, $rows[$randomNum]);
+          array_push($selectedRandomContainer, $randomNum);
+
+      }
+    }
+  }
+}
+echo "<br>";
+echo "<br>";
+foreach ($mainMeals as $row) {
+  echo $row["name"];
+  echo "<br>";
+}
 
 ?>

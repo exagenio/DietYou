@@ -74,12 +74,12 @@ function ProteinCalculator($TEE){
 }
 
 function fatCalculator($TEE){
-    $fat = ($TEE*(20/100))/9;
+    $fat = ($TEE*(25/100))/9;
     return $fat;
 }
 
 function carbCalculator($TEE){
-    $carb = ($TEE*(60/100))/4;
+    $carb = ($TEE*(55/100))/4;
     return $carb;
 }
 
