@@ -1,5 +1,6 @@
 <?php
 include 'backend/functions.php';
+// include 'backend/db.php';
 
     final class DietYouTest extends \PHPUnit\Framework\TestCase{
         // $s = include "/backend/Equations.php";
@@ -23,4 +24,15 @@ include 'backend/functions.php';
         public function testProtienCalculate(){
             $this -> assertEquals(90.0, ProteinCalculator(1800));
         }
+        public function testCarbCalculate(){
+            $this -> assertEquals(360.9, carbCalculator(2406));
+        }
+        public function testFatCalculate(){
+            $this -> assertEquals(53.46666666666667, FatCalculator(2406));
+        }
+        
+        // public function testAllergyFliter(){
+        //     $this -> assertEquals(,allergyFilter($connection,"Shabeer"));
+        // }
+        
     }

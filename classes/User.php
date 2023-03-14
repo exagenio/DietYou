@@ -18,6 +18,7 @@ class User{
             $find = "SELECT * FROM users where email = '$username'";
             $findQuery = mysqli_query($connection, $find);
             if (mysqli_num_rows($findQuery) == 0) {
+                //redirect login
             } else {
                 $row = mysqli_fetch_row($findQuery);
                 $userInfo = $row;
