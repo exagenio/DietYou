@@ -130,14 +130,6 @@ function allergyFilter($connection, $username){
             }
         }
     }
-    // print_r($fullResArray);
-    // echo "----------------------- <br>";
     return $fullResArray;
 }
-
-
-// function mainMeals($TEE, $fat, $carb, $protein){
-//     $mealArray = null;
-// }
-
 ?>
