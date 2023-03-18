@@ -24,6 +24,7 @@ if (!file_exists($flag_file)) {
         age VARCHAR(10),
         allergies VARCHAR(255),
         preferences VARCHAR(255),
+        country VARCHAR(255),
         PRIMARY KEY (id)
     );
     

@@ -147,7 +147,8 @@ if (isset($_POST["submit"])) {
           <option value="2">Hyper Tension</option>
           <option value="3">Osteoarthritis</option>
           <option value="4">Rheumatoid Arthritis</option>
-          <option value="7">none</option>
+          <option value="5">Heart failure</option>
+          <option value="null">none</option>
         </select>
         <br>
 
