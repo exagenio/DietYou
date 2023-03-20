@@ -41,6 +41,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 $mainMeals = [];
 //get the user data by creating a user object
 $user = new User($username, $connection);
+$age = $user ->getAge();
+$gender = $user->getGender();
 $TEEtot = $user->getTEE();
 $TEEreduction = 0;
 $bmi = $user->getBMI();
@@ -85,7 +87,7 @@ mysqli_free_result($result);
 
 for($i=0; $i<count($foods); ++$i){
   $foodCategory = $foods[$i]["wweia_category_description"];
-  if( $foodCategory == "Wine" || $foodCategory == "Liquor and cocktails" || $foodCategory == "Beer"|| $foodCategory == "Salad dressings and vegetable oils"){
+  if( $foodCategory == "Wine" || $foodCategory == "Liquor and cocktails" || $foodCategory == "Beer"|| $foodCategory == "Salad dressings and vegetable oils" || $foodCategory == "Cream and cream substitutes" || $foodCategory == "Cream cheese, sour cream, whipped cream" ){
     continue;
   }
   //energy ratio give the ratio of energy relative to the required energy rae per meal for 1 servin
@@ -236,7 +238,7 @@ for($i=0; $i<count($foods); ++$i){
   if($ncds == 5 && ($foodCategory == "Tea" || $foodCategory == "coffee")){
     continue;
   }
-  if( $foodCategory == "Wine" || $foodCategory == "Liquor and cocktails" || $foodCategory == "Beer"|| $foodCategory == "Salad dressings and vegetable oils"){
+  if( $foodCategory == "Wine" || $foodCategory == "Liquor and cocktails" || $foodCategory == "Beer"|| $foodCategory == "Salad dressings and vegetable oils" || $foodCategory == "Cream and cream substitutes" || $foodCategory == "Cream cheese, sour cream, whipped cream"){
     continue;
   }
   //energy ratio give the ratio of energy relative to the required energy rae per meal for 1 servin
@@ -368,38 +370,6 @@ foreach ($mealPackages as $meals) {
 
     }
   }
-
-  // foreach($sncakCombine as $snacks){
-  //   $dailySProtein = 0;
-  //   $dailySFat = 0;
-  //   // foreach($snacks as $snack){
-  //   //   $serving = $snack["sRatio"];
-  //   //   $snackFat = $snack["carbohydrate"]*$serving;
-  //   //   $snackProtein = $snack["protein"]*$serving;
-  
-  //   //   $dailySFat = $dailySFat + $snackFat;
-  //   //   $dailySProtein = $dailySProtein + $snackProtein;
-
-
-  //   // }
-  //   // echo"<br><br>";
-  //   // echo $dailySProtein;
-  //   // echo"<br>";
-  //   // echo $dailySFat;
-  //   // echo"<br><br>";
-  //   // $dailyProtein = $dailyMProtein + $dailySProtein;
-  //   // $dailyFat = $dailyMFat + $dailySFat;
-  //   // echo"<br><br>";
-  //   // echo $dailyProtein;
-  //   // echo"<br>";
-  //   // echo $dailyFat;
-  //   // echo"<br><br>";
-  //   // if(( ($dailyProtein>= $proteinTot*1) && ($dailyProtein < $proteinTot*1.2) ) &&  ( ($dailyFat>= $fatTot*1) && ($dailyFat < $fatTot*1.2) )   ){
-  //   //   $dietPack = [$meals,$snacks];
-  //   //   array_push($dietPlans, $dietPack);
-  //   //   break;
-  //   // }
-  // }
 }
 echo count($dietPlans);
 echo "<br><br><br><br>";
@@ -412,88 +382,150 @@ for($i=0; $i<count($dietPlans); $i++){
   echo "<br><br><br><br>";
 }
 
+$finalDPlans = [];
 
+for($i=0; $i<count($dietPlans); $i++){
+  $fiber = 0;
+  $folate = 0;
+  $Vitamin_B6 = 0;
+  $Vitamin_B12 = 0;
+  $choline = 0;
+  // $biotin = 0;
+  $Vitamin_A = 0;
+  $Vitamin_C = 0;
+  $Vitamin_E = 0;
+  $Vitamin_K = 0;
+  $vitamin_D = 0;
+  $calcium = 0;
+  // $chromium = 0;
+  // $iodine = 0;
+  $iron = 0;
+  $magnesium = 0;
+  $potassium = 0;
+  $selenium = 0;
+  $sodium = 0;
+  $zinc = 0;
+  for($n=0; $n<2; $n++){
+    for($j=0; $j<3; $j++){
+      $sodium  += $dietPlans[$i][$n][$j]["sodium"];
+      $fiber += $dietPlans[$i][$n][$j]["fiber_total_dietary_(g)"];
+      $folate += $dietPlans[$i][$n][$j]["folate_food_(mcg)"];
+      $Vitamin_B6 += $dietPlans[$i][$n][$j]["vitamin_B-6_(mg)"];
+      $Vitamin_B12 += $dietPlans[$i][$n][$j]["vitamin_B-12_(mcg)"] + $dietPlans[$i][$n][$j]["vitamin_B-12_added(mcg)"];
+      $choline += $dietPlans[$i][$n][$j]["choline_total_(mg)"];
+      $Vitamin_A += $dietPlans[$i][$n][$j]["vitamin_A_RAE_(mcg_RAE)"];
+      $Vitamin_C += $dietPlans[$i][$n][$j]["vitamin_C_(mg)"];
+      $Vitamin_E += $dietPlans[$i][$n][$j]["vitamin_E_(alpha-tocopherol)_(mg)"];
+      $Vitamin_K += $dietPlans[$i][$n][$j]["vitamin_K_(phylloquinone)_(mcg)"];
+      $vitamin_D += $dietPlans[$i][$n][$j]["vitamin_D_(D2+D3)_(mcg)"];
+      $calcium  += $dietPlans[$i][$n][$j]["calcium_(mg)"];
+      $iron += $dietPlans[$i][$n][$j]["iron_(mg)"];
+      $magnesium  += $dietPlans[$i][$n][$j]["magnesium_(mg)"];
+      $potassium += $dietPlans[$i][$n][$j]["potassium_(mg)"];
+      $selenium += $dietPlans[$i][$n][$j]["selenium_(mcg)"];
+      $zinc += $dietPlans[$i][$n][$j]["zinc_(mg)"];
+    }
+  }
+  $fiberReqM = ($fiber>=38*0.2)&&($fiber<=38*1.5);
+  $fiberReqF = ($fiber>=25*0.2)&&($fiber<=25*1.5);
 
-// // foreach ($mealPackages as $meals) {
-// //   $dailyProtein = 0;
-// //   $dailyFat = 0;
-// //   foreach ($meals as $meal) {
-// //     $serving = $meal["sRatio"];
-// //     $mealFat = $meal["carbohydrate"]*$serving;
-// //     $mealProtein = $meal["protein"]*$serving;
+  $folateReq = ($folate>=400*0.2)&&($folate<=400*1.5);
 
-// //     $dailyFat = $dailyFat + $mealFat;
-// //     $dailyProtein = $dailyProtein + $mealProtein;
-// //   }
-// //   foreach($sncakCombine as $snacks){
-// //     foreach($snacks as $snack){
-// //       $serving = $snack["sRatio"];
-// //       $snackFat = $snack["carbohydrate"]*$serving;
-// //       $snackProtein = $snack["protein"]*$serving;
-  
-// //       $dailyFat = $dailyFat + $snackFat;
-// //       $dailyProtein = $dailyProtein + $snackProtein;
-// //     }
-// //     if(( ($dailyProtein>= $proteinTot*0.5) && ($dailyProtein < $proteinTot) ) &&  ( ($dailyFat>= $fatTot*0.5) && ($dailyFat < $fatTot) )   ){
-// //       $dietPack = [$meals,$snacks];
-// //       array_push($dietPlans, $dietPack);
-// //       break;
-// //     }
-// //   }
-// //   if(count($dietPlans)>1000){
-// //     break;
-// //   }
-// // }
+  $vit_b6Req = ($Vitamin_B6>=1.3*0.2)&&($Vitamin_B6<=1.3*1.5);
+  $vit_b6ReqW50 = ($Vitamin_B6>=1.7*0.2)&&($Vitamin_B6<=1.7*1.5);
+  $vit_b6ReqM50 = ($Vitamin_B6>=1.5*0.2)&&($Vitamin_B6<=1.5*1.5);
 
-// // echo count($dietPlans);
-// // foreach($dietPlans as $totPackage){
-// //   echo"-Main Meals-";
-// //   print_r( $totPackage[0][0]["name"]);
-// //   echo "<br>";
-// //   print_r( $totPackage[0][1]["name"]);
-// //   echo "<br>";
-// //   print_r( $totPackage[0][2]["name"]);
-// //   echo "<br>";
-// //   echo "<br>";
-// //   echo"-Snacks-";
-// //   print_r( $totPackage[1][0]["name"]);
-// //   echo "<br>";
-// //   print_r( $totPackage[1][1]["name"]);
-// //   echo "<br>";
-// //   print_r( $totPackage[1][2]["name"]);
-// //   echo "<br>";
-// //   echo "<br>";
-// //   echo "<br>";
-// // }
-// // foreach ($dietPlans as $totPackage) {
-// //   echo "<br><br>--Meal plan--<br>";
-// //   foreach($totPackage as $items){
-// //     $mealsPerDay = $items[0];
-// //     $snacksPerDay = $items[1];
-// //     echo "-Main meals- <br>";
-// //     foreach($mealsPerDay as $meal){
-// //       echo $meal["name"];
-// //       echo "<br>";
-// //     }
-// //     echo "<br>-Snacks- <br>";
-// //     foreach($snacksPerDay as $snack){
-// //       echo $snack["name"];
-// //       echo "<br>";
-// //     }
-// //   }
-// //   echo "============end==========<br><br>";
-// // }
+  $vit_b12Req = ($Vitamin_B12 >= 2.4*0.2)&&($Vitamin_B12 <= 2.4*1.5);
 
+  $cholineReqW = ($choline >=550*0.2)&&($choline <=550*1.5);
+  $cholineReqM =($choline >=225*0.2)&&($choline <=225*1.5);
 
-// $fiber = 0;
-// $folate = 0;
-// $vitb6 = 0;
-// $vitb12 = 0;
-// $choline = 0;
-// $biotin = 0;
-// $vita = 0;
-// $vitc = 0;
-// $vite = 0;
+  $vit_AReqW = ($Vitamin_A >=700*0.2) && ($Vitamin_A <=700*1.5);
+  $vit_AReqM = ($Vitamin_A >=900*0.2) && ($Vitamin_A <=900*1.5);
 
+  $vit_EReq = ($Vitamin_E >=15*0.2)&& ($Vitamin_E <=15*1.5);
+
+  $vit_KReq = ($Vitamin_E >=15*0.2) &&($Vitamin_K <=120*1.5);
+
+  $vit_DReq = ($vitamin_D >= 15*0.2) && ($vitamin_D <= 15*1.5) ;
+  $vit_DReq70 =($vitamin_D >= 20*0.2) && ($vitamin_D <= 20*1.5);
+
+  $calcium_Req = ($calcium >= 1000*0.2) && ($calcium <= 1000*1.5);
+  $calcium_Req50 = ($calcium >= 1000*0.2) && ($calcium <= 1000*1.5);
+  $calcium_Req70 = ($calcium >= 1200*0.2) && ($calcium <= 1200*1.5);
+
+  $iron_ReqW = ($iron >= 18*0.2) && ($iron <= 18*1.5);;
+  $iron_ReqM = ($iron >= 8*0.2) && ($iron <= 8*1.5);
+  $iron_Req50 = ($iron >= 8*0.2) && ($iron <= 8*1.5);;
+
+  $magenesium_Req = ($magnesium >= 400*0.2) && ($magnesium <= 400*1.5);
+  $magenesium_Req30 = ($magnesium >= 420*0.2) && ($magnesium <= 420*1.5);
+
+  $potassium_Req =($potassium >= 3400*0.2) && ($potassium <= 3400*1.5);
+
+  $seleniumReq =($selenium >= 55*0.2) && ($selenium <= 55*1.5);
+
+  $sodiumReq = ($sodium >=2300*0.2) && ($sodium <=2300*1.5);
+
+  $zincReqW =($zinc >= 8*0.2) && ($zinc <= 8*1.5);
+  $zincReqM = ($zinc >= 11*0.2) && ($zinc <= 11*1.5);
+
+  if(($folateReq) && ($vit_b12Req) && ($vit_EReq) && ($vit_KReq) && ($potassium_Req) && ($seleniumReq) && ($sodiumReq) ){
+    echo "entered into loop<br>";
+    if($gender =="F"){
+     
+      if(($fiberReqF) && ($cholineReqW) && ($vit_AReqW) && ($iron_ReqW) && ($zincReqW)){
+        echo "entered into loop<br>";
+        if($age>70){
+          if(($calcium_Req70) && ($vit_b6ReqW50) && ($iron_Req50) && ($magenesium_Req30)){
+            array_push($finalDPlans, $dietPlans[$i]);
+          }
+        }else if($age>50){
+          if( ($calcium_Req50) && ($vit_b6ReqW50) && ($iron_Req50) && ($magenesium_Req30)){
+            array_push($finalDPlans, $dietPlans[$i]);
+          }
+        }else if($age>30){
+          if(($magenesium_Req30)){
+            array_push($finalDPlans, $dietPlans[$i]);
+          }
+        }else if($age>19){
+          array_push($finalDPlans, $dietPlans[$i]);
+        }
+
+      }
+    }
+    if($gender =="M"){
+      
+      if(($fiberReqM) && ($cholineReqM)  && ($vit_AReqM) && ($iron_ReqM) && ($zincReqM)){
+        
+        if($age>70){
+          if(($calcium_Req70) && ($vit_b6ReqM50) && ($iron_Req50) && ($magenesium_Req30)){
+            array_push($finalDPlans, $dietPlans[$i]);
+          }
+        }else if($age>50){
+          if( ($calcium_Req50) && ($vit_b6ReqM50) && ($iron_Req50) && ($magenesium_Req30)){
+            array_push($finalDPlans, $dietPlans[$i]);
+          }
+        }else if($age>30){
+          if(($magenesium_Req30)){
+            array_push($finalDPlans, $dietPlans[$i]);
+          }
+        }else if($age>19){
+          array_push($finalDPlans, $dietPlans[$i]);
+        }
+      }
+    }
+  }
+}
+
+echo "<br><br>-----------------------------------------------------------------------------------------------<br><br>";
+echo count($finalDPlans);
+for($i=0; $i<count($finalDPlans); $i++){
+  echo "<br>---Main meals ---<br>";
+  echo $finalDPlans[$i][0][0]["name"],"<br>", $finalDPlans[$i][0][1]["name"],"<br>", $finalDPlans[$i][0][2]["name"];
+  echo "<br><br>---Snacks ---<br>";
+  echo $finalDPlans[$i][1][0]["name"],"<br>", $finalDPlans[$i][1][1]["name"],"<br>", $finalDPlans[$i][1][2]["name"];
+  echo "<br><br><br><br>";
+}
 
 ?>
