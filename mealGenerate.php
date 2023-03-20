@@ -1,7 +1,6 @@
 <?php
 include "backend/db.php"; 
 include "classes/User.php";
-
 //set session values
 session_start();
 $username = $_SESSION['username'];
@@ -81,6 +80,8 @@ if($bmi>=30){
 }
 
 $TEEperMeal = ($user->getTEE() - $TEEreduction)*0.30;
+$snacks = [];
+$TEEperSnack = ($user->getTEE() - $TEEreduction)*0.033;
 
 // Free the memory used by the result set
 mysqli_free_result($result);
@@ -108,48 +109,64 @@ for($i=0; $i<count($foods); ++$i){
     if( ($proteinContain >= ((0.8*$proteinTot)/3)) && ($proteinContain <= ((0.98*$proteinTot)/3)) ){
       if(($fatContain >= ((0.7*$fatTot)/3)) && ($fatContain <= ((0.98*$fatTot)/3))){
         if(($carbContain >= ((0.8*$carbTot)/3)) && ($carbContain <= ((1.02*$carbTot)/3))){
-          if($servingRatio<8){
+          if($servingRatio<6){
             $foods[$i]['sRatio'] = $servingRatio;
-            echo $servingRatio*100;
-            echo "<br>";
-            echo "carb = ";
-            echo $carbContain;
-            echo "<br>";
-            echo "protein = ";
-            echo  $proteinContain ;
-            echo "<br>";
-            echo "fat = ";
-            echo $fatContain ;
-            echo "<br>";
-            echo "fat percentage = ";
-            echo (($fatContain/$fatTot)/3)*100 ;
-            echo "<br>";
-            echo "<br>";
             array_push($mainMeals, $foods[$i]);
           }
         }
       }
     }
   }
+
+
+  if($ncds == 5 && ($foodCategory == "Tea" || $foodCategory == "coffee")){
+    continue;
+  }
+  //energy ratio give the ratio of energy relative to the required energy rae per meal for 1 servin
+  $energyRatio = ($foods[$i]["energy"])/$TEEperSnack;
+  //check whether the energy ratio is equal to 0 or not
+  if($energyRatio == 0){
+
+  }else{
+    //serving ratio gives the multiplication no.for single serving to match the total energy requirement per meal.
+    $servingRatio = (1/($energyRatio*100))*100;
+
+    //protein, carn and fat containing in the meal that gives the total energy requirement per meal
+    $proteinContain = ($foods[$i]["protein"])*$servingRatio;
+    $carbContain = ($foods[$i]["carbohydrate"])*$servingRatio;
+    $fatContain = ($foods[$i]["fat"])*$servingRatio;
+    if($foods[$i]["sodium"] < 33.33 && ($servingRatio*100 < 100)){
+      $foods[$i]['sRatio'] = $servingRatio;
+      array_push($snacks, $foods[$i]);
+    }
+
+  }
 }
-
-
-
-
 echo "<br>";
-echo count($mainMeals);
+echo "meals count = ", count($mainMeals);
 echo "<br>";
-foreach ($mainMeals as $row) {
-  echo $row["name"];
-  echo "<br>";
-}
 
-
+$start_time = microtime(true);
 // Create an array to hold all the possible combinations
+function factorial($n)
+{
+    if ($n == 0)
+        return 1;
+    return $n * factorial($n - 1);
+}
+
+$totCombinations = factorial(count($mainMeals)) / (factorial(3)*(factorial(count($mainMeals)-3)));
+
 $combinations = [];
 
 // Keep generating combinations until all possible combinations are found
-while (count($combinations) < count($mainMeals) * (count($mainMeals) - 1) * (count($mainMeals) - 2) / 6) {
+$countingNumber = 0;
+if($totCombinations>5000){
+  $countingNumber = 5000;
+}else{
+  $countingNumber = $totCombinations;
+}
+while (count($combinations) < $countingNumber) {
 
     // Generate a random combination of 3 items
     $combination = [];
@@ -168,17 +185,17 @@ while (count($combinations) < count($mainMeals) * (count($mainMeals) - 1) * (cou
         $combinations[] = $combination;
     }
 }
-
-echo count($combinations);
+echo "combinations count = ",  count($combinations);
 echo "<br>";
 
-// foreach ($combinations as $rows) {
-//   echo "<br>";
-//   foreach ($rows as $row) {
-//     echo $row["name"];
-//     echo "---";
-//   }
-// }
+$end_time = microtime(true);
+$execution_time = $end_time - $start_time;
+echo " Execution time of script = " . $execution_time . " sec<br>";
+
+
+
+
+
 $mealPackages = [];
 //filter meals for ncds
 foreach ($combinations as $mealPack) {
@@ -186,27 +203,12 @@ foreach ($combinations as $mealPack) {
     $totSodium = 0;
     $totProtein = 0;
     foreach ($mealPack as $meal) {
-      // echo $row["name"];
       $servingRatio = $meal["sRatio"];
       $sodium = $meal["sodium"] * $servingRatio;
       $protein = $meal["protein"] * $servingRatio;
-      // echo "<br>sodium and protein values -----------<br>";
-      // echo "sodium =";
-      // echo $sodium;
-      // echo "<br>protein = ";
-      // echo $protein;
-      // echo "<br>serving ratio = ";
-      // echo $servingRatio;
-      // echo "<br>food code = ";
-      // echo $meal["food_code"];
       $totSodium = $totSodium + $sodium;
       $totProtein = $totProtein + $protein;
     }
-    // echo "<br>total sodium =";
-    //   echo $totSodium;
-    //   echo "<br>total protein = ";
-    //   echo $totProtein;
-    // echo "<br> ---------end ------------<br><br><br>";
     if($totSodium < 1900 && $totProtein > 60){
       array_push($mealPackages, $mealPack);
     }
@@ -219,87 +221,52 @@ foreach ($combinations as $mealPack) {
 
 
 
-echo count($mealPackages);
+echo "meal packages count = ",  count($mealPackages);
 echo "<br><br>-----------------------------------------------------------------------------------------------<br><br>";
-foreach ($mealPackages as $rows) {
-  echo "<br>";
-  foreach ($rows as $row) {
-    echo $row["name"];
-    echo "---";
-  }
+
+echo "snacks count = ", count($snacks);
+
+
+
+
+
+$totCombinations = factorial(count($snacks)) / (factorial(3)*(factorial(count($snacks)-3)));
+echo "<br>",$totCombinations;
+$sCombinations = [];
+
+// Keep generating combinations until all possible combinations are found
+$countingNumber = 0;
+if($totCombinations>5000 || is_nan($totCombinations)){
+  $countingNumber = 5000;
+}else{
+  $countingNumber = $totCombinations;
 }
+while (count($sCombinations) < $countingNumber) {
 
-echo "<br><br>-----------------------------------------------------------------------------------------------<br><br>";
-
-$snacks = [];
-$TEEperSnack = ($user->getTEE() - $TEEreduction)*0.033;
-for($i=0; $i<count($foods); ++$i){
-  $foodCategory = $foods[$i]["wweia_category_description"];
-  if($ncds == 5 && ($foodCategory == "Tea" || $foodCategory == "coffee")){
-    continue;
-  }
-  if( $foodCategory == "Wine" || $foodCategory == "Liquor and cocktails" || $foodCategory == "Beer"|| $foodCategory == "Salad dressings and vegetable oils" || $foodCategory == "Cream and cream substitutes" || $foodCategory == "Cream cheese, sour cream, whipped cream"){
-    continue;
-  }
-  //energy ratio give the ratio of energy relative to the required energy rae per meal for 1 servin
-  $energyRatio = ($foods[$i]["energy"])/$TEEperSnack;
-  //check whether the energy ratio is equal to 0 or not
-  if($energyRatio == 0){
-
-  }else{
-    //serving ratio gives the multiplication no.for single serving to match the total energy requirement per meal.
-    $servingRatio = (1/($energyRatio*100))*100;
-
-    //protein, carn and fat containing in the meal that gives the total energy requirement per meal
-    $proteinContain = ($foods[$i]["protein"])*$servingRatio;
-    $carbContain = ($foods[$i]["carbohydrate"])*$servingRatio;
-    $fatContain = ($foods[$i]["fat"])*$servingRatio;
-    if($foods[$i]["sodium"] < 33.33 && ($servingRatio*100 < 100)){
-      // echo"<br>";
-      // echo"<br>";
-      // echo $servingRatio*100;
-      // echo"<br>";
-      // echo $foods[$i]["name"];
-      // echo"<br>";
-      // echo"<br>";
-      // echo $servingRatio*100;
-      // echo "<br>";
-      // echo "carb = ";
-      // echo $carbContain;
-      // echo "<br>";
-      // echo "protein = ";
-      // echo  $proteinContain ;
-      // echo "<br>";
-      // echo "fat = ";
-      // echo $fatContain ;
-      // echo "<br>";
-      // echo "fat percentage = ";
-      // echo (($fatContain/$fatTot)/3)*100 ;
-      // echo "<br>";
-      // echo "<br>";
-      $foods[$i]['sRatio'] = $servingRatio;
-      array_push($snacks, $foods[$i]);
+    // Generate a random combination of 3 items
+    $combination = [];
+    while (count($combination) < 3) {
+        $item = $snacks[array_rand($snacks)];
+        if (!in_array($item, $combination)) {
+            $combination[] = $item;
+        }
     }
 
-  }
+    // Sort the combination to ensure that the same set of 3 items won't be repeated
+    sort($combination);
+
+    // Add the combination to the list if it doesn't already exist
+    if (!in_array($combination, $sCombinations)) {
+        $sCombinations[] = $combination;
+    }
 }
-echo count($snacks);
-// foreach ($snacks as $row) {
-//   echo $row["name"];
-//   echo "<br>";
-// }
+echo "<br>snack combinations = ",count($sCombinations); 
 
 echo "<br><br>-----------------------------------------------------------------------------------------------<br><br>";
 
 sleep(1);
-
-// $sncakCombine = [];
-
-
-// echo(count($sncakCombine));
-
 $dietPlans = [];
-
+$start_time = microtime(true);
 foreach ($mealPackages as $meals) {
   $dailyMProtein = 0;
   $dailyMFat = 0;
@@ -311,79 +278,40 @@ foreach ($mealPackages as $meals) {
     $dailyMFat = $dailyMFat + $mealFat;
     $dailyMProtein = $dailyMProtein + $mealProtein;
   }
-  // if($dailyMFat < $fatTot*1){
-  //   echo"<br><br>";
-  //   echo $dailyMProtein;
-  //   echo"<br>";
-  //   echo $fatTot;
-  //   echo"<br>";
-  //   echo $dailyMFat;
-  //   echo"<br><br>";
-  // }
-  $checkedSets = [];
-  for($n=0; $n<1000; $n++){
-    $s1 = array_rand($snacks);
-    $s2 = array_rand($snacks);
-    if($s2 == $s1){
-      $n--;
-      continue;
+  foreach ($sCombinations as $totSnacks) {
+    $dailySFat = 0;
+    $dailySProtein = 0;
+    foreach($totSnacks as $snack){
+      $serving = $snack["sRatio"];
+      $snackFat = $snack["fat"]*$serving;
+      $snackProtein = $snack["protein"]*$serving;
+      $dailySFat = $dailySFat + $snackFat;
+      $dailySProtein = $dailySProtein + $snackProtein;
     }
-    $s3 = array_rand($snacks);
-    if($s3 == $s1 || $s3 == $s2 ){
-      $n--;
-      continue;
-    }
-    $checksItems = [$s1, $s2,$s3];
-    $equalItems = false;
-    for($m=0; $m<count($checkedSets); $m++) {
-      if (count(array_diff($checksItems, $checkedSets[$m])) == 0 && count(array_diff( $checkedSets[$m], $checksItems)) == 0) {
-          $equalItems = true;
-          break;
-      }
-    }
-    if($equalItems){
-      continue;
-    }else{
-      array_push($checkedSets, $checksItems);
-    }
-    $s1serving = $snacks[$s1]["sRatio"];
-    $s2serving = $snacks[$s2]["sRatio"];
-    $s3serving = $snacks[$s3]["sRatio"];
-
-    $s1Fat = $snacks[$s1]["fat"]*$s1serving;
-    $s1Protein = $snacks[$s1]["protein"]*$s1serving;
-
-    $s2Fat = $snacks[$s2]["fat"]*$s2serving;
-    $s2Protein = $snacks[$s2]["protein"]*$s2serving;
-
-    $s3Fat = $snacks[$s3]["fat"]*$s3serving;
-    $s3Protein = $snacks[$s3]["protein"]*$s3serving;
-
-    $dailySFat = $s1Fat + $s2Fat + $s3Fat;
-    $dailySProtein = $s1Protein + $s2Protein + $s3Protein;
-
     $dailyTFat = $dailyMFat + $dailySFat;
-    $dailyTProtein = $dailyMProtein + $dailySFat;
+    $dailyTProtein = $dailyMProtein + $dailySProtein;
     if(( ($dailyTProtein>= $proteinTot*1) && ($dailyTProtein < $proteinTot*1.15) ) &&  ( ($dailyTFat>= $fatTot*1) && ($dailyTFat < $fatTot*1.15) )   ){
-      $dietPack = [$meals,[$snacks[$s1], $snacks[$s2], $snacks[$s3]]];
+      $dietPack = [$meals,$totSnacks];
       array_push($dietPlans, $dietPack);
-
     }
   }
 }
-echo count($dietPlans);
+echo "dietplans count = ", count($dietPlans);
+$end_time = microtime(true);
+$execution_time = $end_time - $start_time;
+echo " Execution time of script = " . $execution_time . " sec<br>";
 echo "<br><br><br><br>";
 
-for($i=0; $i<count($dietPlans); $i++){
-  echo "<br>---Main meals ---<br>";
-  echo $dietPlans[$i][0][0]["name"],"<br>", $dietPlans[$i][0][1]["name"],"<br>", $dietPlans[$i][0][2]["name"];
-  echo "<br><br>---Snacks ---<br>";
-  echo $dietPlans[$i][1][0]["name"],"<br>", $dietPlans[$i][1][1]["name"],"<br>", $dietPlans[$i][1][2]["name"];
-  echo "<br><br><br><br>";
-}
+// for($i=0; $i<count($dietPlans); $i++){
+//   echo "<br>---Main meals ---<br>";
+//   echo $dietPlans[$i][0][0]["name"],"<br>", $dietPlans[$i][0][1]["name"],"<br>", $dietPlans[$i][0][2]["name"];
+//   echo "<br><br>---Snacks ---<br>";
+//   echo $dietPlans[$i][1][0]["name"],"<br>", $dietPlans[$i][1][1]["name"],"<br>", $dietPlans[$i][1][2]["name"];
+//   echo "<br><br><br><br>";
+// }
 
 $finalDPlans = [];
-
+$start_time = microtime(true);
 for($i=0; $i<count($dietPlans); $i++){
   $fiber = 0;
   $folate = 0;
@@ -471,11 +399,9 @@ for($i=0; $i<count($dietPlans); $i++){
   $zincReqM = ($zinc >= 11*0.2) && ($zinc <= 11*1.5);
 
   if(($folateReq) && ($vit_b12Req) && ($vit_EReq) && ($vit_KReq) && ($potassium_Req) && ($seleniumReq) && ($sodiumReq) ){
-    echo "entered into loop<br>";
     if($gender =="F"){
      
       if(($fiberReqF) && ($cholineReqW) && ($vit_AReqW) && ($iron_ReqW) && ($zincReqW)){
-        echo "entered into loop<br>";
         if($age>70){
           if(($calcium_Req70) && ($vit_b6ReqW50) && ($iron_Req50) && ($magenesium_Req30)){
             array_push($finalDPlans, $dietPlans[$i]);
@@ -519,12 +445,16 @@ for($i=0; $i<count($dietPlans); $i++){
 }
 
 echo "<br><br>-----------------------------------------------------------------------------------------------<br><br>";
-echo count($finalDPlans);
+echo "final dietplans count = ", count($finalDPlans);
+$end_time = microtime(true);
+$execution_time = $end_time - $start_time;
+echo " Execution time of script = " . $execution_time . " sec<br>";
+
 for($i=0; $i<count($finalDPlans); $i++){
   echo "<br>---Main meals ---<br>";
-  echo $finalDPlans[$i][0][0]["name"],"<br>", $finalDPlans[$i][0][1]["name"],"<br>", $finalDPlans[$i][0][2]["name"];
+  echo $finalDPlans[$i][0][0]["name"],"-",$finalDPlans[$i][0][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][1]["name"],"-",$finalDPlans[$i][0][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][2]["name"],"-",$finalDPlans[$i][0][2]["sRatio"]*100,"g";
   echo "<br><br>---Snacks ---<br>";
-  echo $finalDPlans[$i][1][0]["name"],"<br>", $finalDPlans[$i][1][1]["name"],"<br>", $finalDPlans[$i][1][2]["name"];
+  echo $finalDPlans[$i][1][0]["name"],"-",$finalDPlans[$i][1][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][1]["name"],"-",$finalDPlans[$i][1][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][2]["name"],"-",$finalDPlans[$i][1][2]["sRatio"]*100,"g";
   echo "<br><br><br><br>";
 }
 
