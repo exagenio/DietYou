@@ -255,11 +255,8 @@
 
     <script>
 
-        let cal_count, cal_aim, cal_percentage;
+        
 
-        // let cal_count = 789,
-        //     cal_aim = 2500,
-        //     cal_percentage = Math.round((cal_count/cal_aim) * 100);
         // kcal_progress();
 
 
@@ -293,10 +290,6 @@
         })
 
        
-
-        
-
-
         //button selctor
         const add_Button = document.querySelector(".add"),
               removeButton = document.querySelector(".remove");
@@ -362,6 +355,15 @@
         }
 
         function kcal_progress(){
+
+            let cal_count;
+            let cal_aim;
+            let cal_percentage;
+
+            cal_count = 789;
+            cal_aim = 2500;
+            cal_percentage = Math.round((cal_count/cal_aim)*100);
+
             const progress2 = document.querySelector('.progress'),
                   percentagecal2 = document.querySelector('.percentage-cal'),
                   gain_cal2 = document.querySelector('.gain-cal');
