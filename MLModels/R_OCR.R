@@ -1,8 +1,9 @@
 library(tesseract)
 library(magick)
 library(stringr)
-
-fdo <- image_read("MLModels/calorie_table.png")
+# Get the command line arguments
+args <- commandArgs(trailingOnly = TRUE)
+fdo <- image_read(args[1])
 
 fdo_processed <- image_resize(fdo, "1000x")
 fdo_processed <- image_contrast(fdo_processed)
