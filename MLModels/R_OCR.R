@@ -2,7 +2,7 @@ library(tesseract)
 library(magick)
 library(stringr)
 
-fdo <- image_read("newtable.png")
+fdo <- image_read("MLModels/calorie_table.png")
 
 fdo_processed <- image_resize(fdo, "1000x")
 fdo_processed <- image_contrast(fdo_processed)
