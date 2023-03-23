@@ -55,7 +55,7 @@ include "backend/crypt.php"
                         $_SESSION["username"] = "$username";
                         $_SESSION["userVerified"] = true;
                         mysqli_close($connection);
-                        header('Location: http://localhost/dietYou/dashoard.php');
+                        header('Location: http://localhost/dietYou/dashboard.php');
                     } else {
                         echo ' <div class="alert alert-danger" role="alert"> Invalid username or a password. Please try again!</div>';
                     }
