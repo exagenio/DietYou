@@ -62,6 +62,8 @@ We welcome contributions from the community! If you'd like to contribute to Diet
 
 This project was developed by the following team members:
 
-- John Smith ([@johnsmith](https://github.com/johnsmith))
-- Jane Doe ([@janedoe](https://github.com/janedoe))
-- Michael Johnson ([@michaeljohnson](https://github.com/michaeljohnson)
+- Tharindu Wickramasinghe ([@exagenio](https://github.com/exagenio))
+- Shabeer Nuhman ([@Shabba12](https://github.com/Shabba12))
+- Vindiya Wickramathunga ([@VindiyaRuchith](https://github.com/VindiyaRuchith))
+- Ranvinu Hewage ([@rhewage3](https://github.com/rhewage3))
+- Rochana Pasqual ([@rochana95](https://github.com/rochana95))
