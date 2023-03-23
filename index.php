@@ -39,6 +39,14 @@ if (!file_exists($flag_file)) {
         name VARCHAR(255) NOT NULL,
         PRIMARY KEY (id)
     );
+    CREATE TABLE mealplans (
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        meals VARCHAR(255),
+        snacks VARCHAR(255),
+        user INT NOT NULL,
+        estimatedWLoss FLOAT NOT NULL
+    );
+    
     INSERT INTO ncds (name) VALUES ('Diabetes'), ('Hyper Tension'), ('Osteoarthritis'), ('Rheumatoid Arthritis');
     INSERT INTO allergies (name, restrictions) VALUES ('lactose-intolerance', '1004,1002,1006,1008,1202,1820,1822,5802,9010,1208,1202,1204,1206,1404,1402,8008,8006,5802,5802,5804,5502,1602,1604,8006,3720,8002,4202,4204,5506,4402,5502,5504,4404,4602,3504,3602,3204,3206,3722,5806,8002,8004,5702');
     INSERT INTO allergies (name, restrictions) VALUES ('galactosemia', '1002,1004,1006,1008,1202,1204,1206,1208,1402,1602,1604,1820,1822,2608,3204,3206,3602,3702,3720,3740,4004,4202,4204,4206,4402,4404,4602,4604,4804,5202,5402,5404,5502,5504,5506,5802,5804,8002,8006,8008,9602');

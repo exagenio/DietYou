@@ -95,7 +95,7 @@ for($i=0; $i<count($foods); ++$i){
   $energyRatio = ($foods[$i]["energy"])/$TEEperMeal;
   //check whether the energy ratio is equal to 0 or not
   if($energyRatio == 0){
-
+    continue;
   }else{
     //serving ratio gives the multiplication no.for single serving to match the total energy requirement per meal.
     $servingRatio = (1/($energyRatio*100))*100;
@@ -450,12 +450,33 @@ $end_time = microtime(true);
 $execution_time = $end_time - $start_time;
 echo " Execution time of script = " . $execution_time . " sec<br>";
 
+$estimatedWloss = 0;
+if($TEEreduction != 0){
+  $estimatedWloss = ($TEEreduction*7)/7500;
+}
+
+$userId = findUser($username, $connection);
 for($i=0; $i<count($finalDPlans); $i++){
   echo "<br>---Main meals ---<br>";
   echo $finalDPlans[$i][0][0]["name"],"-",$finalDPlans[$i][0][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][1]["name"],"-",$finalDPlans[$i][0][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][2]["name"],"-",$finalDPlans[$i][0][2]["sRatio"]*100,"g";
   echo "<br><br>---Snacks ---<br>";
   echo $finalDPlans[$i][1][0]["name"],"-",$finalDPlans[$i][1][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][1]["name"],"-",$finalDPlans[$i][1][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][2]["name"],"-",$finalDPlans[$i][1][2]["sRatio"]*100,"g";
+  $mealArray = [$finalDPlans[$i][0][0]["food_code"],$finalDPlans[$i][0][1]["food_code"],$finalDPlans[$i][0][2]["food_code"],$finalDPlans[$i][0][0]["sRatio"],$finalDPlans[$i][0][1]["sRatio"],$finalDPlans[$i][0][2]["sRatio"]];
+  $mealString = implode(',', $mealArray);
+  $snackArray = [$finalDPlans[$i][1][0]["food_code"],$finalDPlans[$i][1][1]["food_code"],$finalDPlans[$i][1][2]["food_code"],$finalDPlans[$i][1][0]["sRatio"],$finalDPlans[$i][1][1]["sRatio"],$finalDPlans[$i][1][2]["sRatio"]];
+  $snackString = implode(',', $snackArray);
+  $query =   "INSERT INTO mealplans (meals, snacks, user, estimatedWLoss ) VALUES('$mealString','$snackString','$userId', '$estimatedWloss')";
+  $query = mysqli_query($connection, $query); 
+  if($query){
+    echo "<br>";
+      echo "mealplan added";
+  }else{
+      die("query failed".mysqli_error($connection));
+  }
   echo "<br><br><br><br>";
+  
 }
+
+
 
 ?>
