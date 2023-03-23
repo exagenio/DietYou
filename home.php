@@ -137,6 +137,48 @@
     </section>
 
     <!-- Section 3 of the home page -->
+    <section class="background-dark pt-2">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center py-4">
+                <button type="button" class="btn btn-warning rounded-pill px-4 py-1.5 text=white" style="font-weight: 700">Get Started</button>
+                <div class="my-4 text-center">
+                    <p style="font-weight: bolder;">WHY US?</p>
+                    <p style="font-size: 30px; font-weight: bolder;">What to expect from us</p>
+                </div>
+                <div class="row m-0 text-center">
+                    <div class="col">
+                        <img src="assets/img/louis-hansel-MlPD-AzZYMg-unsplash-min.jpg" class="rounded-image" alt="Image" style="width:400px; height:200px">
+                    </div>
+                    <div class="col" style="text-align: left;">
+                        <p style="font-weight: bolder;" class="ehead">Discover the food<br>that works for you</p>
+                        <p class="edesc">We are committed to providing high-quality service and <br>customer satisfaction. Our team is dedicated to making <br> sure that each customer receives the attention and care they deserve.</p>
+                    </div>
+                </div>
+                <div class="row m-5 text-center">
+                    <div class="col">
+                        <img src="assets/img/8C7DDB37-8102-489B-8106-ACD0B86D2BB0-768x1024 1.jpg" class="rounded-image" alt="Image" style="width:400px; height:200px">
+                    </div>
+                    <div class="col" style="text-align: left;">
+                        <p style="font-weight: bolder;" class="ehead">Find diet plan based<br>on your location</p>
+                        <p class="edesc">Discover the best food for your area and get a personalized diet plan.</p>
+                    </div>
+                </div>
+                <div class="row m-5 text-center">
+                    <div class="col">
+                        <img src="assets/img/bruce-mars-gJtDg6WfMlQ-unsplash 1.jpg" class="rounded-image" alt="Image" style="width:400px; height:200px">
+                    </div>
+                    <div class="col" style="text-align: left;">
+                        <p style="font-weight: bolder;" class="ehead">Find Workouts that<br>suits you</p>
+                        <p class="edesc">Get a unique workout plan that is tailoredto your desired needs</p>
+                    </div>
+
+
+                </div>
+
+            </div>
+    </section>
+
+    <!-- Section 3 of the home page
     <section class="background-dark pt-3">
         <div class="container-pt2">
             <div class="d-flex flex-column align-items-center justify-content-center py-4">
@@ -173,7 +215,7 @@
                     <p class="edesc">Get a unique workout plan that is tailoredto your desired needs</p>
                 </div>
             </div>
-    </section>
+    </section> -->
 
     <footer class="d-flex flex-column align-items-center justify-content-center container py-4">
         <div class="my-2">
