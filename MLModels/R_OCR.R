@@ -41,10 +41,10 @@ energy_vals <- ifelse(grepl("Energy", energy_str),
 energy_unit <- ifelse(grepl("kJ", energy_str), "kJ", 
                       ifelse(grepl("kcal", energy_str), "kcal", "unknown"))
 energy_vals_numeric <- as.numeric(energy_vals)
-energy_vals_numeric
+
 
 energy_vals_no_na <- na.omit(energy_vals_numeric)
-energy_vals_no_na
+
 
 # Print the two energy values
 cat("Energy values:", energy_vals_no_na[1], energy_unit, "\n")
