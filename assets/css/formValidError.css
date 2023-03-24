@@ -1,0 +1,48 @@
+body {
+    background-color: #000;
+    background-image: linear-gradient(45deg, orange, #ebe9e9);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+.animated-background {
+    position: relative;
+    overflow: hidden;
+    /* background:transparent; */
+    background-color: wheat;
+    height: 300px;
+    margin-bottom: 50px;
+  }
+  
+  .oops-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('https://via.placeholder.com/300x300');
+    background-size: contain;
+    width: 200px;
+    height: 200px;
+    animation: animatedBackground 30s ease infinite;
+  }
+  
+  @keyframes animatedBackground {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  

@@ -175,11 +175,11 @@
                 </form>
             </div>
 
-            <form action="upload.php" method="post" enctype="multipart/form-data">
+            <!-- this is replced instead of a drag and drop -->
+            <form action="upload.php" class="secondform" method="post" enctype="multipart/form-data">
                 <input type="file" name="image" id="image">
                 <input type="submit" name="submit" value="Upload Image">
             </form>
-
         </div>
 
         <a href="#" id="stretching">
