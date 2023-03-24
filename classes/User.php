@@ -12,6 +12,7 @@ class User{
     private $requiredCarbs;
     private $requiredProtein;
     private $requiredFat;
+    private $planDate;
 
     function __construct($username, $connection) {
         if(userExist($username)){
@@ -36,6 +37,7 @@ class User{
                 $this->requiredProtein = ProteinCalculator($this->TEE);
                 $this->age = $userInfo[10];
                 $this->age = $userInfo[10];
+                $this->planDate = $userInfo[15];
             }
         }
     }
@@ -84,6 +86,9 @@ class User{
         return $this->requiredFat;
     }
     
+    public function getPlanDate(){
+        return $this->planDate;
+    }
 
 }
 ?>

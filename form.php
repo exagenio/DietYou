@@ -62,6 +62,8 @@ if (isset($_POST["submit"])) {
   $resultUpdate = mysqli_query($connection, $updateQuery);
   if (!$resultUpdate) {
     die("Error creating tables: " . mysqli_error($connection));
+  }else{
+    header('Location: http://localhost/dietYou/mealGenerate.php');
   }
 }
 ?>
