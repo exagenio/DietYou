@@ -8,7 +8,6 @@ fdo <- image_read(args[1])
 fdo_processed <- image_resize(fdo, "1000x")
 fdo_processed <- image_contrast(fdo_processed)
 fdo_processed <- image_convert(fdo_processed, "gray")
-fdo_processed
 
 text <- ocr(fdo_processed)
 
