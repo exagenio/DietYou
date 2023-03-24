@@ -221,11 +221,11 @@ if (isset($_POST["submit"])) {
         <label for="country" class="form-label">What country foods do you prefer?</label>
         <fieldset class="form-control bg-transparent border border-secondary justify-content-center d-flex">
           <div>
-            <input style="height: fit-content;" type="checkbox" id="" value="US" name="country[]">
+            <input style="height: fit-content;" type="checkbox" id="" value="united states" name="country[]">
             <label for="">United States</label>
           </div>
           <div>
-            <input style="height: fit-content;" type="checkbox" id="" value="SL" name="country[]">
+            <input style="height: fit-content;" type="checkbox" id="" value="sri lanka" name="country[]">
             <label for="">Sri Lanka</label>
           </div>
         </fieldset>
@@ -271,9 +271,11 @@ if (isset($_POST["submit"])) {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script>
     feather.replace()
   </script>
+  <script src="assets/js/form.js"></script>
 </body>
 
 </html>

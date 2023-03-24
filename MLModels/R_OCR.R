@@ -8,13 +8,11 @@ fdo <- image_read(args[1])
 fdo_processed <- image_resize(fdo, "1000x")
 fdo_processed <- image_contrast(fdo_processed)
 fdo_processed <- image_convert(fdo_processed, "gray")
-fdo_processed
 
 text <- ocr(fdo_processed)
 
 # Split the lines into a character vector
 lines <- str_split(text, "\n")[[1]]
-lines
 
 # Find the index of the line containing "Serving size"
 serving_size_index <- grep("Serving size", lines)
@@ -29,11 +27,14 @@ serving_size_line <- lines[serving_size_index]
 serving_size_value <- gsub(".*Serving size: (\\d+\\.?\\d*)\\s*(g|ml).*", "\\1 \\2", serving_size_line)
 
 # Print the serving size value and its unit
-cat("Serving size:", serving_size_value, "\n")
+cat(serving_size_value, "\n")
 
 # Find the line with either "Energy" or "Calories"
 energy_line_index <- grep("Energy|Calories", lines)
-
+# If the index is empty, display an error message and stop the program
+if (length(energy_line_index) == 0) {
+  stop("Error: Energy or Calories not found in image.")
+}
 # Extract the energy or calorie values from the line
 energy_str <- lines[[energy_line_index]]
 energy_vals <- ifelse(grepl("Energy", energy_str), 

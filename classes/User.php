@@ -13,6 +13,8 @@ class User{
     private $requiredProtein;
     private $requiredFat;
     private $planDate;
+    private $countries;
+    private $preferences;
 
     function __construct($username, $connection) {
         if(userExist($username)){
@@ -38,6 +40,8 @@ class User{
                 $this->age = $userInfo[10];
                 $this->age = $userInfo[10];
                 $this->planDate = $userInfo[15];
+                $this->countries = $userInfo[13];
+                $this->preferences = $userInfo[12];
             }
         }
     }
@@ -88,6 +92,12 @@ class User{
     
     public function getPlanDate(){
         return $this->planDate;
+    }
+    public function getCountries(){
+        return $this->countries;
+    }
+    public function getPreferences(){
+        return $this->preferences;
     }
 
 }
