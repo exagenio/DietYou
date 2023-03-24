@@ -12,36 +12,33 @@ if ((isset($_SESSION['username'])) && $_SESSION["userVerified"] == 1) {
   header('Location: http://localhost/dietYou/login.php');
 }
 
-//query to get all the data in the foods table
-$findQuery = "SELECT * FROM foods";
-
-//get the restrictions for allergies from the function
-$allergyRestrictions = allergyFilter($connection, $username);
-
-if(count($allergyRestrictions) >0){
-  //convert category no.s in array format to a string
-  $filterValues = implode(',', $allergyRestrictions);
-  //filter foods that not in the allergies food categories.
-  $findQuery = "SELECT * FROM foods WHERE food_category NOT IN ($filterValues)";
-}
-
-//get the result according to the query
-$result = mysqli_query($connection, $findQuery);
-
-// Initialize an empty array to store the rows of the filtered food table
-$foods = array();
-
-// Fetch each row of data and add it to the array
-while ($row = mysqli_fetch_assoc($result)) {
-    array_push($foods, $row);
-}
-
-//initialize an array to store meals that filter using PN formula
-$mainMeals = [];
 //get the user data by creating a user object
 $user = new User($username, $connection);
 $age = $user ->getAge();
 $gender = $user->getGender();
+if($age ==null || $gender == null){
+  header('Location: http://localhost/dietYou/form.php');
+}
+$cPlanDate = $user ->getPlanDate();
+if($cPlanDate != null){
+  // Create two DateTime objects
+  $date1 = new DateTime($cPlanDate);
+  $date2 = new DateTime();
+
+  // Get the difference between the two dates
+  $diff = $date1->diff($date2);
+  $changeDays = $diff->days;
+  if($changeDays >= 7){
+
+  }else{
+    header('Location: http://localhost/dietYou/havePlan.php');
+  }
+  // Output the difference
+  echo $diff->format('%a days, %h hours, %i minutes, %s seconds');
+  print_r($diff);
+  echo $diff->days;
+}
+
 $TEEtot = $user->getTEE();
 $TEEreduction = 0;
 $bmi = $user->getBMI();
@@ -79,6 +76,34 @@ if($bmi>=30){
   $carbTot = $remainEnergy/4;
 }
 
+
+//query to get all the data in the foods table
+$findQuery = "SELECT * FROM foods";
+
+//get the restrictions for allergies from the function
+$allergyRestrictions = allergyFilter($connection, $username);
+
+if(count($allergyRestrictions) >0){
+  //convert category no.s in array format to a string
+  $filterValues = implode(',', $allergyRestrictions);
+  //filter foods that not in the allergies food categories.
+  $findQuery = "SELECT * FROM foods WHERE food_category NOT IN ($filterValues)";
+}
+
+//get the result according to the query
+$result = mysqli_query($connection, $findQuery);
+
+// Initialize an empty array to store the rows of the filtered food table
+$foods = array();
+
+// Fetch each row of data and add it to the array
+while ($row = mysqli_fetch_assoc($result)) {
+    array_push($foods, $row);
+}
+
+//initialize an array to store meals that filter using PN formula
+$mainMeals = [];
+
 $TEEperMeal = ($user->getTEE() - $TEEreduction)*0.30;
 $snacks = [];
 $TEEperSnack = ($user->getTEE() - $TEEreduction)*0.033;
@@ -95,7 +120,7 @@ for($i=0; $i<count($foods); ++$i){
   $energyRatio = ($foods[$i]["energy"])/$TEEperMeal;
   //check whether the energy ratio is equal to 0 or not
   if($energyRatio == 0){
-
+    continue;
   }else{
     //serving ratio gives the multiplication no.for single serving to match the total energy requirement per meal.
     $servingRatio = (1/($energyRatio*100))*100;
@@ -145,6 +170,9 @@ for($i=0; $i<count($foods); ++$i){
 echo "<br>";
 echo "meals count = ", count($mainMeals);
 echo "<br>";
+if(count($mainMeals) ==0){
+  header('Location: http://localhost/dietYou/nomeals.php');
+}
 
 $start_time = microtime(true);
 // Create an array to hold all the possible combinations
@@ -450,12 +478,52 @@ $end_time = microtime(true);
 $execution_time = $end_time - $start_time;
 echo " Execution time of script = " . $execution_time . " sec<br>";
 
+$estimatedWloss = 0;
+if($TEEreduction != 0){
+  $estimatedWloss = ($TEEreduction*7)/7500;
+}
+
+$userId = findUser($username, $connection);
 for($i=0; $i<count($finalDPlans); $i++){
   echo "<br>---Main meals ---<br>";
   echo $finalDPlans[$i][0][0]["name"],"-",$finalDPlans[$i][0][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][1]["name"],"-",$finalDPlans[$i][0][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][2]["name"],"-",$finalDPlans[$i][0][2]["sRatio"]*100,"g";
   echo "<br><br>---Snacks ---<br>";
   echo $finalDPlans[$i][1][0]["name"],"-",$finalDPlans[$i][1][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][1]["name"],"-",$finalDPlans[$i][1][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][2]["name"],"-",$finalDPlans[$i][1][2]["sRatio"]*100,"g";
+  $mealArray = [$finalDPlans[$i][0][0]["food_code"],$finalDPlans[$i][0][1]["food_code"],$finalDPlans[$i][0][2]["food_code"],$finalDPlans[$i][0][0]["sRatio"],$finalDPlans[$i][0][1]["sRatio"],$finalDPlans[$i][0][2]["sRatio"]];
+  $mealString = implode(',', $mealArray);
+  $snackArray = [$finalDPlans[$i][1][0]["food_code"],$finalDPlans[$i][1][1]["food_code"],$finalDPlans[$i][1][2]["food_code"],$finalDPlans[$i][1][0]["sRatio"],$finalDPlans[$i][1][1]["sRatio"],$finalDPlans[$i][1][2]["sRatio"]];
+  $snackString = implode(',', $snackArray);
+  $query =   "INSERT INTO mealplans (meals, snacks, user, estimatedWLoss ) VALUES('$mealString','$snackString','$userId', '$estimatedWloss')";
+  $query = mysqli_query($connection, $query); 
+  if($query){
+    echo "<br>";
+      echo "mealplan added";
+  }else{
+      die("query failed".mysqli_error($connection));
+  }
   echo "<br><br><br><br>";
+  
 }
+$date = new DateTime();
 
+// Format the date as a string
+$dateString = $date->format('Y-m-d H:i:s');
+
+// Output the date string
+echo $dateString;
+
+  //update query
+  $query = <<<SQL
+  UPDATE users SET
+  planDate = '$dateString'
+  WHERE id = '$userId';
+  SQL;
+
+$query = mysqli_query($connection, $query); 
+if($query){
+
+}else{
+  die("query failed".mysqli_error($connection));
+}
+header('Location: http://localhost/dietYou/dashboard.php');
 ?>
