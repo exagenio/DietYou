@@ -256,8 +256,7 @@
     <script>
 
         
-
-        // kcal_progress();
+        kcal_progress();
 
 
         const droparea = document.querySelector(".droparea");
@@ -356,6 +355,8 @@
 
         function kcal_progress(){
 
+            console.log("pakaya");
+
             let cal_count;
             let cal_aim;
             let cal_percentage;
@@ -363,14 +364,16 @@
             cal_count = 789;
             cal_aim = 2500;
             cal_percentage = Math.round((cal_count/cal_aim)*100);
+            
 
             const progress2 = document.querySelector('.progress'),
                   percentagecal2 = document.querySelector('.percentage-cal'),
                   gain_cal2 = document.querySelector('.gain-cal');
 
-            progress2.style.height = `${cal_percentage}%`;
+            
             percentagecal2.textContent =`${cal_percentage}%`;
             gain_cal2.textContent = `${cal_count}Kcal`;
+            progress2.style.height = `${cal_percentage}%`;
 
 
         }
