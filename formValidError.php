@@ -16,8 +16,8 @@
             </div>
           </div>
           <h1>Oops!</h1>
-          <p>You have already been given a meal plan.</p>
-          <a href="/" class="btn btn-primary">Go back to homepage</a>
+          <p>You have already been given a meal plan.<br>Follow the given plan for 7 days.</p>
+          <a href="dashboard.php" class="btn btn-warning rounded-pill px-4 py-1.5 text-white">Go back to dashbaord</a>
         </div>
       </div>
     </div>

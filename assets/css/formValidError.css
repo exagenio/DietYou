@@ -19,18 +19,19 @@ body {
 .animated-background {
     position: relative;
     overflow: hidden;
-    /* background:transparent; */
-    background-color: wheat;
+    background:transparent;
     height: 300px;
+    width: 400px;
     margin-bottom: 50px;
+    margin-left: 50px;
   }
   
   .oops-image {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-image: url('https://via.placeholder.com/300x300');
+    background-image: url('oops.png');
     background-size: contain;
     width: 200px;
     height: 200px;
