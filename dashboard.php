@@ -11,22 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
     <script type="text/javascript">
-        function menuclick() {
-            console.log("pakaya");
-            // document.getElementById('sidenav').style.display == 'none';
-
-
-            // if (menu_true == "true"){
-            //     document.getElementById('sidenav').style.display == 'none';
-            //     menu_true = "false";
-            //     console.log(menu_true);
-            // }else{
-            //     document.getElementById('sidenav').style.display == 'block';
-            //     menu_true = "true";
-            //     console.log(menu_true);
-
-            // }
-        }
+        
     </script>
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
@@ -74,12 +59,12 @@
 
 
         <div class="resipe_cat_card" id="card">
-            <h2>Recipe Categories</h2>
+            <h2>Diet Categories</h2>
 
             <div class="sub_card_1" id="sub_card" style="position: relative; left: 340px;">
                 <a href="#">
                     <div class="reciper_pic"><img src="assets/img/dinner.jpg" alt="dinner" height="100px" width="150px"></div>
-                    <h6 style="position: relative; left: 35px; top: 15px;">Dinner</h6>
+                    <h6 style="position: relative; left: 35px; top: 15px;">Diet 1</h6>
                 </a>
             </div>
 
@@ -87,32 +72,32 @@
             <div class="sub_card_2" id="sub_card" style="position: relative; bottom: 140px; left: 190px;">
                 <a href="">
                     <div class="reciper_pic"><img src="assets/img/lunch.jpg" alt="lunch" height="100px" width="150px"></div>
-                    <h6 style="position: relative; left: 38px; top: 15px;">Lunch</h6>
+                    <h6 style="position: relative; left: 38px; top: 15px;">Diet 2</h6>
                 </a>
             </div>
 
             <div class="sub_card_3" id="sub_card" style="position: relative; bottom: 280px; left:40px">
                 <a href="#">
                     <div class="reciper_pic"> <img src="assets/img/breakfast.jpg" alt="breakfast" height="100px" width="150px"></div>
-                    <h6 style="position: relative; left: 30px; top: 15px;">Breakfast</h6>
+                    <h6 style="position: relative; left: 30px; top: 15px;">Diet 3</h6>
                 </a>
             </div>
             <div class="sub_card_4" id="sub_card" style="position: relative;bottom: 260px; left: 40px;">
                 <a href="#">
                     <div class="reciper_pic"><img src="assets/img/desserts.jpg" alt="desserts" height="100px" width="150px"></div>
-                    <h6 style="position: relative; left: 33px; top:15px">Desserts</h6>
+                    <h6 style="position: relative; left: 33px; top:15px">Diet 4</h6>
                 </a>
             </div>
             <div class="sub_card_5" id="sub_card" style="position: relative; bottom: 400px; left:190px">
                 <a href="#">
                     <div class="reciper_pic"><img src="assets/img/snacks.jpg" alt="snacks" height="100px" width="150px"></div>
-                    <h6 style="position: relative; left: 35px; top: 15px;">Snacks</h6>
+                    <h6 style="position: relative; left: 35px; top: 15px;">Diet 5</h6>
                 </a>
             </div>
             <div class="sub_card_6" id="sub_card" style="position: relative; bottom: 540px; left:340px ;">
                 <a href="#">
                     <div class="reciper_pic"><img src="assets/img/fav.jpg" alt="fav" height="100px" width="150px"></div>
-                    <h6 style="position: relative; left: 30px; top: 15px;">Favourite</h6>
+                    <h6 style="position: relative; left: 30px; top: 15px;">Diet 6</h6>
                 </a>
             </div>
 
