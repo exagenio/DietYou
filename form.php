@@ -30,9 +30,9 @@ if (isset($_POST["submit"])) {
 
   //get the country array and convert it into a string 
   $countryString = null;
-  if(isset($_POST["country"])){
+  if (isset($_POST["country"])) {
     $countryArray = $_POST["country"];
-    $countryString = implode(',',$countryArray);
+    $countryString = implode(',', $countryArray);
   }
 
   //get the preferences array and convert it into a string
@@ -62,7 +62,7 @@ if (isset($_POST["submit"])) {
   $resultUpdate = mysqli_query($connection, $updateQuery);
   if (!$resultUpdate) {
     die("Error creating tables: " . mysqli_error($connection));
-  }else{
+  } else {
     header('Location: http://localhost/dietYou/mealGenerate.php');
   }
 }
@@ -165,7 +165,7 @@ if (isset($_POST["submit"])) {
         </select>
         <br>
 
-        <label for="meal" class="form-label">What type of food do you <strong>not like</strong>  eat? </label>
+        <label for="meal" class="form-label">What type of food do you <strong>not like</strong> eat? </label>
 
         <fieldset class="form-control bg-transparent border border-secondary d-flex ">
           <div>
@@ -185,7 +185,7 @@ if (isset($_POST["submit"])) {
 
           <div>
             <input style="height: fit-content;" type="checkbox" id="" name="preference[]" value="fish">
-            <label for="">Fish</label>
+            <label for="">seafood</label>
           </div>
 
           <div>
