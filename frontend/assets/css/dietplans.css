@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400&display=swap');
+
+body{
+    
+    background-color: #D8D8D8;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+body::-webkit-scrollbar{
+    width: 0.5rem;
+  }
+  
+  body::-webkit-scrollbar-track{
+    background: #EA8E17;
+  } 
+  
+  body::-webkit-scrollbar-thumb{
+    background: #865515;
+  } 
+
+.container {
+    display: grid;
+    height: 100vh;
+
+    grid-template-columns: 1fr 1fr;
+
+    grid-template-rows:  0.1fr 1fr;
+ 
+}
+
+.nav{
+    grid-area: nav;
+}
+
+.main-meals{
+    
+    
+}
+
+#card{
+    
+    
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 20px;
+}
+
+#card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+  }
+
+.dietM{
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7),rgba(4, 9, 30, 0.7)),url(main-meal.jpg);
+}
+
+.dietS{
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7),rgba(4, 9, 30, 0.7)),url(snacks.jpg);
+}
+
+.main-meals h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'outfit', sans-serif ;
+    color: #EA8E17;
+    font-size: 48px;
+}
+
+.snacks{
+    
+
+}
+
+.snacks h1{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'outfit', sans-serif ;
+    color: #EA8E17;
+    font-size: 48px;
+    
+}
+
+.main-recipes{
+    
+    position: relative;
+    
+    padding: 1.875rem;
+    display: grid;
+    height: 100vh;
+   
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 0.2fr 0.2fr;
+
+
+
+}
+
+.diet-1{
+    position: relative;
+}
+
+.dietM h1{
+    position: relative;
+    top: 2rem;
+    font-size: 32px;
+    color: white;
+    font-family: 'outfit', sans-serif ;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.dietM h3{
+    position: relative;
+    top: 0.938rem;
+    color: grey;
+    font-family: 'outfit', sans-serif ;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+}
+
+.diet-2{
+    position: relative;
+    top: 1.875rem;
+}
+
+.diet-3{
+    position: relative;
+    top: 3.75rem;
+}
+
+.snacks-recipes{
+    
+    position: relative;
+    
+    padding: 1.875rem;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 0.2fr 0.2fr;
+}
+
+
+.snacks-1{
+    position: relative;
+}
+
+.snacks-2{
+    position: relative;
+    top: 1.875rem;
+}
+
+.snacks-3{
+    position: relative;
+    top: 3.75rem;
+}
+
+.dietS h1{
+    position: relative;
+    top: 2rem;
+    font-size: 32px;
+    color: white;
+    font-family: 'outfit', sans-serif ;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.dietS h3{
+    position: relative;
+    top: 0.938rem;
+    color: grey;
+    font-family: 'outfit', sans-serif ;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}

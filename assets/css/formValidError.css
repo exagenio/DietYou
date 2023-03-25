@@ -1,0 +1,49 @@
+body {
+    background-color: #000;
+    background-image: linear-gradient(45deg, orange, #ebe9e9);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+.animated-background {
+    position: relative;
+    overflow: hidden;
+    background:transparent;
+    height: 300px;
+    width: 400px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+  }
+  
+  .oops-image {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('oops.png');
+    background-size: contain;
+    width: 200px;
+    height: 200px;
+    animation: animatedBackground 30s ease infinite;
+  }
+  
+  @keyframes animatedBackground {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  

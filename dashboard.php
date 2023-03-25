@@ -74,7 +74,7 @@
 
 
         <div class="resipe_cat_card" id="card">
-            <h2>Recipe Categories</h2>
+            <h2>Diet Categories</h2>
 
             <div class="sub_card_1" id="sub_card"  style="position: relative; left: 340px;">
                 <a href="#">

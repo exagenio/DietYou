@@ -31,10 +31,12 @@ cat(serving_size_value, "\n")
 
 # Find the line with either "Energy" or "Calories"
 energy_line_index <- grep("Energy|Calories", lines)
+
 # If the index is empty, display an error message and stop the program
 if (length(energy_line_index) == 0) {
   stop("Error: Energy or Calories not found in image.")
 }
+
 # Extract the energy or calorie values from the line
 energy_str <- lines[[energy_line_index]]
 energy_vals <- ifelse(grepl("Energy", energy_str), 
@@ -49,4 +51,4 @@ energy_vals_no_na <- na.omit(energy_vals_numeric)
 
 
 # Print the two energy values
-cat("Energy values:", energy_vals_no_na[1], energy_unit, "\n")
+cat(energy_vals_no_na[1], energy_unit, "\n")
