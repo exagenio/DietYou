@@ -28,10 +28,10 @@ body {
   
   .oops-image {
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-image: url('oops.png');
+    background-image: url('noMeals.png');
     background-size: contain;
     width: 200px;
     height: 200px;

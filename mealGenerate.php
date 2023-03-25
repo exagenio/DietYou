@@ -3,33 +3,27 @@ include "backend/db.php";
 include "classes/User.php";
 //set session values
 session_start();
+$username = $_SESSION['username'];
 //check the login status of the user
 if ((isset($_SESSION['username'])) && $_SESSION["userVerified"] == 1) {
   //logged in
 } else {
   // Session variable is not set
-echo'<script>window.location.replace("http://localhost/dietYou/login.php");</script>';
+  header('Location: http://localhost/dietYou/login.php');
 }
-$username = $_SESSION['username'];
 
 //get the user data by creating a user object
 $user = new User($username, $connection);
 $age = $user ->getAge();
 $gender = $user->getGender();
 if($age ==null || $gender == null){
-  echo'<script>window.location.replace("http://localhost/dietYou/form.php");</script>';
+  header('Location: http://localhost/dietYou/form.php');
 }
 
 $vege = [2802,3102,3104,3744,6402,6404,6406,6407,6409,6410,6411,6412,6413,6414,6416,6418,6420,6430,6432,6586,6802,6804,6806];
-//the below array only takes into consideration the food codes that has fish 
-//there are dishes in 3402 that include seafood and meat as well
-$fish = [2402,2404,3006,3730];
-//below code is the first column 
-//the below array only takes into consideration the food codes that has egg 
-$egg = [2502,3406,3706];
 
-//the below array only takes into consideration the food codes that has meat 
-$meat = [2002,2004,2006,2008,2010,2202,2204,2206,2604,3002,3004,3006,3602,3702,3704,3742];
+
+
 
 $cPlanDate = $user ->getPlanDate();
 $havePlan = false;
@@ -57,7 +51,7 @@ if($cPlanDate != null){
 }
 
 if($havePlan){
-  echo'<script>window.location.replace("http://localhost/dietYou/havePlan.php");</script>';
+  header('Location: http://localhost/dietYou/havePlan.php');
 }else{
   $TEEtot = $user->getTEE();
   $TEEreduction = 0;
@@ -149,18 +143,6 @@ if($havePlan){
     $allNotPrefer = array_merge($allNotPrefer, $vege);
     $notPrefStrings = array_merge($notPrefStrings, $vege);
   }
-  if(in_array( "fish", $preferArray)){
-    $allNotPrefer = array_merge($allNotPrefer, $vege);
-  }
-  if(in_array( "egg", $preferArray)){
-    $allNotPrefer = array_merge($allNotPrefer, $vege);
-  }
-  if(in_array( "meat", $preferArray)){
-    $allNotPrefer = array_merge($allNotPrefer, $vege);
-  }
-
-
-
 
   $count = 0;
   for($i=0; $i<count($foods); ++$i){
@@ -175,7 +157,7 @@ if($havePlan){
       continue;
     }
     $categNumber = $foods[$i]["food_category"];
-    if(in_array( $categNumber, $allNotPrefer)){
+    if(in_array( $categNumber, $countryArray)){
       continue;
     }
 
@@ -237,7 +219,7 @@ if($havePlan){
   echo "meals count = ",$count;
   echo "<br>";
   if(count($mainMeals) ==0){
-    echo'<script>window.location.replace("http://localhost/dietYou/nomeals.php");</script>';
+    header('Location: http://localhost/dietYou/nomeals.php');
   }
 
   $start_time = microtime(true);
@@ -545,8 +527,7 @@ if($havePlan){
   echo " Execution time of script = " . $execution_time . " sec<br>";
 
   if(count($finalDPlans) == 0){
-    die("no diet plans");
-    echo'<script>window.location.replace("http://localhost/dietYou/nomeals.php");</script>';
+    header('Location: http://localhost/dietYou/nomeals.php');
   }else{
     $estimatedWloss = 0;
     if($TEEreduction != 0){
