@@ -23,12 +23,14 @@ if($age ==null || $gender == null){
 //the below array only takes into consideration the food codes that has fish 
 //there are dishes in 3402 that include seafood and meat as well
 $fish = [2402,2404,3006,3730];
+$fishString = ["seafood","squid","tuna","crab"];
 //below code is the first column 
 //the below array only takes into consideration the food codes that has egg 
 $egg = [2502,3406,3706];
-
+$eggString = ["egg"];
 //the below array only takes into consideration the food codes that has meat 
 $meat = [2002,2004,2006,2008,2010,2202,2204,2206,2604,3002,3004,3006,3602,3702,3704,3742];
+$meatString = ["meat","chicken","poultry","beef","pork","meatballs","turkey"];
 
 $cPlanDate = $user ->getPlanDate();
 $havePlan = false;
@@ -150,6 +152,7 @@ if($havePlan){
   }
   if(in_array( "egg", $preferArray)){
     $allNotPrefer = array_merge($allNotPrefer, $egg);
+    $notPrefStrings = array_merge($notPrefStrings, $eggString);
   }
   if(in_array( "meat", $preferArray)){
     $allNotPrefer = array_merge($allNotPrefer, $meat);
@@ -176,10 +179,10 @@ if($havePlan){
       continue;
     }
     $foodName = $foods[$i]["name"];
-    $foodName = str_replace(",", "", $string);
+    $foodName = str_replace(",", "",  $foodName);
     $foodName = strtolower($foodName);
     $fNameArray = explode(" ", $foodName);
-    
+
     if(in_array( $categNumber, $notPrefStrings)){
       continue;
     }
