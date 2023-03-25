@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400&display=swap');
+
+
+body{
+    background-color: #D8D8D8;
+}
+
+
+body::-webkit-scrollbar{
+    width: 0.5rem;
+  }
+  
+  body::-webkit-scrollbar-track{
+    background: #EA8E17;
+  } 
+  
+  body::-webkit-scrollbar-thumb{
+    background: #865515;
+  } 
+
+.container{
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 0.3fr 0.8fr;
+}
+
+.heading{
+    background-color: #83633a;
+    
+}
+
+.heading h1{
+    color: #EA8E17;
+    position: relative;
+    top:1.25rem ;
+    left: 1.25rem;
+    font-family: 'outfit', sans-serif;
+    font-size: 3rem;
+}
+
+.heading h3{
+    position: relative;
+    color: #614520;
+    font-size: 1.8rem;
+    left: 1.36rem;
+    font-family: 'outfit', sans-serif;
+}
+
+.ingredient{
+    
+}
+
+.ingredient h2{
+    position: relative;
+    left: 1.36rem; ;
+    font-family: 'outfit', sans-serif;
+}
