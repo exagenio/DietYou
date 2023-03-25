@@ -20,7 +20,6 @@ if($age ==null || $gender == null){
   echo'<script>window.location.replace("http://localhost/dietYou/form.php");</script>';
 }
 
-$vege = [2802,3102,3104,3744,6402,6404,6406,6407,6409,6410,6411,6412,6413,6414,6416,6418,6420,6430,6432,6586,6802,6804,6806];
 //the below array only takes into consideration the food codes that has fish 
 //there are dishes in 3402 that include seafood and meat as well
 $fish = [2402,2404,3006,3730];
@@ -145,18 +144,16 @@ if($havePlan){
   $allNotPrefer = [];
   $notPrefStrings = [];
 
-  if(in_array( "vege", $preferArray)){
-    $allNotPrefer = array_merge($allNotPrefer, $vege);
-    $notPrefStrings = array_merge($notPrefStrings, $vege);
-  }
   if(in_array( "fish", $preferArray)){
-    $allNotPrefer = array_merge($allNotPrefer, $vege);
+    $allNotPrefer = array_merge($allNotPrefer, $fish);
+    $notPrefStrings = array_merge($notPrefStrings, $fishString);
   }
   if(in_array( "egg", $preferArray)){
-    $allNotPrefer = array_merge($allNotPrefer, $vege);
+    $allNotPrefer = array_merge($allNotPrefer, $egg);
   }
   if(in_array( "meat", $preferArray)){
-    $allNotPrefer = array_merge($allNotPrefer, $vege);
+    $allNotPrefer = array_merge($allNotPrefer, $meat);
+    $notPrefStrings = array_merge($notPrefStrings, $meatString);
   }
 
 
@@ -178,6 +175,15 @@ if($havePlan){
     if(in_array( $categNumber, $allNotPrefer)){
       continue;
     }
+    $foodName = $foods[$i]["name"];
+    $foodName = str_replace(",", "", $string);
+    $foodName = strtolower($foodName);
+    $fNameArray = explode(" ", $foodName);
+    
+    if(in_array( $categNumber, $notPrefStrings)){
+      continue;
+    }
+
 
     //energy ratio give the ratio of energy relative to the required energy rae per meal for 1 servin
     $energyRatio = ($foods[$i]["energy"])/$TEEperMeal;
