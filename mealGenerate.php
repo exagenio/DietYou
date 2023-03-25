@@ -126,9 +126,21 @@ if($havePlan){
   if($countries != null){
     $countryArray = explode(",",$countries);
   }
-  print_r($countryArray);
   // Free the memory used by the result set
   mysqli_free_result($result);
+
+  $preferArray = [];
+  if($countries != null){
+    $preferArray = explode(",",$preferences);
+  }
+
+  $allNotPrefer = [];
+
+
+  if(in_array( "vege", $preferArray)){
+    $allNotPrefer = array_merge($allNotPrefer, $vege);
+  }
+
   $count = 0;
   for($i=0; $i<count($foods); ++$i){
     $foodCategory = $foods[$i]["wweia_category_description"];
@@ -139,6 +151,10 @@ if($havePlan){
     if(in_array( $country, $countryArray)){
       $count++;
     }else{
+      continue;
+    }
+    $categNumber = $foods[$i]["food_category"];
+    if(in_array( $categNumber, $countryArray)){
       continue;
     }
 

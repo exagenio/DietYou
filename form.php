@@ -165,7 +165,7 @@ if (isset($_POST["submit"])) {
         </select>
         <br>
 
-        <label for="meal" class="form-label">What type of food do you eat? </label>
+        <label for="meal" class="form-label">What type of food do you <strong>not like</strong>  eat? </label>
 
         <fieldset class="form-control bg-transparent border border-secondary d-flex ">
           <div>
