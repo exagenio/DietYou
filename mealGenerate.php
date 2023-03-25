@@ -143,10 +143,11 @@ if($havePlan){
   }
 
   $allNotPrefer = [];
-
+  $notPrefStrings = [];
 
   if(in_array( "vege", $preferArray)){
     $allNotPrefer = array_merge($allNotPrefer, $vege);
+    $notPrefStrings = array_merge($notPrefStrings, $vege);
   }
   if(in_array( "fish", $preferArray)){
     $allNotPrefer = array_merge($allNotPrefer, $vege);
