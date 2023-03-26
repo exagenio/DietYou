@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DietYou</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/temp.css">
+
+</head>
+<body>
+    <nav class="header sticky-top px-4">
+        <div class="row py-3">
+            <div class="col-4 d-flex justify-content-start align-items-center">
+                <button class="feather mx-2 menu-button" data-feather="menu" type="button"></button>
+                <i class="feather mx-2" data-feather="search"></i>
+            </div>
+            <div class="col-4 d-flex justify-content-center align-items-center">
+                <img src="assets/img/logo-min.png" height="60" alt="logo">
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <button class="btn theme-btn mx-2">Login</button>
+                <i class="feather mx-2" data-feather="bar-chart-2"></i>
+                <i class="feather mx-2" data-feather="user"></i>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container overflow-hidden" style="min-height: 100vh;">
+        <div class="row">
+          <div class="col-4" style="background-color: aquamarine;">
+            <div class="profile_info" id="card">
+                <div class="profile_pic">
+                    <img src="assets/img/profile_pic.png" alt="profile_pic" width="100px" height="100px">
+                </div>
+                <div class="info">
+                    <h1>Daniel Ricciardo</h1>
+                    <h4>Age: 32 yrs</h4>
+                    <h4>Weight: 68.5 kg</h4>
+                    <h4>Height: 6 ft 1 in</h4>
+                </div>
+            </div>
+          </div>
+          <div class="col-8" style="background-color: rgb(255, 127, 155);">
+          </div>
+        </div>
+
+        <div class="row align-items-center justify-content-center gx-10">
+            <div class="col-md-2 col-sm-4 p-2">
+                <div class="meal d-flex flex-column  align-items-center justify-content-center rounded">
+                    <img src="file:///C:/MAMP/htdocs/dietYou/frontend/assets/img/breakfast.jpg">
+                    <h6 class="mt-2">Meal 1</h6>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <footer class="d-flex flex-column align-items-center justify-content-center container py-4">
+        <div class="my-2">
+            <img src="assets/img/logo-min.png" height="80" alt="logo">
+        </div>
+        
+        <div class="my-3">
+            <i class="feather mx-4" data-feather="instagram"></i>
+            <i class="feather mx-4" data-feather="facebook"></i>
+            <i class="feather mx-4" data-feather="youtube"></i>
+            <i class="feather mx-4" data-feather="twitter"></i>
+
+        </div>
+        <div class="my-2">
+            <a class="mx-2 text-decoration-none" href="#">About Us</a>
+            <a class="mx-2 text-decoration-none" href="#">Contact Us</a>
+            <a class="mx-2 text-decoration-none" href="#">Team</a>
+            <a class="mx-2 text-decoration-none" href="http://">Terms and conditions</a>
+            <a class="mx-2 text-decoration-none" href="#">Copyright</a>
+            <a class="mx-2 text-decoration-none" href="#">Privacy</a>
+            <a class="mx-2 text-decoration-none" href="#">Disclaimer</a>
+        </div>
+        <p class="py-2">DietYou © 2023</p>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script>
+        feather.replace()
+      </script>
+
+      <script>
+        var open = 0;
+
+
+        const menu_click = document.querySelector(".menu-button");
+        const collapse = document.querySelector(".sidenav");
+
+        menu_click.addEventListener("click",side_bar_collapse(open));
+
+        function side_bar_collapse(open){
+
+            console.log('function')
+            
+            if(open == 100){
+                console.log("xxxx");
+                collapse.style.height = "0%";
+                open = 0;
+            }else if(open == 0){
+                console.log("yyy"); 
+                collapse.style.height = "100%";
+                open = 100;
+            }
+        }
+
+        
+    
+       
+      </script>
+</body>
+</html>
