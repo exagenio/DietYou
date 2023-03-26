@@ -322,7 +322,7 @@ if($havePlan){
       }
 
     }
-    if($ncds == "null"){
+    if($ncds == null){
       array_push($mealPackages, $mealPack);
     }
   }
