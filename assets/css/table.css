@@ -1,0 +1,37 @@
+
+.table-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+
+.custom-table {
+    border: 1px solid #000000;
+    /* Add a border */
+    border-collapse: collapse;
+    /* Collapse borders */
+    font-family: Arial, sans-serif;
+    /* Set font family */
+    font-size: 14px;
+    /* Set font size */
+    text-align: center;
+    /* Center text */
+}
+
+.custom-table thead th,
+.custom-table tbody td {
+    padding: 8px;
+    /* Add padding */
+    border: 1px solid #ddd;
+    /* Add a border */
+}
+
+.custom-table thead th:first-child,
+.custom-table tbody td:first-child {
+    width: 30px;
+    /* Set width for first column */
+    text-align: center;
+    /* Center text */
+}
