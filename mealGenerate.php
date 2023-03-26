@@ -195,6 +195,10 @@ if($havePlan){
     if($energyRatio == 0){
       continue;
     }else{
+      //filter that can't use as main meals
+      if( $foodCategory == "Yogurt, Greek" ){
+        continue;
+      }
       //serving ratio gives the multiplication no.for single serving to match the total energy requirement per meal.
       $servingRatio = (1/($energyRatio*100))*100;
 
