@@ -32,7 +32,7 @@
 
     <div class="container overflow-hidden" style="min-height: 100vh;">
         <div class="row">
-          <div class="col-4" style="background-color: aquamarine;">
+          <div class="col-md-4" style="background-color: aquamarine;">
             <div class="profile_info" id="card">
                 <div class="profile_pic">
                     <img src="assets/img/profile_pic.png" alt="profile_pic" width="100px" height="100px">
@@ -45,20 +45,74 @@
                 </div>
             </div>
           </div>
-          <div class="col-8" style="background-color: rgb(255, 127, 155);">
+
+          
+          <div class="col-md-8 row" style="background-color: rgb(255, 127, 155);">
+            <div class="water_consumption row align-items-center justify-content-center col-md-8" id="card">
+                <div class="cups d-flex flex-column align-items-center col-md col-12">
+                    <img src="assets/img/glass-of-water.png" alt="water cup">
+                    <span class="current-cups">0/10</span>
+                </div>
+                <div class="buttons col-md col-4 d-flex justify-content-center ">
+                    <button class="add">+</button>
+                </div> 
+                <div class="col-md col-4">
+                    <div class="percentage-container">
+                        <span class="current-percentage">0%</span>
+                        <div class="progress"></div>
+                    </div>
+                </div>
+
+                <div class="buttons col-md col-4 d-flex justify-content-center">
+                    <button class="remove" disabled="">-</button>
+                </div> 
+
+                <div class="litres col-md col-12 d-flex flex-column align-items-center ">
+                    <img src="assets/img/drop.png" alt="water drop">
+                    <span class="current-litres">0l/2.5l</span>
+                </div>
+            </div>
           </div>
         </div>
 
         <div class="row align-items-center justify-content-center gx-10">
-            <div class="col-md-2 col-sm-4 p-2">
+            <div class="col-md-2">
+                <div class="meal d-flex flex-column  align-items-center justify-content-center rounded">
+                    <img src="file:///C:/MAMP/htdocs/dietYou/frontend/assets/img/breakfast.jpg">
+                    <h6 class="mt-2">Meal 1</h6>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="meal d-flex flex-column  align-items-center justify-content-center rounded">
+                    <img src="file:///C:/MAMP/htdocs/dietYou/frontend/assets/img/breakfast.jpg">
+                    <h6 class="mt-2">Meal 1</h6>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="meal d-flex flex-column  align-items-center justify-content-center rounded">
+                    <img src="file:///C:/MAMP/htdocs/dietYou/frontend/assets/img/breakfast.jpg">
+                    <h6 class="mt-2">Meal 1</h6>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="meal d-flex flex-column  align-items-center justify-content-center rounded">
+                    <img src="file:///C:/MAMP/htdocs/dietYou/frontend/assets/img/breakfast.jpg">
+                    <h6 class="mt-2">Meal 1</h6>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="meal d-flex flex-column  align-items-center justify-content-center rounded">
+                    <img src="file:///C:/MAMP/htdocs/dietYou/frontend/assets/img/breakfast.jpg">
+                    <h6 class="mt-2">Meal 1</h6>
+                </div>
+            </div>
+            <div class="col-md-2">
                 <div class="meal d-flex flex-column  align-items-center justify-content-center rounded">
                     <img src="file:///C:/MAMP/htdocs/dietYou/frontend/assets/img/breakfast.jpg">
                     <h6 class="mt-2">Meal 1</h6>
                 </div>
             </div>
         </div>
-
-
     </div>
 
 
@@ -122,5 +176,6 @@
     
        
       </script>
+    <script src="assets/js/dashboard.js"></script>
 </body>
 </html>
