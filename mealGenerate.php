@@ -473,7 +473,13 @@ if($havePlan){
     }
   
     $userId = findUser($username, $connection);
-    for($i=0; $i<count($finalDPlans); $i++){
+    $limit = 0;
+    if($finalDPlans > 500){
+      $limit = 500;
+    }else{
+      $limit = count($finalDPlans);
+    }
+    for($i=0; $i<$limit; $i++){
       echo "<br>---Main meals ---<br>";
       echo $finalDPlans[$i][0][0]["name"],"-",$finalDPlans[$i][0][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][1]["name"],"-",$finalDPlans[$i][0][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][2]["name"],"-",$finalDPlans[$i][0][2]["sRatio"]*100,"g";
       echo "<br><br>---Snacks ---<br>";
