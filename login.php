@@ -13,6 +13,10 @@ include "backend/crypt.php"
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/login.css">
+    <?php
+        include 'tests/browser-detection.php';
+        include 'tests/javascript-detection.php';
+    ?>
 </head>
 <body>
     <nav class="container">
