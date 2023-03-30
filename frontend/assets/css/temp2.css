@@ -1,0 +1,151 @@
+body{
+    background-image:linear-gradient(orange, #D8D8D8);
+}
+
+.profile_info{
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.buttons{
+    justify-content: center;
+    align-items: center;
+}
+.add{
+    background-color: lightblue;
+    border-radius: 50px;
+}
+
+@media only screen and (min-width:1000px) {
+    .water_consumption{
+      max-height: 150px;
+    }
+}
+  
+.cups img{
+top: 30px;
+left: 30px;
+height: 70px;
+width: 70px;
+}
+
+.current-cups{
+top: 90px;
+right: 29px;
+font-family: 'outfit', sans-serif ;
+font-size: 21px;
+color: #EA8E17;
+}
+
+#card{
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 20px;
+  
+}
+
+#card:hover {
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+}
+
+.meal{
+padding: 20px;
+margin: 10px 20px;
+background-color: #d6d6d6;
+/* margin: 10px 20px; */
+}
+.meal img {
+border-radius: 50%;
+width: 90px;
+height: 90px;
+}
+
+
+@media only screen and (min-width:1000px) {
+.water_consumption{
+    max-height: 150px;
+}
+}
+
+.cups img{
+height: 70px;
+width: 70px;
+}
+
+.current-cups{
+font-family: 'outfit', sans-serif ;
+font-size: 21px;
+color: #EA8E17;
+}
+
+
+.litres img{
+height: 70px;
+width: 70px;
+}
+
+
+.current-litres {
+font-family: 'outfit', sans-serif ;
+font-size: 21px;
+color: #EA8E17;
+}
+
+.percentage-container {
+background-color: #a5d7fe;
+height: 120px;
+width: 100px;
+border-radius: 0px 0px 10px 10px;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family:'outfit', sans-serif ;
+font-size: 32px;
+color: white;
+}
+
+.progress{
+background-color: #2196F3;
+position: absolute;
+width: 100%;
+bottom: 0;
+transition: 0.5s ease;
+height: 0%;
+}
+
+.current-percentage {
+z-index: 1;
+}
+
+.add{
+background-color: #2196F3 ;
+color: white;
+border: 1px solid #a5d7fe;
+font-size: 42px;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.remove{
+background-color: #2196F3 ;
+color: white;
+border: 1px solid #a5d7fe;
+font-size: 48px;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-content: center;
+
+}
+  

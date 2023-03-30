@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <table id="table" data-toggle="table" data-search="true" data-search-highlight="true">
+                <table id="table" data-toggle="table" data-search="true" data-search-highlight="true" data-pagination="true">
                     <thead>
                         <tr>
                             <th data-field="id" rowspan="2"></th>
