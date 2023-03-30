@@ -57,7 +57,7 @@ if(isset($_POST['checkedIds'])){
     // print_r( $sPlans);
     // echo $username,"----", $estimatedWloss,"----", $userId;
     // echo  $sPlans[0][0][0]["food_code"];
-
+    $isSuccess = true;
     for($i=0; $i<count($sPlans); $i++){
         $mealString = $sPlans[$i][0];
         $snckString = $sPlans[$i][1];
@@ -72,10 +72,14 @@ if(isset($_POST['checkedIds'])){
         $query =   "INSERT INTO mealplans (meals, snacks, user, estimatedWLoss ) VALUES('$mealString','$snckString','$userId', '$estimatedWloss')";
         $query = mysqli_query($connection, $query); 
         if($query){
-            echo "working";
         }else{
-            echo "not working";
+            $isSuccess = false;
         }  
+    }
+    if($isSuccess){
+        echo "success";
+    }else{
+        echo "fail";
     }
 }
 ?>

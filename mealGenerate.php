@@ -48,8 +48,6 @@ if($cPlanDate != null){
     $query =   "DELETE FROM mealplans WHERE user = 1";
     $query = mysqli_query($connection, $query); 
     if($query){
-      echo "<br>";
-        echo "record deleted";
     }else{
         die("query failed".mysqli_error($connection));
     }
@@ -245,12 +243,6 @@ if($havePlan){
 
     }
   }
-  echo "<br>";
-  echo "meals count = ", count($mainMeals);
-  echo "<br>";
-  echo "<br>";
-  echo "meals count = ",$count;
-  echo "<br>";
   if(count($mainMeals) ==0){
     echo'<script>window.location.replace("http://localhost/dietYou/nomeals.php");</script>';
   }
@@ -294,12 +286,6 @@ if($havePlan){
           $combinations[] = $combination;
       }
   }
-  echo "combinations count = ",  count($combinations);
-  echo "<br>";
-
-  $end_time = microtime(true);
-  $execution_time = $end_time - $start_time;
-  echo " Execution time of script = " . $execution_time . " sec<br>";
 
 
 
@@ -328,19 +314,7 @@ if($havePlan){
     }
   }
 
-
-
-  echo "meal packages count = ",  count($mealPackages);
-  echo "<br><br>-----------------------------------------------------------------------------------------------<br><br>";
-
-  echo "snacks count = ", count($snacks);
-
-
-
-
-
   $totCombinations = factorial(count($snacks)) / (factorial(3)*(factorial(count($snacks)-3)));
-  echo "<br>",$totCombinations;
   $sCombinations = [];
 
   // Keep generating combinations until all possible combinations are found
@@ -369,9 +343,6 @@ if($havePlan){
           $sCombinations[] = $combination;
       }
   }
-  echo "<br>snack combinations = ",count($sCombinations); 
-
-  echo "<br><br>-----------------------------------------------------------------------------------------------<br><br>";
 
   sleep(1);
   $dietPlans = [];
@@ -405,25 +376,12 @@ if($havePlan){
       }
     }
   }
-  echo "dietplans count = ", count($dietPlans);
-  $end_time = microtime(true);
-  $execution_time = $end_time - $start_time;
-  echo " Execution time of script = " . $execution_time . " sec<br>";
-  echo "<br><br><br><br>";
 
   if(count($dietPlans) == 0){
     echo'<script>window.location.replace("http://localhost/dietYou/nomeals.php");</script>';
   }else{
 
   }
-
-  // for($i=0; $i<count($dietPlans); $i++){
-  //   echo "<br>---Main meals ---<br>";
-  //   echo $dietPlans[$i][0][0]["name"],"<br>", $dietPlans[$i][0][1]["name"],"<br>", $dietPlans[$i][0][2]["name"];
-  //   echo "<br><br>---Snacks ---<br>";
-  //   echo $dietPlans[$i][1][0]["name"],"<br>", $dietPlans[$i][1][1]["name"],"<br>", $dietPlans[$i][1][2]["name"];
-  //   echo "<br><br><br><br>";
-  // }
 
   $finalDPlans = [];
   $start_time = microtime(true);
@@ -458,12 +416,6 @@ if($havePlan){
     $finalDPlans = $dietPlans;
   }
 
-  echo "<br><br>-----------------------------------------------------------------------------------------------<br><br>";
-  echo "final dietplans count = ", count($finalDPlans);
-  $end_time = microtime(true);
-  $execution_time = $end_time - $start_time;
-  echo " Execution time of script = " . $execution_time . " sec<br>";
-
   if(count($finalDPlans) == 0){
     die("no diet plans");
     echo'<script>window.location.replace("http://localhost/dietYou/nomeals.php");</script>';
@@ -480,49 +432,13 @@ if($havePlan){
     }else{
       $limit = count($finalDPlans);
     }
-    // for($i=0; $i<$limit; $i++){
-    //   echo "<br>---Main meals ---<br>";
-    //   echo $finalDPlans[$i][0][0]["name"],"-",$finalDPlans[$i][0][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][1]["name"],"-",$finalDPlans[$i][0][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][2]["name"],"-",$finalDPlans[$i][0][2]["sRatio"]*100,"g";
-    //   echo "<br><br>---Snacks ---<br>";
-    //   echo $finalDPlans[$i][1][0]["name"],"-",$finalDPlans[$i][1][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][1]["name"],"-",$finalDPlans[$i][1][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][2]["name"],"-",$finalDPlans[$i][1][2]["sRatio"]*100,"g";
-    //   $mealArray = [$finalDPlans[$i][0][0]["food_code"],$finalDPlans[$i][0][1]["food_code"],$finalDPlans[$i][0][2]["food_code"],$finalDPlans[$i][0][0]["sRatio"],$finalDPlans[$i][0][1]["sRatio"],$finalDPlans[$i][0][2]["sRatio"]];
-    //   $mealString = implode(',', $mealArray);
-    //   $snackArray = [$finalDPlans[$i][1][0]["food_code"],$finalDPlans[$i][1][1]["food_code"],$finalDPlans[$i][1][2]["food_code"],$finalDPlans[$i][1][0]["sRatio"],$finalDPlans[$i][1][1]["sRatio"],$finalDPlans[$i][1][2]["sRatio"]];
-    //   $snackString = implode(',', $snackArray);
-    //   $query =   "INSERT INTO mealplans (meals, snacks, user, estimatedWLoss ) VALUES('$mealString','$snackString','$userId', '$estimatedWloss')";
-    //   $query = mysqli_query($connection, $query); 
-    //   if($query){
-    //     echo "<br>";
-    //       echo "mealplan added";
-    //   }else{
-    //       die("query failed".mysqli_error($connection));
-    //   }
-    //   echo "<br><br><br><br>";
       
     // }
     $date = new DateTime();
   
     // Format the date as a string
     $dateString = $date->format('Y-m-d H:i:s');
-  
-    // Output the date string
-    echo $dateString;
-  
-    //   //update query
-    //   $query = <<<SQL
-    //   UPDATE users SET
-    //   planDate = '$dateString'
-    //   WHERE id = '$userId';
-    //   SQL;
-  
-    // $query = mysqli_query($connection, $query); 
-    // if($query){
-  
-    // }else{
-    //   die("query failed".mysqli_error($connection));
-    // }
-    // header('Location: http://localhost/dietYou/dashboard.php');
-    // Convert the PHP array to a JSON object
+
     $jsonPlans = json_encode($finalDPlans);
   }
   mysqli_close($connection);
@@ -635,7 +551,9 @@ if($havePlan){
             url: "dietplans.php",
             data: {checkedIds:planIdArry},
             success: function(response) {
-                console.log(response);
+                if(response == "success"){
+                  window.location.replace("dashboard.php");
+                }
             }
           });
       });
