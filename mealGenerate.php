@@ -1,3 +1,4 @@
+
 <?php
 include "backend/db.php"; 
 include "backend/microFilters.php"; 
@@ -474,31 +475,31 @@ if($havePlan){
   
     $userId = findUser($username, $connection);
     $limit = 0;
-    if($finalDPlans > 500){
+    if(count($finalDPlans) > 500){
       $limit = 500;
     }else{
       $limit = count($finalDPlans);
     }
-    for($i=0; $i<$limit; $i++){
-      echo "<br>---Main meals ---<br>";
-      echo $finalDPlans[$i][0][0]["name"],"-",$finalDPlans[$i][0][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][1]["name"],"-",$finalDPlans[$i][0][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][2]["name"],"-",$finalDPlans[$i][0][2]["sRatio"]*100,"g";
-      echo "<br><br>---Snacks ---<br>";
-      echo $finalDPlans[$i][1][0]["name"],"-",$finalDPlans[$i][1][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][1]["name"],"-",$finalDPlans[$i][1][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][2]["name"],"-",$finalDPlans[$i][1][2]["sRatio"]*100,"g";
-      $mealArray = [$finalDPlans[$i][0][0]["food_code"],$finalDPlans[$i][0][1]["food_code"],$finalDPlans[$i][0][2]["food_code"],$finalDPlans[$i][0][0]["sRatio"],$finalDPlans[$i][0][1]["sRatio"],$finalDPlans[$i][0][2]["sRatio"]];
-      $mealString = implode(',', $mealArray);
-      $snackArray = [$finalDPlans[$i][1][0]["food_code"],$finalDPlans[$i][1][1]["food_code"],$finalDPlans[$i][1][2]["food_code"],$finalDPlans[$i][1][0]["sRatio"],$finalDPlans[$i][1][1]["sRatio"],$finalDPlans[$i][1][2]["sRatio"]];
-      $snackString = implode(',', $snackArray);
-      $query =   "INSERT INTO mealplans (meals, snacks, user, estimatedWLoss ) VALUES('$mealString','$snackString','$userId', '$estimatedWloss')";
-      $query = mysqli_query($connection, $query); 
-      if($query){
-        echo "<br>";
-          echo "mealplan added";
-      }else{
-          die("query failed".mysqli_error($connection));
-      }
-      echo "<br><br><br><br>";
+    // for($i=0; $i<$limit; $i++){
+    //   echo "<br>---Main meals ---<br>";
+    //   echo $finalDPlans[$i][0][0]["name"],"-",$finalDPlans[$i][0][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][1]["name"],"-",$finalDPlans[$i][0][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][0][2]["name"],"-",$finalDPlans[$i][0][2]["sRatio"]*100,"g";
+    //   echo "<br><br>---Snacks ---<br>";
+    //   echo $finalDPlans[$i][1][0]["name"],"-",$finalDPlans[$i][1][0]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][1]["name"],"-",$finalDPlans[$i][1][1]["sRatio"]*100,"g","<br>", $finalDPlans[$i][1][2]["name"],"-",$finalDPlans[$i][1][2]["sRatio"]*100,"g";
+    //   $mealArray = [$finalDPlans[$i][0][0]["food_code"],$finalDPlans[$i][0][1]["food_code"],$finalDPlans[$i][0][2]["food_code"],$finalDPlans[$i][0][0]["sRatio"],$finalDPlans[$i][0][1]["sRatio"],$finalDPlans[$i][0][2]["sRatio"]];
+    //   $mealString = implode(',', $mealArray);
+    //   $snackArray = [$finalDPlans[$i][1][0]["food_code"],$finalDPlans[$i][1][1]["food_code"],$finalDPlans[$i][1][2]["food_code"],$finalDPlans[$i][1][0]["sRatio"],$finalDPlans[$i][1][1]["sRatio"],$finalDPlans[$i][1][2]["sRatio"]];
+    //   $snackString = implode(',', $snackArray);
+    //   $query =   "INSERT INTO mealplans (meals, snacks, user, estimatedWLoss ) VALUES('$mealString','$snackString','$userId', '$estimatedWloss')";
+    //   $query = mysqli_query($connection, $query); 
+    //   if($query){
+    //     echo "<br>";
+    //       echo "mealplan added";
+    //   }else{
+    //       die("query failed".mysqli_error($connection));
+    //   }
+    //   echo "<br><br><br><br>";
       
-    }
+    // }
     $date = new DateTime();
   
     // Format the date as a string
@@ -521,6 +522,124 @@ if($havePlan){
     //   die("query failed".mysqli_error($connection));
     // }
     // header('Location: http://localhost/dietYou/dashboard.php');
+    // Convert the PHP array to a JSON object
+    $jsonPlans = json_encode($finalDPlans);
   }
+  mysqli_close($connection);
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DietYou</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.21.3/bootstrap-table.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <form id="myForm">
+                <table id="table" data-toggle="table" data-search="true" data-search-highlight="true">
+                    <thead>
+                        <tr>
+                            <th data-field="id" rowspan="2"></th>
+                            <th colspan="3" class="center-header">Meals</th>
+                            <th colspan="3" class="center-header">Snacks</th>
+                        </tr>
+                        <tr>
+                            <th data-field="meal1">Meal 1</th>
+                            <th data-field="meal2">Meal 2</th>
+                            <th data-field="meal3">Meal 3</th>
+                            <th data-field="snack1">Snack 1</th>
+                            <th data-field="snack2">Snack 2</th>
+                            <th data-field="snack3">Snack 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        for($i=0; $i<$limit; $i++){
+                          echo '<tr>';
+                          echo '<td><input type="checkbox" id="',$i,'"></td>';
+                          echo'<td>', $dietPlans[$i][0][0]["name"],'</td>';
+                          echo'<td>', $dietPlans[$i][0][1]["name"],'</td>';
+                          echo'<td>', $dietPlans[$i][0][2]["name"],'</td>';
+                          echo'<td>', $dietPlans[$i][1][0]["name"],'</td>';
+                          echo'<td>', $dietPlans[$i][1][1]["name"],'</td>';
+                          echo'<td>', $dietPlans[$i][1][2]["name"],'</td>';
+                          echo '</tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+                <input type="button" id="dietSubmit" value="Submit"/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.21.3/bootstrap-table.min.js"></script>
+    <!-- <script src="assets/js/mealGenarate.js"></script> -->
+    <script>
+    // Parse the JSON object into a JavaScript array
+    // jsArray = [];
+    // console.log(wLoss);
+    // Log the JavaScript array to the console
+
+    $('#dietSubmit').on('click', function(e) {
+          e.preventDefault(); // prevent default form submission
+          dietArry = JSON.parse('<?php echo $jsonPlans; ?>');
+          // console.log(test[0])
+          planIdArry = [];
+          $("input[type=checkbox]:checked").each(function() { // loop through all checked checkboxes
+            planId = parseInt($(this).attr("id"));
+            mealArry = [];
+            snckArry = [];
+            for(n=0; n<3; n++){
+              mealId = dietArry[planId][0][n]["food_code"];
+              snckId = dietArry[planId][1][n]["food_code"];
+              mealArry.push(mealId);
+              snckArry.push(snckId);
+            }
+            // for(i=0; i<2; i++){
+            //   if(i=0){
+            //     for(n=0; n<3; n++){
+            //       mealId = mealArry[planId][i][n]["food_code"];
+            //       mealArry.push(mealId );
+                
+            //     }
+            //   }else{
+            //     for(n=0; n<3; n++){
+            //       mealId = mealArry[planId][i][n]["food_code"];
+            //       snckArry.push(mealId );
+                
+            //     }
+            //   }
+            // }
+            finalMeal = [mealArry.toString(), snckArry.toString()];
+            planIdArry.push(finalMeal);
+            // checkedIds.push(mealArry[planId]); // add checked ID to array
+          });
+          $.ajax({
+            type: "POST",
+            url: "dietplans.php",
+            data: {checkedIds:planIdArry},
+            success: function(response) {
+                console.log(response);
+            }
+          });
+      });
+
+    </script>
+</body>
+</html>
