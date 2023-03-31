@@ -527,21 +527,6 @@ if($havePlan){
               mealArry.push(mealId);
               snckArry.push(snckId);
             }
-            // for(i=0; i<2; i++){
-            //   if(i=0){
-            //     for(n=0; n<3; n++){
-            //       mealId = mealArry[planId][i][n]["food_code"];
-            //       mealArry.push(mealId );
-                
-            //     }
-            //   }else{
-            //     for(n=0; n<3; n++){
-            //       mealId = mealArry[planId][i][n]["food_code"];
-            //       snckArry.push(mealId );
-                
-            //     }
-            //   }
-            // }
             finalMeal = [mealArry.toString(), snckArry.toString()];
             planIdArry.push(finalMeal);
             // checkedIds.push(mealArry[planId]); // add checked ID to array
@@ -552,7 +537,7 @@ if($havePlan){
             data: {checkedIds:planIdArry},
             success: function(response) {
                 if(response == "success"){
-                  window.location.replace("dashboard.php");
+                    window.location.replace("dashboard.php");
                 }
             }
           });

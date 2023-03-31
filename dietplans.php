@@ -77,7 +77,25 @@ if(isset($_POST['checkedIds'])){
         }  
     }
     if($isSuccess){
-        echo "success";
+      $date = new DateTime();
+  
+      // Format the date as a string
+      $dateString = $date->format('Y-m-d H:i:s');
+
+      //   //update query
+      $query = <<<SQL
+      UPDATE users SET
+      planDate = '$dateString'
+      WHERE id = '$userId';
+      SQL;
+  
+      $query = mysqli_query($connection, $query); 
+      if($query){
+    
+      }else{
+        die("query failed".mysqli_error($connection));
+      }
+      echo "success";
     }else{
         echo "fail";
     }
