@@ -58,7 +58,7 @@ if($cPlanDate != null){
 }
 
 if($havePlan){
-  echo'<script>window.location.replace("http://localhost/dietYou/havePlan.php");</script>';
+  echo'<script>window.location.replace("dashboard.php");</script>';
 }else{
   $TEEtot = $user->getTEE();
   $TEEreduction = 0;
@@ -522,8 +522,8 @@ if($havePlan){
             mealArry = [];
             snckArry = [];
             for(n=0; n<3; n++){
-              mealId = dietArry[planId][0][n]["food_code"];
-              snckId = dietArry[planId][1][n]["food_code"];
+              mealId = dietArry[planId][0][n]["food_code"]+"-"+dietArry[planId][0][n]['sRatio'];
+              snckId = dietArry[planId][1][n]["food_code"]+"-"+dietArry[planId][0][n]['sRatio'];
               mealArry.push(mealId);
               snckArry.push(snckId);
             }
