@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+<?php 
+    $foodId = $_GET['food'];
+    $ratio = $_GET['ratio'];
+if(isset($_GET['food']) && isset($_GET['ratio'])){
+    $foodId = $_GET['food'];
+    $ratio = $_GET['ratio'];
+    echo $foodId,"<br>",$ratio;
+}
+?>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,4 +29,4 @@
     </div>
     
 </body>
-</html>
+</html> -->
