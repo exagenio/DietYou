@@ -523,7 +523,7 @@ if($havePlan){
             snckArry = [];
             for(n=0; n<3; n++){
               mealId = dietArry[planId][0][n]["food_code"]+"-"+dietArry[planId][0][n]['sRatio'];
-              snckId = dietArry[planId][1][n]["food_code"]+"-"+dietArry[planId][0][n]['sRatio'];
+              snckId = dietArry[planId][1][n]["food_code"]+"-"+dietArry[planId][1][n]['sRatio'];
               mealArry.push(mealId);
               snckArry.push(snckId);
             }

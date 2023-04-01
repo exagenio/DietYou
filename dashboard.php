@@ -23,33 +23,33 @@ $findQuery = mysqli_query($connection, $query);
       array_push($plans, $row);
   }
 //   echo $plans[0]["meals"];
-  foreach($plans as $plan){
-    $originalString = $plan["meals"];
-    $beforeArray = array();
-    $afterArray = array();
-    $items = explode(",", $originalString);
-    foreach ($items as $item) {
-      $parts = explode("-", $item);
-      $beforeArray[] = $parts[0];
-      $afterArray[] = $parts[1];
-    }
-    // print_r($beforeArray);
-    // print_r($afterArray);    
-    $meals = implode(",", $beforeArray);
-    echo $meals, "<br>";
-    for($i = 0; $i<3; $i++){
-        $query = "SELECT name, food_code FROM foods WHERE food_code=$beforeArray[$i]";
-        $findQuery = mysqli_query($connection, $query);
-        $row = mysqli_fetch_row($findQuery);
-        if (mysqli_num_rows($findQuery) == 0) {
-            echo "no items <br>";
-        } else {
-            print_r($row);
-            echo "-",round($afterArray[$i], 1);;
-            echo "<br>";
-        }
-    }
-  }
+    // foreach($plans as $plan){
+    //     $originalString = $plan["meals"];
+    //     $beforeArray = array();
+    //     $afterArray = array();
+    //     $items = explode(",", $originalString);
+    //     foreach ($items as $item) {
+    //     $parts = explode("-", $item);
+    //     $beforeArray[] = $parts[0];
+    //     $afterArray[] = $parts[1];
+    //     }
+    //     // print_r($beforeArray);
+    //     // print_r($afterArray);    
+    //     $meals = implode(",", $beforeArray);
+    //     echo $meals, "<br>";
+    //     for($i = 0; $i<3; $i++){
+    //         $query = "SELECT name, food_code FROM foods WHERE food_code=$beforeArray[$i]";
+    //         $findQuery = mysqli_query($connection, $query);
+    //         $row = mysqli_fetch_row($findQuery);
+    //         if (mysqli_num_rows($findQuery) == 0) {
+    //             echo "no items <br>";
+    //         } else {
+    //             print_r($row);
+    //             echo "-",round($afterArray[$i], 1);;
+    //             echo "<br>";
+    //         }
+    //     }
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -143,7 +143,102 @@ $findQuery = mysqli_query($connection, $query);
         </div>
     </div>
 
-    <section>
+    <?php 
+    $count = 1;
+    //   echo $plans[0]["meals"];
+    foreach($plans as $plan){
+        echo <<<HTML
+            <section>
+            <h1 class="title">DIET {$count}</h1>
+            <div class="container2">
+                <div class="main-meals">
+                    <h1>MAIN MEALS</h1>
+                </div>
+                <div class="snacks">
+                    <h1>SNACKS</h1>
+                </div>
+        HTML;
+        $originalString = $plan["meals"];
+        $beforeArray = array();
+        $afterArray = array();
+        $items = explode(",", $originalString);
+        foreach ($items as $item) {
+        $parts = explode("-", $item);
+        $beforeArray[] = $parts[0];
+        $afterArray[] = $parts[1];
+        }
+        echo <<<HTML
+                <div class="main-recipes">
+        HTML;
+
+        for($i = 0; $i<3; $i++){
+            $query = "SELECT name, food_code, weight FROM foods WHERE food_code=$beforeArray[$i]";
+            $findQuery = mysqli_query($connection, $query);
+            $row = mysqli_fetch_row($findQuery);
+            if (mysqli_num_rows($findQuery) == 0) {
+                echo "no items <br>";
+            } else {
+                $weight = $row[2]*round($afterArray[$i], 1);
+                echo <<<HTML
+                <div class="diet-1 dietM" id="card2">
+                    <a href="#">
+                        <h1>{$row[0]}</h1>
+                        <h3>{$weight}g</h3>
+                    </a>
+                </div>
+                HTML;
+                // print_r($row);
+                // echo "-",round($afterArray[$i], 1);;
+                // echo "<br>";
+
+            }
+        }
+        echo <<<HTML
+            </div>
+            <div class="snacks-recipes">
+        HTML;
+
+        $originalString = $plan["snacks"];
+        $beforeArray = array();
+        $afterArray = array();
+        $items = explode(",", $originalString);
+        foreach ($items as $item) {
+        $parts = explode("-", $item);
+        $beforeArray[] = $parts[0];
+        $afterArray[] = $parts[1];
+        }
+
+
+        for($i = 0; $i<3; $i++){
+            $query = "SELECT name, food_code, weight FROM foods WHERE food_code=$beforeArray[$i]";
+            $findQuery = mysqli_query($connection, $query);
+            $row = mysqli_fetch_row($findQuery);
+            if (mysqli_num_rows($findQuery) == 0) {
+                echo "no items <br>";
+            } else {
+                $weight = $row[2]*round($afterArray[$i], 1);
+                echo <<<HTML
+                <div class="diet-1 dietM" id="card2">
+                    <a href="#">
+                        <h1>{$row[0]}</h1>
+                        <h3>{$weight}g</h3>
+                    </a>
+                </div>
+                HTML;
+            }
+        }
+        echo <<<HTML
+            </div>
+        </div>
+        </section>
+        HTML;
+        $count++;
+    }    
+
+    ?>
+
+
+    <!-- <section>
         <h1 class="title">DIET 1</h1>
         <div class="container2">
             <div class="main-meals">
@@ -156,8 +251,9 @@ $findQuery = mysqli_query($connection, $query);
                 
                 <div class="diet-1 dietM" id="card2">
                     <a href="#">
-                    <h1>CANED WHITE BEANS FAT ADDED</h1>
-                    <h3>285g</h3></a>
+                        <h1>CANED WHITE BEANS FAT ADDED</h1>
+                        <h3>285g</h3>
+                    </a>
                 </div>
                 <div class="diet-2 dietM" id="card2">
                     <a href="#">
@@ -191,7 +287,8 @@ $findQuery = mysqli_query($connection, $query);
             </div>
 
         </div>
-    </section>
+    </section> -->
+    
 
 
 
