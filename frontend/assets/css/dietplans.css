@@ -22,7 +22,7 @@ body::-webkit-scrollbar{
     background: #865515;
   } 
 
-.container {
+.container2 {
     display: grid;
     height: 100vh;
 
@@ -32,24 +32,22 @@ body::-webkit-scrollbar{
  
 }
 
-.nav{
+/* .nav{
     grid-area: nav;
-}
+} */
 
 .main-meals{
     
     
 }
 
-#card{
-    
-    
+#card2{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 20px;
 }
 
-#card:hover {
+#card2:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
   }
 
@@ -67,7 +65,7 @@ body::-webkit-scrollbar{
     align-items: center;
     font-family: 'outfit', sans-serif ;
     color: #EA8E17;
-    font-size: 48px;
+    font-size: 22px;
 }
 
 .snacks{
@@ -82,7 +80,7 @@ body::-webkit-scrollbar{
     align-items: center;
     font-family: 'outfit', sans-serif ;
     color: #EA8E17;
-    font-size: 48px;
+    font-size: 22px;
     
 }
 
@@ -109,7 +107,7 @@ body::-webkit-scrollbar{
 .dietM h1{
     position: relative;
     top: 2rem;
-    font-size: 32px;
+    font-size: 20px;
     color: white;
     font-family: 'outfit', sans-serif ;
     display: flex;
@@ -167,7 +165,7 @@ body::-webkit-scrollbar{
 .dietS h1{
     position: relative;
     top: 2rem;
-    font-size: 32px;
+    font-size: 20px;
     color: white;
     font-family: 'outfit', sans-serif ;
     display: flex;

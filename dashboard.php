@@ -30,7 +30,7 @@
         </div>
     </nav>
 
-    <div class="container overflow-hidden" style="min-height: 100vh;">
+    <div class="container overflow-hidden">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile_info row" id="card">
@@ -47,95 +47,97 @@
             </div>
 
           
-          <div class="col-md-8">
-            <div class="water_consumption row align-items-center justify-content-center col-md-8" id="card">
-                <div class="cups d-flex flex-column align-items-center col-md col-12">
-                    <img src="assets/img/glass-of-water.png" alt="water cup">
-                    <span class="current-cups">0/10</span>
-                </div>
-                <div class="buttons col-md col-4 d-flex justify-content-center ">
-                    <button class="add">+</button>
-                </div> 
-                <div class="col-md col-4">
-                    <div class="percentage-container">
-                        <span class="current-percentage">0%</span>
-                        <div class="progress"></div>
-                    </div>
-                </div>
-
-                <div class="buttons col-md col-4 d-flex justify-content-center">
-                    <button class="remove" disabled="">-</button>
-                </div> 
-
-                <div class="litres col-md col-12 d-flex flex-column align-items-center ">
-                    <img src="assets/img/drop.png" alt="water drop">
-                    <span class="current-litres">0l/2.5l</span>
-                </div>
-            </div>
-          <div class="col-md-4">
-            <div class="cal_count" id="card">
-                <div class="cal_progress">
-                    <div class="progress"></div>
-                </div>
-                <div class="percentage-cal">0%</div>
-                <div class="gain_cal">0Kcal</div>
-            </div>
-          </div>
-          
-
-        </div>
-        </div>
-
-        <div class="row align-items-center justify-content-center gx-10 bg-white p-4 rounded mt-4 ">
-            <h3 class="col-12">Diet Plan 1 </h3>
-            <div class="meals p-4 col-md-6">
-                <div class="row  bg-light">
-                    <h6 class="col-12 text-center mt-4">Meals</h6>
-                    <div class="col-md-4">
-                        <div class="meal d-flex flex-column  align-items-center justify-content-center rounded mb-4">
-                            <img src="assets/img/breakfast.jpg">
-                            <h6 class="mt-2">Meal 1</h6>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="water_consumption row align-items-center justify-content-center" id="card">
+                            <div class="cups d-flex flex-column align-items-center col-md col-12">
+                                <img src="assets/img/glass-of-water.png" alt="water cup">
+                                <span class="current-cups">0/10</span>
+                            </div>
+                            <div class="buttons col-md col-4 d-flex justify-content-center ">
+                                <button class="add">+</button>
+                            </div> 
+                            <div class="col-md col-4">
+                                <div class="percentage-container">
+                                    <span class="current-percentage">0%</span>
+                                    <div class="progress"></div>
+                                </div>
+                            </div>
+        
+                            <div class="buttons col-md col-4 d-flex justify-content-center">
+                                <button class="remove" disabled="">-</button>
+                            </div> 
+        
+                            <div class="litres col-md col-12 d-flex flex-column align-items-center ">
+                                <img src="assets/img/drop.png" alt="water drop">
+                                <span class="current-litres">0l/2.5l</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="meal d-flex flex-column  align-items-center justify-content-center rounded mb-4">
-                            <img src="assets/img/breakfast.jpg">
-                            <h6 class="mt-2">Meal 1</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="meal d-flex flex-column  align-items-center justify-content-center rounded mb-4">
-                            <img src="assets/img/breakfast.jpg">
-                            <h6 class="mt-2">Meal 1</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="meals p-4 col-md-6">
-                <div class="row  bg-light">
-                    <h6 class="col-12 text-center mt-4">Snacks</h6>
-                    <div class="col-md-4">
-                        <div class="meal d-flex flex-column  align-items-center justify-content-center rounded mb-4">
-                            <img src="assets/img/breakfast.jpg">
-                            <h6 class="mt-2">Meal 1</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="meal d-flex flex-column  align-items-center justify-content-center rounded mb-4">
-                            <img src="assets/img/breakfast.jpg">
-                            <h6 class="mt-2">Meal 1</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="meal d-flex flex-column  align-items-center justify-content-center rounded mb-4">
-                            <img src="assets/img/breakfast.jpg">
-                            <h6 class="mt-2">Meal 1</h6>
+                    <div class="col">
+                        <div class="cal_count" id="card">
+                            <div class="cal_progress">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="percentage-cal">0%</div>
+                            <div class="gain_cal">0Kcal</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <section>
+        <h1 class="title">DIET 1</h1>
+        <div class="container2">
+            <div class="main-meals">
+                <h1>MAIN MEALS</h1>
+            </div>
+            <div class="snacks">
+                <h1>SNACKS</h1>
+            </div>
+            <div class="main-recipes">
+                
+                <div class="diet-1 dietM" id="card2">
+                    <a href="#">
+                    <h1>CANED WHITE BEANS FAT ADDED</h1>
+                    <h3>285g</h3></a>
+                </div>
+                <div class="diet-2 dietM" id="card2">
+                    <a href="#">
+                    <h1>REGULAR OATMEAL WITH MILK</h1>
+                    <h3>519g</h3></a>
+                </div>
+                <div class="diet-3 dietM" id="card2">
+                    <a href="#">
+                    <h1>INSTANT OATMEAL WITH MILK</h1>
+                    <h3>542g</h3></a>
+                </div>
+
+            </div>
+            <div class="snacks-recipes">
+                <div class="snacks-1 dietS" id="card2">
+                    <a href="#">
+                    <h1>CHEESE COTTAGE LOW FAT & SODIUM</h1>
+                    <h3>92g</h3></a>
+                </div>
+                <div class="snacks-2 dietS" id="card2">
+                    <a href="#">
+                    <h1>UNSALTED & ROASTED PEANUTS</h1>
+                    <h3>11g</h3></a>
+                </div>
+                <div class="snacks-3 dietS" id="card2">
+                    <a href="#">
+                    <h1>REDUCED SODIUM CORN COOKED</h1>
+                    <h3>72g</h3></a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
 
 
 

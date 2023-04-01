@@ -31,10 +31,26 @@ include 'backend/functions.php';
         public function testFatCalculate(){
             $this -> assertEquals(66.83333333333333, FatCalculator(2406));
         }
+
         
-        // public function testAllergyFliter(){
-        //     $connection = mysqli_connect("localhost","root", "root","dietYou");
-        //     $this -> assertEquals(123,allergyFilter($connection,"Shabeer"));
-        // }
+        public function testAllergyFliter(){
+            $connection = mysqli_connect("localhost","root", "root","dietYou");
+            $username = "shabeerox@gmail.com";
+            $expectedResult = array("milk", "butter", "cheese", "galactose");
+            $actualResult = allergyFilter($connection, $username);
+            $this->assertEquals($expectedResult, $actualResult);
+
+            // Test with user who has fructose intolerance allergy
+            $username = "tharindu";
+            $expectedResult = array("apple", "pear", "honey", "corn syrup");
+            $actualResult = allergyFilter($connection, $username);
+            $this->assertEquals($expectedResult, $actualResult);
+
+            // Test with user who has no allergies
+            $username = "ranvinu";
+            $expectedResult = array();
+            $actualResult = allergyFilter($connection, $username);
+            $this->assertEquals($expectedResult, $actualResult);
+        }
         
     }
