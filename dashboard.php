@@ -1,3 +1,57 @@
+<?php
+include "backend/db.php"; 
+include "classes/User.php";
+//set session values
+session_start();
+//check the login status of the user
+if ((isset($_SESSION['username'])) && $_SESSION["userVerified"] == 1) {
+  //logged in
+} else {
+  // Session variable is not set
+echo'<script>window.location.replace("http://localhost/dietYou/login.php");</script>';
+}
+$username = $_SESSION['username'];
+$userID = findUser($username, $connection);
+$query = "SELECT * FROM mealplans where user=$userID";
+$findQuery = mysqli_query($connection, $query);
+
+  // Initialize an empty array to store the rows of the filtered food table
+  $plans = array();
+
+  // Fetch each row of data and add it to the array
+  while ($row = mysqli_fetch_assoc($findQuery)) {
+      array_push($plans, $row);
+  }
+//   echo $plans[0]["meals"];
+  foreach($plans as $plan){
+    $originalString = $plan["meals"];
+    $beforeArray = array();
+    $afterArray = array();
+    $items = explode(",", $originalString);
+    foreach ($items as $item) {
+      $parts = explode("-", $item);
+      $beforeArray[] = $parts[0];
+      $afterArray[] = $parts[1];
+    }
+    // print_r($beforeArray);
+    // print_r($afterArray);    
+    $meals = implode(",", $beforeArray);
+    echo $meals, "<br>";
+    for($i = 0; $i<3; $i++){
+        $query = "SELECT name, food_code FROM foods WHERE food_code=$beforeArray[$i]";
+        $findQuery = mysqli_query($connection, $query);
+        $row = mysqli_fetch_row($findQuery);
+        if (mysqli_num_rows($findQuery) == 0) {
+            echo "no items <br>";
+        } else {
+            print_r($row);
+            echo "-",round($afterArray[$i], 1);;
+            echo "<br>";
+        }
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
