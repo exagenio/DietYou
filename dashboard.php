@@ -179,9 +179,10 @@ $findQuery = mysqli_query($connection, $query);
                 echo "no items <br>";
             } else {
                 $weight = $row[2]*round($afterArray[$i], 1);
+                $ratio = round($afterArray[$i], 1);
                 echo <<<HTML
                 <div class="diet-1 dietM" id="card2">
-                    <a href="#">
+                    <a href="ingredients.php?food={$row[1]}&ratio={$ratio}">
                         <h1>{$row[0]}</h1>
                         <h3>{$weight}g</h3>
                     </a>
@@ -217,9 +218,10 @@ $findQuery = mysqli_query($connection, $query);
                 echo "no items <br>";
             } else {
                 $weight = $row[2]*round($afterArray[$i], 1);
+                $ratio = round($afterArray[$i], 1);
                 echo <<<HTML
                 <div class="diet-1 dietM" id="card2">
-                    <a href="#">
+                    <a href="ingredients.php?food={$row[1]}&ratio={$ratio}">
                         <h1>{$row[0]}</h1>
                         <h3>{$weight}g</h3>
                     </a>
