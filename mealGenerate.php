@@ -57,7 +57,7 @@ if ($cPlanDate != null) {
 }
 
 if ($havePlan) {
-  echo '<script>window.location.replace("dashboard.php");</script>';
+  echo '<script>window.location.replace("formValidError.php");</script>';
 } else {
   $TEEtot = $user->getTEE();
   $TEEreduction = 0;

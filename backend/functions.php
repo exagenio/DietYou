@@ -8,6 +8,16 @@ function debug_to_console($data) {
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
 
+function islogged($ses_username, $ses_verified){
+    if ((isset($ses_username)) && $ses_verified == 1) {
+        //logged in
+        return true;
+      } else {
+        // Session variable is not set
+        return false;
+      }
+};
+
 function findUser($username, $connection){
     $find = "SELECT id FROM users where email = '$username'";
     $findQuery = mysqli_query($connection, $find);

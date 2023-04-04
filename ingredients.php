@@ -1,7 +1,15 @@
 <?php 
-    include "backend/db.php"; 
-    $foodId = $_GET['food'];
-    $ratio = $_GET['ratio'];
+include "backend/db.php"; 
+include "backend/functions.php";
+$foodId = $_GET['food'];
+$ratio = $_GET['ratio'];
+session_start();
+if(islogged(isset($_SESSION['username']),$_SESSION["userVerified"])){
+    
+}else{
+    echo'<script>window.location.replace("login.php");</script>';
+}
+
 if(isset($_GET['food']) && isset($_GET['ratio'])){
     $foodId = $_GET['food'];
     $ratio = $_GET['ratio'];
@@ -42,10 +50,13 @@ if(isset($_GET['food']) && isset($_GET['ratio'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diet Plan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/indi_dietplan.css">
 </head>
 <body>
-
+    <?php include "includes/header.php";?>
     <div class="container">
         <div class="heading">
             <h1><?php echo $ingredients[0]["name"]; ?></h1>
@@ -62,6 +73,6 @@ if(isset($_GET['food']) && isset($_GET['ratio'])){
             </ul>
         </div>
     </div>
-    
+    <?php include "includes/footer.php";?>
 </body>
 </html>
