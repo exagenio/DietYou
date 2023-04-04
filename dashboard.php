@@ -102,45 +102,44 @@ $findQuery = mysqli_query($connection, $query);
 
           
             <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="water_consumption row align-items-center justify-content-center" id="card">
-                            <div class="cups d-flex flex-column align-items-center col-md col-12">
-                                <img src="assets/img/glass-of-water.png" alt="water cup">
-                                <span class="current-cups">0/10</span>
-                            </div>
-                            <div class="buttons col-md col-4 d-flex justify-content-center ">
-                                <button class="add">+</button>
-                            </div> 
-                            <div class="col-md col-4">
-                                <div class="percentage-container">
-                                    <span class="current-percentage">0%</span>
-                                    <div class="progress"></div>
-                                </div>
-                            </div>
-        
-                            <div class="buttons col-md col-4 d-flex justify-content-center">
-                                <button class="remove" disabled="">-</button>
-                            </div> 
-        
-                            <div class="litres col-md col-12 d-flex flex-column align-items-center ">
-                                <img src="assets/img/drop.png" alt="water drop">
-                                <span class="current-litres">0l/2.5l</span>
-                            </div>
+                <div class="water_consumption row align-items-center justify-content-center" id="card">
+                    <div class="cups d-flex flex-column align-items-center col-md col-12">
+                        <img src="assets/img/glass-of-water.png" alt="water cup">
+                        <span class="current-cups">0/10</span>
+                    </div>
+                    <div class="buttons col-md col-4 d-flex justify-content-center ">
+                        <button class="add">+</button>
+                    </div> 
+                    <div class="col-md col-4">
+                        <div class="percentage-container">
+                            <span class="current-percentage">0%</span>
+                            <div class="progress"></div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="cal_count" id="card">
-                            <div class="cal_progress">
-                                <div class="progress"></div>
-                            </div>
-                            <div class="percentage-cal">0%</div>
-                            <div class="gain_cal">0Kcal</div>
-                        </div>
+
+                    <div class="buttons col-md col-4 d-flex justify-content-center">
+                        <button class="remove" disabled="">-</button>
+                    </div> 
+
+                    <div class="litres col-md col-12 d-flex flex-column align-items-center ">
+                        <img src="assets/img/drop.png" alt="water drop">
+                        <span class="current-litres">0l/2.5l</span>
                     </div>
                 </div>
+                <!-- <div class="col">
+                    <div class="cal_count" id="card">
+                        <div class="cal_progress">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="percentage-cal">0%</div>
+                        <div class="gain_cal">0Kcal</div>
+                    </div>
+                </div> -->
             </div>
         </div>
+        
+    </div>
+
     </div>
 
     <?php 

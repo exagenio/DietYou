@@ -335,4 +335,11 @@ section{
   font-size: 15px;
   margin-top: 30px;
 }
+a{
+  text-decoration: none;
+
+}
+a:hover{
+  cursor: pointer;
+}
 

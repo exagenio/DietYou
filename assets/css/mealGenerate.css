@@ -1,0 +1,33 @@
+
+body{
+    background-image:linear-gradient(orange, #D8D8D8);
+}
+table{
+    margin-top: 50px;
+}
+.table tbody tr {
+    padding: 10px;
+  }
+  
+  /* Set the font size and padding for the table cells */
+  .table tbody td {
+    font-size: 14px;
+    padding: 10px;
+  }
+  
+  /* Add a hover effect to the table rows */
+  .table tbody tr:hover {
+    background-color: #ddd;
+    font-weight: 700;
+  }
+
+#dietSubmit{
+    margin: 30px;
+    position: fixed;
+    bottom: 0px;
+}
+.search-input{
+    position: fixed;
+    right: 70px;
+    width: 20%;
+}
