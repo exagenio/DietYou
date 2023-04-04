@@ -15,9 +15,6 @@ if(isset($_GET['id'])){
     //get the user data by creating a user object
     $user = new User($username, $connection);
     $ncds = $user->getNcds();
-    if($ncds == null){
-        echo "dasdd";
-    }
 
     $query = "SELECT * FROM exercises WHERE id = '$exId'";
         //get the result according to the query
