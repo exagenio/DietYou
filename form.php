@@ -202,7 +202,7 @@ if (isset($_POST["submit"])) {
 
         <br>
 
-        <label for="allergies" class="form-label">What kind of alergies you have?</label>
+        <label for="allergies" class="form-label">What kind of allergies you have?</label>
         <fieldset class="form-control bg-transparent border border-secondary d-flex">
           <div>
             <input style="height: fit-content;" type="checkbox" id="" value="lactose-intolerance" name="allergies[]">

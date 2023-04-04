@@ -54,17 +54,71 @@ if (!file_exists($flag_file)) {
     INSERT INTO allergies (name, restrictions) VALUES ('galactosemia', '1002,1004,1006,1008,1202,1204,1206,1208,1402,1602,1604,1820,1822,2608,3204,3206,3602,3702,3720,3740,4004,4202,4204,4206,4402,4404,4602,4604,4804,5202,5402,5404,5502,5504,5506,5802,5804,8002,8006,8008,9602');
     INSERT INTO allergies (name, restrictions) VALUES ('fructose-intolerance', '2604,2606,2608,2806,3104,3502,3506,3702,3703,3706,3740,4604,4804,5702,5704,6002,6016,6018,6020,6024,6414,6432,7004,7006,7102,7104,7202,7204,7206,7220,7802,8012,8802');
     SQL;
-    
+
     $createTableQuery = mysqli_multi_query($connection, $createQuery);
-    
+
     if (!$createTableQuery) {
         die("Error creating tables: " . mysqli_error($connection));
     }
     echo "Table created successfully";
 
     file_put_contents($flag_file, 'done');
-    mysqli_close($connection);
-}else{
+    // mysqli_close($connection);
+} else {
     echo "already initialized";
 }
-?>
+
+
+
+
+
+$csv_file = "foodDataSet/finalfinal.csv";
+$table_name = "foods1";
+
+// Read CSV file
+$file = fopen($csv_file, "r");
+
+// Get column headers
+$headers = fgetcsv($file);
+
+// Build SQL query to create table with column headers
+$query = "CREATE TABLE foods1 (";
+foreach ($headers as $header) {
+    $query .= "$header VARCHAR(255),";
+}
+$query = rtrim($query, ","); // Remove trailing comma
+$query .= ");";
+
+print_r($headers);
+
+$createFoods1Table = mysqli_query($connection, $query);
+if (!$createFoods1Table) {
+    die("query failed" . mysqli_error($connection));
+};
+// Create SQL statement
+$sql = "INSERT INTO $table_name (" . implode(",", $headers) . ") VALUES ";
+
+// Loop through data rows
+while (($data = fgetcsv($file)) !== FALSE) {
+    // Escape data values
+    $escaped_data = array_map(array($conn, 'real_escape_string'), $data);
+
+    // Add row to SQL statement
+    $sql .= "('" . implode("','", $escaped_data) . "'),";
+}
+
+// Remove last comma from SQL statement
+$sql = rtrim($sql, ",");
+
+
+
+// Execute SQL statement
+if ($conn->query($sql) === TRUE) {
+    echo "CSV data imported successfully";
+} else {
+    echo "Error importing CSV data: " . $conn->error;
+}
+
+//Close connection and file
+$conn->close();
+fclose($file);
