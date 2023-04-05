@@ -27,7 +27,8 @@ body{
   font-family: 'outfit', sans-serif;
   color: #865515;
   font-weight: bold;
-}
+  max-height: 60%;
+}  
 
 .meal{
   padding: 20px;
@@ -394,7 +395,7 @@ section{
   /* position: relative;
   top: 2rem; */
   font-size: 18px;
-  color: #EA8E17;;
+  color: #EA8E17;
   font-family: 'outfit', sans-serif ;
   display: flex;
   justify-content: center;
@@ -413,5 +414,29 @@ section{
   margin-top: 30px;
   padding-top: 20px;
 }
+
+.exercise{
+  height: 300px;
+  border-radius: 20px;
+  background-image: url("../img/Exercices/S1029.gif");
+  background-size: cover;
+}
+.excercise, p{
+  font-size: 28px;
+  color: #EA8E17;
+  font-family: 'outfit', sans-serif ;
+}
+
+::-webkit-file-upload-button{
+  background-color: #ffc107;
+  color: black;
+  font-weight: 400;
+  border-radius: 20px;
+  border-style: none;
+  padding: 5px 10px;
+  margin: 10px;
+}
+
+
 
 

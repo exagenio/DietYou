@@ -23,39 +23,39 @@ while ($row = mysqli_fetch_assoc($findQuery)) {
 }
 $user = new User($username, $connection);
 
-$cDate =null;
+$cDate = null;
 $cPlanDate = $user->getPlanDate();
 if ($cPlanDate != null) {
     // Create two DateTime objects
     $date1 = new DateTime($cPlanDate);
     $date2 = new DateTime();
-    
+
     // Get the difference between the two dates
     $diff = $date1->diff($date2);
     $changeDays = $diff->days;
-    if($changeDays < 1){
+    if ($changeDays < 1) {
         $cDate = "day1";
-    }else if($changeDays < 2){
+    } else if ($changeDays < 2) {
         $cDate = "day2";
-    }else if($changeDays < 3){
+    } else if ($changeDays < 3) {
         $cDate = "day3";
-    }else if($changeDays < 4){
+    } else if ($changeDays < 4) {
         $cDate = "day4";
-    }else if($changeDays < 5){
-        $cDate = "day5";   
-    }else if($changeDays < 6){
-        $cDate = "day6";        
-    }else if($changeDays < 7){
-        $cDate = "day7";        
+    } else if ($changeDays < 5) {
+        $cDate = "day5";
+    } else if ($changeDays < 6) {
+        $cDate = "day6";
+    } else if ($changeDays < 7) {
+        $cDate = "day7";
     }
 }
-if($cDate == null){
+if ($cDate == null) {
     echo '<script>window.location.replace("dietExpiryError.php");</script>';
 }
 $modifiedDate = ucfirst(substr($cDate, 0, 3)) . " " . substr($cDate, 3);
 debug_to_console($modifiedDate);
 
-$kcalAmount =0;
+$kcalAmount = 0;
 $query = "SELECT $cDate FROM dietinfo WHERE id= $userID";
 $findQuery = mysqli_query($connection, $query);
 $row = mysqli_fetch_row($findQuery);
@@ -63,10 +63,9 @@ if (mysqli_num_rows($findQuery) == 0) {
     die("no calorie rows");
 } else {
     $calories = $row[0];
-    if($calories == null){
-
-    }else{
-        $kcalAmount =$calories;
+    if ($calories == null) {
+    } else {
+        $kcalAmount = $calories;
     }
 }
 
@@ -74,10 +73,10 @@ if (mysqli_num_rows($findQuery) == 0) {
 if (isset($_POST['submit'])) {
     $imageInput = $_POST['isImage'];
     $isSuccess = true;
-    if($imageInput == 0){
+    if ($imageInput == 0) {
         $kcalAmount = $kcalAmount + $_POST['kcal'];
         echo "working";
-    }else{
+    } else {
         $servings = $_POST['servings'];
         $fileDestination;
         $isUploaded = false;
@@ -87,12 +86,12 @@ if (isset($_POST['submit'])) {
         $fileSize = $file['size'];
         $fileError = $file['error'];
         $fileType = $file['type'];
-    
+
         $fileParts = explode('.', $fileName);
         $fileExt = strtolower(end($fileParts));
         // $fileExt = strtolower(end(explode('.',$fileName)));
         $allowed = array('jpg', 'jpeg', 'png', 'gif');
-    
+
         if (in_array($fileExt, $allowed)) {
             if ($fileError === 0) {
                 if ($fileSize < 1000000) {
@@ -112,39 +111,38 @@ if (isset($_POST['submit'])) {
         if ($isUploaded) {
             // Path to Rscript executable
             $rscript_path = "Rscript";
-    
+
             // R script file path
             $rscript_file = "MLModels/R_OCR.R ";
-    
+
             // Arguments to pass to R script
             $arg1 = $fileDestination;
-    
+
             // Command to execute
             $command = "{$rscript_path} {$rscript_file} {$arg1}";
-    
+
             // outputs the username that owns the running php/httpd process
             // (on a system with the "whoami" executable in the path)
             $output = null;
             $retval = null;
             exec($command, $output, $retval);
             $string = $output[1];
-            if($string == "" || $string == null || !(preg_match("/\d+/", $string))){
+            if ($string == "" || $string == null || !(preg_match("/\d+/", $string))) {
                 $isSuccess = false;
-            }else{
+            } else {
                 $numeric_part = preg_replace("/[^0-9]/", "", $string);
                 $numeric_part = (int) $numeric_part;
-                $kcalAmount = $kcalAmount + $servings* $numeric_part;
+                $kcalAmount = $kcalAmount + $servings * $numeric_part;
             }
         }
     }
-    if($isSuccess){
+    if ($isSuccess) {
         $query =   "UPDATE dietinfo SET $cDate = $kcalAmount WHERE id= $userID";
-        $query = mysqli_query($connection, $query); 
-        if($query){
-    
-        }else{
+        $query = mysqli_query($connection, $query);
+        if ($query) {
+        } else {
             die("failed to add kcal");
-        }  
+        }
     }
 }
 ?>
@@ -180,12 +178,12 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="info col-9">
                         <h3><?php echo $user->getfName(); ?> <?php echo $user->getlName(); ?></h3>
-                            <h4>Age: <?php echo $user->getAge(); ?> yrs</h4>
-                            <h4>Weight: <?php echo $user->getWeight(); ?> kg</h4>
-                            <h4>Height: <?php echo $user->getHeight() ?> cm</h4>
+                        <h4>Age: <?php echo $user->getAge(); ?> yrs</h4>
+                        <h4>Weight: <?php echo $user->getWeight(); ?> kg</h4>
+                        <h4>Height: <?php echo $user->getHeight() ?> cm</h4>
                     </div>
                 </div>
-                <div class="col d-flex justify-content-center align-items-center mt-4">
+                <div class="col d-flex justify-content-center align-items-center mt-4" id="card">
                     <div class="caloriePro p-4">
                         <h2><?php echo  $modifiedDate ?></h2>
                         <div class="progress-card">
@@ -203,7 +201,7 @@ if (isset($_POST['submit'])) {
 
 
 
-            <div class="col-md-8 p-4">
+            <div class="col-md-8 p-4 mx-auto row">
                 <div class="water_consumption row align-items-center justify-content-center p-2 col-12" id="card">
                     <div class="cups d-flex flex-column align-items-center col-md col-12">
                         <img src="assets/img/glass-of-water.png" alt="water cup">
@@ -228,7 +226,7 @@ if (isset($_POST['submit'])) {
                         <span class="current-litres">0l/2.5l</span>
                     </div>
                 </div>
-                <div class="manualCalIn p-4 col-md-8 mt-2 row" id="card">
+                <div class="manualCalIn p-4 col col-md-7 mt-4 row" id="card">
                     <h2>Enter Your Calorie Intake</h2>
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -254,17 +252,19 @@ if (isset($_POST['submit'])) {
                                 <label for="servings">No.of servings</label>
                                 <input type="file" name="image" id="image">
                                 <input type="hidden" name="isImage" value="1">
-                                <input type="submit" name="submit" class="btn btn-warning rounded-pill px-4 py-1.5 text-black" value="Upload Image">
+                                <input type="submit" name="submit" class="btn btn-warning rounded-pill px-4 py-1.5 text-black mb-4" value="Upload Image">
                             </form>
                         </div>
+                    </div>
+                </div>
+                <div class="col-md-5 p-4">
+                    <div class="d-flex justify-content-center align-items-center exercise">
+                        <p>Exercise</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    </div>
-
     <?php
     $count = 1;
     //   echo $plans[0]["meals"];
@@ -355,6 +355,9 @@ if (isset($_POST['submit'])) {
         $count++;
     }
     ?>
+    
+
+
     <?php include "includes/footer.php" ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
@@ -374,7 +377,7 @@ if (isset($_POST['submit'])) {
 
             let progress = (currentCalories / totalCalories) * 100;
             let textProgress = progress;
-            if(progress > 100){
+            if (progress > 100) {
                 progress = 100;
             }
             progressBar.style.width = progress + '%';
