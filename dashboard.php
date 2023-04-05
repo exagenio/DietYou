@@ -22,59 +22,129 @@ while ($row = mysqli_fetch_assoc($findQuery)) {
     array_push($plans, $row);
 }
 $user = new User($username, $connection);
+
+$cDate =null;
+$cPlanDate = $user->getPlanDate();
+if ($cPlanDate != null) {
+    // Create two DateTime objects
+    $date1 = new DateTime($cPlanDate);
+    $date2 = new DateTime();
+    
+    // Get the difference between the two dates
+    $diff = $date1->diff($date2);
+    $changeDays = $diff->days;
+    if($changeDays < 1){
+        $cDate = "day1";
+    }else if($changeDays < 2){
+        $cDate = "day2";
+    }else if($changeDays < 3){
+        $cDate = "day3";
+    }else if($changeDays < 4){
+        $cDate = "day4";
+    }else if($changeDays < 5){
+        $cDate = "day5";   
+    }else if($changeDays < 6){
+        $cDate = "day6";        
+    }else if($changeDays < 7){
+        $cDate = "day7";        
+    }
+}
+if($cDate == null){
+    echo '<script>window.location.replace("dietExpiryError.php");</script>';
+}
+$modifiedDate = ucfirst(substr($cDate, 0, 3)) . " " . substr($cDate, 3);
+debug_to_console($modifiedDate);
+
+$kcalAmount =0;
+$query = "SELECT $cDate FROM dietinfo WHERE id= $userID";
+$findQuery = mysqli_query($connection, $query);
+$row = mysqli_fetch_row($findQuery);
+if (mysqli_num_rows($findQuery) == 0) {
+    die("no calorie rows");
+} else {
+    $calories = $row[0];
+    if($calories == null){
+
+    }else{
+        $kcalAmount =$calories;
+    }
+}
+
+
 if (isset($_POST['submit'])) {
-    $fileDestination;
-    $isUploaded = false;
-    $file = $_FILES['image'];
-    $fileName = $file['name'];
-    $fileTmpName = $file['tmp_name'];
-    $fileSize = $file['size'];
-    $fileError = $file['error'];
-    $fileType = $file['type'];
-
-    $fileParts = explode('.', $fileName);
-    $fileExt = strtolower(end($fileParts));
-    // $fileExt = strtolower(end(explode('.',$fileName)));
-    $allowed = array('jpg', 'jpeg', 'png', 'gif');
-
-    if (in_array($fileExt, $allowed)) {
-        if ($fileError === 0) {
-            if ($fileSize < 1000000) {
-                $fileNameNew = uniqid('', true) . "." . $fileExt;
-                $fileDestination = 'uploads/' . $fileNameNew;
-                move_uploaded_file($fileTmpName, $fileDestination);
-                $isUploaded = true;
-                echo "File uploaded successfully!";
+    $imageInput = $_POST['isImage'];
+    $isSuccess = true;
+    if($imageInput == 0){
+        $kcalAmount = $kcalAmount + $_POST['kcal'];
+        echo "working";
+    }else{
+        $servings = $_POST['servings'];
+        $fileDestination;
+        $isUploaded = false;
+        $file = $_FILES['image'];
+        $fileName = $file['name'];
+        $fileTmpName = $file['tmp_name'];
+        $fileSize = $file['size'];
+        $fileError = $file['error'];
+        $fileType = $file['type'];
+    
+        $fileParts = explode('.', $fileName);
+        $fileExt = strtolower(end($fileParts));
+        // $fileExt = strtolower(end(explode('.',$fileName)));
+        $allowed = array('jpg', 'jpeg', 'png', 'gif');
+    
+        if (in_array($fileExt, $allowed)) {
+            if ($fileError === 0) {
+                if ($fileSize < 1000000) {
+                    $fileNameNew = uniqid('', true) . "." . $fileExt;
+                    $fileDestination = 'uploads/' . $fileNameNew;
+                    move_uploaded_file($fileTmpName, $fileDestination);
+                    $isUploaded = true;
+                } else {
+                    echo "File size too large.";
+                }
             } else {
-                echo "File size too large.";
+                echo "There was an error uploading the file.";
             }
         } else {
-            echo "There was an error uploading the file.";
+            echo "You cannot upload files of this type.";
         }
-    } else {
-        echo "You cannot upload files of this type.";
+        if ($isUploaded) {
+            // Path to Rscript executable
+            $rscript_path = "Rscript";
+    
+            // R script file path
+            $rscript_file = "MLModels/R_OCR.R ";
+    
+            // Arguments to pass to R script
+            $arg1 = $fileDestination;
+    
+            // Command to execute
+            $command = "{$rscript_path} {$rscript_file} {$arg1}";
+    
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "whoami" executable in the path)
+            $output = null;
+            $retval = null;
+            exec($command, $output, $retval);
+            $string = $output[1];
+            if($string == "" || $string == null || !(preg_match("/\d+/", $string))){
+                $isSuccess = false;
+            }else{
+                $numeric_part = preg_replace("/[^0-9]/", "", $string);
+                $numeric_part = (int) $numeric_part;
+                $kcalAmount = $kcalAmount + $servings* $numeric_part;
+            }
+        }
     }
-    if ($isUploaded) {
-        // Path to Rscript executable
-        $rscript_path = "Rscript";
-
-        // R script file path
-        $rscript_file = "MLModels/R_OCR.R ";
-
-        // Arguments to pass to R script
-        $arg1 = $fileDestination;
-
-        // Command to execute
-        $command = "{$rscript_path} {$rscript_file} {$arg1}";
-?>
-<?php
-        // outputs the username that owns the running php/httpd process
-        // (on a system with the "whoami" executable in the path)
-        $output = null;
-        $retval = null;
-        exec($command, $output, $retval);
-        echo "Returned with status $retval and output:\n";
-        print_r($output);
+    if($isSuccess){
+        $query =   "UPDATE dietinfo SET $cDate = $kcalAmount WHERE id= $userID";
+        $query = mysqli_query($connection, $query); 
+        if($query){
+    
+        }else{
+            die("failed to add kcal");
+        }  
     }
 }
 ?>
@@ -117,6 +187,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="col d-flex justify-content-center align-items-center mt-4">
                     <div class="caloriePro p-4">
+                        <h2><?php echo  $modifiedDate ?></h2>
                         <div class="progress-card">
                             <div class="progress2">
                                 <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -169,13 +240,20 @@ if (isset($_POST['submit'])) {
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                            <form action="dashboard.php" method="post" enctype="multipart/form-data">
-                                <input type="text" id="kcal" name="kcal">
+                            <form action="dashboard.php" method="post">
+                                <input type="text" id="kcal" name="kcal" required>
                                 <label for="kcal">Kcal</label>
-                                <input type="button" id="Kcal_add_button" class="btn btn-warning rounded-pill px-4 py-1.5 text-black btnAdd" value="Add">
+                                <input type="hidden" name="isImage" value="0">
+                                <input type="submit" name="submit" id="Kcal_add_button" class="btn btn-warning rounded-pill px-4 py-1.5 text-black btnAdd" value="Add">
                             </form>
+                        </div>
+
+                        <div class="tab-pane fade show" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                             <form action="dashboard.php" method="post" enctype="multipart/form-data">
+                                <input type="text" id="servings" name="servings" required>
+                                <label for="servings">No.of servings</label>
                                 <input type="file" name="image" id="image">
+                                <input type="hidden" name="isImage" value="1">
                                 <input type="submit" name="submit" class="btn btn-warning rounded-pill px-4 py-1.5 text-black" value="Upload Image">
                             </form>
                         </div>
@@ -276,18 +354,16 @@ if (isset($_POST['submit'])) {
         HTML;
         $count++;
     }
-
     ?>
-
     <?php include "includes/footer.php" ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script>
         // Set total calories and current calories
         const totalCalories = 2000;
-        let currentCalories = 0;
+        let currentCalories = <?php echo $kcalAmount; ?>;
 
-        // updateProgressBar();
+        updateProgressBar();
 
         // Function to update progress bar
         function updateProgressBar() {
@@ -304,15 +380,15 @@ if (isset($_POST['submit'])) {
             currentCaloriesElement.textContent = currentCalories;
         }
 
-        // Simulate progress by incrementing current calories
-        const interval = setInterval(function() {
-            currentCalories += 100;
-            if (currentCalories > totalCalories) {
-                clearInterval(interval);
-            } else {
-                updateProgressBar();
-            }
-        }, 1000);
+        // // Simulate progress by incrementing current calories
+        // const interval = setInterval(function() {
+        //     currentCalories += 100;
+        //     if (currentCalories > totalCalories) {
+        //         clearInterval(interval);
+        //     } else {
+        //         updateProgressBar();
+        //     }
+        // }, 1000);
     </script>
     <script>
         feather.replace()

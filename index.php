@@ -10,6 +10,8 @@ if (!file_exists($flag_file)) {
     DROP TABLE IF EXISTS users;
     DROP TABLE IF EXISTS allergies;
     DROP TABLE IF EXISTS ncds;
+    DROP TABLE IF EXISTS mealplans;
+    DROP TABLE IF EXISTS dietInfo;
     CREATE TABLE users (
         id INT(11) NOT NULL AUTO_INCREMENT,
         email VARCHAR(30) NOT NULL,
@@ -47,6 +49,17 @@ if (!file_exists($flag_file)) {
         snacks VARCHAR(255),
         user INT NOT NULL,
         estimatedWLoss FLOAT NOT NULL
+    );
+    CREATE TABLE dietInfo (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        day1 INT,
+        day2 INT,
+        day3 INT,
+        day4 INT,
+        day5 INT,
+        day6 INT,
+        day7 INT,
+        userId INT NOT NULL
     );
     
     INSERT INTO ncds (name) VALUES ('Diabetes'), ('Hyper Tension'), ('Osteoarthritis'), ('Rheumatoid Arthritis');
