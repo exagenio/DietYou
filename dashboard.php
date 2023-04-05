@@ -22,7 +22,7 @@ $findQuery = mysqli_query($connection, $query);
   while ($row = mysqli_fetch_assoc($findQuery)) {
       array_push($plans, $row);
   }
-
+  $user = new User($username, $connection);
   if(isset($_POST['submit'])){
     $fileDestination;
     $isUploaded = false;
@@ -98,23 +98,23 @@ $findQuery = mysqli_query($connection, $query);
 
     <div class="container overflow-hidden">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 p-4">
                 <div class="profile_info row" id="card">
-                    <div class="profile_pic col">
+                    <div class="profile_pic col-3 d-flex justify-content-start">
                         <img src="assets/img/profile_pic.png" alt="profile_pic" width="100px" height="100px">
                     </div>
-                    <div class="info col">
-                        <h1>Daniel Ricciardo</h1>
-                        <h4>Age: 32 yrs</h4>
-                        <h4>Weight: 68.5 kg</h4>
-                        <h4>Height: 6 ft 1 in</h4>
+                    <div class="info col-9">
+                        <h3><?php echo $user->getfName(); ?> <?php echo $user->getlName(); ?></h4>
+                        <h4>Age: <?php echo $user->getAge(); ?> yrs</h4>
+                        <h4>Weight: <?php echo $user->getWeight(); ?> kg</h4>
+                        <h4>Height: <?php echo $user->getHeight() ?> cm</h4>
                     </div>
                 </div>
             </div>
 
           
-            <div class="col-md-8">
-                <div class="water_consumption row align-items-center justify-content-center" id="card">
+            <div class="col-md-8 p-4">
+                <div class="water_consumption row align-items-center justify-content-center p-2 col-12" id="card">
                     <div class="cups d-flex flex-column align-items-center col-md col-12">
                         <img src="assets/img/glass-of-water.png" alt="water cup">
                         <span class="current-cups">0/10</span>
@@ -138,16 +138,19 @@ $findQuery = mysqli_query($connection, $query);
                         <span class="current-litres">0l/2.5l</span>
                     </div>
                 </div>
-                <div class="insert_nut" id="card">
-                    <h2>Calorie Intake</h2>
-                    <h4>Today's Calorie Total</h4>
-                    <p>"Please make sure to aim for the targeted amount of calories you need. 
-                        This will help you achieve your desired results and ensure that you are meeting
-                        your nutritional needs. Be mindful of your daily intake and stay on track with 
-                        your goals."</p>
-
-                        <div class="kcal_form" id="kcal_form">
-                            <form action="#">
+                <div class="p-4 col-md-8 mt-2 row" id="card">
+                    <h2>Enter Your Calorie Intake</h2>
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Manual Input</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Scan Label</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <form action="dashboard.php" method="post" enctype="multipart/form-data">
                                 <input type="text" id="kcal" name="kcal">
                                 <label for="kcal">Kcal</label>
                                 <input type="button" id="Kcal_add_button" value="Add">
