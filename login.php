@@ -41,28 +41,43 @@ include "backend/crypt.php"
     <section class="d-flex py-4 align-items-center justify-content-center background-dark ">
         <div class="py-4 formMainWrap">
             <h1>Login</h1>
-            <p>New to DietYou? <span><a href="">Signup</a></span></p>
+            <p>New to DietYou? <span><a href="signup.php">Signup</a></span></p>
             <?php
+            session_start();
+            if(islogged(isset($_SESSION['username']),$_SESSION["userVerified"])){
+    
+            }else{
+                echo'<script>window.location.replace("login.php");</script>';
+            }
                 if($_POST["submit"]){
                     include "backend/db.php";
                     $username = $_POST["username"];
                     $password = $_POST["password"];
-                    $find = "SELECT password FROM users where email = '$username'";
+                    $find = "SELECT password,planDate FROM users where email = '$username'";
                     $findQuery = mysqli_query($connection, $find);
-                    $row = mysqli_fetch_row($findQuery);
-                    if (mysqli_num_rows($findQuery) == 0) {
+                    if(!$findQuery){
                         echo ' <div class="alert alert-danger" role="alert"> Invalid username or a password. Please try again!</div>';
-                    } else {
-                        $hash = $row["password"];
-                    if (validate_pw($password,$row[0])) {
-                        session_start();
-                        $_SESSION["username"] = "$username";
-                        $_SESSION["userVerified"] = true;
-                        mysqli_close($connection);
-                        header('Location: http://localhost/dietYou/dashboard.php');
-                    } else {
-                        echo ' <div class="alert alert-danger" role="alert"> Invalid username or a password. Please try again!</div>';
-                    }
+                    }else{
+                        if (mysqli_num_rows($findQuery) == 0) {
+                            echo ' <div class="alert alert-danger" role="alert"> Invalid username or a password. Please try again!</div>';
+                        } else {
+                            $row = mysqli_fetch_row($findQuery);
+                            $hash = $row["password"];
+                        if (validate_pw($password,$row[0])) {
+                            session_start();
+                            $_SESSION["username"] = "$username";
+                            $_SESSION["userVerified"] = true;
+                            mysqli_close($connection);
+                            if($row[1] == null){
+                                header('Location:form.php');
+                            }else{
+                                header('Location:dashboard.php');
+                            }
+    
+                        } else {
+                            echo ' <div class="alert alert-danger" role="alert"> Invalid username or a password. Please try again!</div>';
+                        }
+                        }
                     }
                     mysqli_close($connection);
                 }

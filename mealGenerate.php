@@ -253,8 +253,11 @@ if ($havePlan) {
     return $n * factorial($n - 1);
   }
 
-  $totCombinations = factorial(count($mainMeals)) / (factorial(3) * (factorial(count($mainMeals) - 3)));
-
+  if(count($mainMeals) > 33){
+    $totCombinations = 5456;
+  }else{
+    $totCombinations = factorial(count($mainMeals)) / (factorial(3) * (factorial(count($mainMeals) - 3)));
+  }
   $combinations = [];
 
   // Keep generating combinations until all possible combinations are found
@@ -310,7 +313,11 @@ if ($havePlan) {
     }
   }
 
-  $totCombinations = factorial(count($snacks)) / (factorial(3) * (factorial(count($snacks) - 3)));
+  if(count($snacks) > 33){
+    $totCombinations = 5456;
+  }else{
+    $totCombinations = factorial(count($snacks)) / (factorial(3) * (factorial(count($snacks) - 3)));
+  }
   $sCombinations = [];
 
   // Keep generating combinations until all possible combinations are found
