@@ -61,7 +61,7 @@ $modifiedDate = ucfirst(substr($cDate, 0, 3)) . " " . substr($cDate, 3);
 debug_to_console($modifiedDate);
 
 $kcalAmount = 0;
-$query = "SELECT $cDate FROM dietinfo WHERE id= $userID";
+$query = "SELECT $cDate FROM dietinfo WHERE userId= $userID";
 $findQuery = mysqli_query($connection, $query);
 $row = mysqli_fetch_row($findQuery);
 if (mysqli_num_rows($findQuery) == 0) {
