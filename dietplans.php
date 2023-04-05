@@ -106,6 +106,12 @@ if(isset($_POST['checkedIds'])){
       }else{
         die("query failed".mysqli_error($connection));
       }
+      $query =   "INSERT INTO dietinfo (userId) VALUES($userId)";
+      $query = mysqli_query($connection, $query); 
+      if($query){
+      }else{
+        die("dietinfo create failed".mysqli_error($connection));
+      }  
       echo "success";
     }else{
         echo "fail";

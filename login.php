@@ -14,8 +14,8 @@ include "backend/crypt.php"
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/login.css">
     <?php
-        include 'tests/browser-detection.php';
-        include 'tests/javascript-detection.php';
+        // include 'tests/browser-detection.php';
+        // include 'tests/javascript-detection.php';
     ?>
 </head>
 <body>
@@ -45,9 +45,9 @@ include "backend/crypt.php"
             <?php
             session_start();
             if(islogged(isset($_SESSION['username']),$_SESSION["userVerified"])){
-    
+                echo'<script>window.location.replace("form.php");</script>';
             }else{
-                echo'<script>window.location.replace("login.php");</script>';
+                
             }
                 if($_POST["submit"]){
                     include "backend/db.php";
