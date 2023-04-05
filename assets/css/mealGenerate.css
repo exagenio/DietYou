@@ -30,4 +30,5 @@ table{
     position: fixed;
     right: 70px;
     width: 20%;
+    z-index: 1000;
 }
