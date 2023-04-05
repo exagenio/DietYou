@@ -2,7 +2,7 @@
 body{
   background-image:linear-gradient(orange, #D8D8D8);
 }
-#card{
+.card{
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -10,7 +10,7 @@ body{
 
 }
 
-#card:hover {
+.card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
 }
 
@@ -194,13 +194,13 @@ section{
   
 }
 
-#card2{
+.card2{
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 20px;
 }
 
-#card2:hover {
+.card2:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
 }
 

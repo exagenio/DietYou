@@ -1,6 +1,8 @@
 <?php
 include "backend/functions.php";
 class User{
+    private $fName;
+    private $lName;
     private $TEE;
     private $BMI;
     private $height;
@@ -38,10 +40,11 @@ class User{
                 $this->requiredFat = fatCalculator($this->TEE);
                 $this->requiredProtein = ProteinCalculator($this->TEE);
                 $this->age = $userInfo[10];
-                $this->age = $userInfo[10];
                 $this->planDate = $userInfo[15];
                 $this->countries = $userInfo[13];
                 $this->preferences = $userInfo[12];
+                $this->fName = $userInfo[2];
+                $this->lName = $userInfo[3];
             }
         }
     }
@@ -98,6 +101,12 @@ class User{
     }
     public function getPreferences(){
         return $this->preferences;
+    }
+    public function getfName(){
+        return $this->fName;
+    }
+    public function getlName(){
+        return $this->lName;
     }
 
 }
