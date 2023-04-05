@@ -21,13 +21,15 @@ body::-webkit-scrollbar{
 .container{
     display: grid;
     height: 100vh;
-    grid-template-rows: 0.3fr 0.8fr;
+    grid-template-rows: 10% auto 40%;
 }
 
 .heading{
     background-color: #83633a;
     
 }
+
+
 
 .heading h1{
     color: #EA8E17;
@@ -55,3 +57,5 @@ body::-webkit-scrollbar{
     left: 1.36rem; ;
     font-family: 'outfit', sans-serif;
 }
+
+
