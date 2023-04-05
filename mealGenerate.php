@@ -30,7 +30,7 @@ $fishString = ["seafood", "squid", "tuna", "crab"];
 $egg = [2502, 3406, 3706];
 $eggString = ["egg"];
 //the below array only takes into consideration the food codes that has meat 
-$meat = [2002, 2004, 2006, 2008, 2010, 2202, 2204, 2206, 2604, 3002, 3004, 3006, 3602, 3702, 3704, 3742];
+$meat = [2002, 2004, 2006, 2008, 2010, 2202, 2602, 2204, 2206, 2604, 3002, 3004, 3006, 3602, 3702, 3704, 3742];
 $meatString = ["meat", "chicken", "poultry", "beef", "pork", "meatballs", "turkey"];
 
 $cPlanDate = $user->getPlanDate();
@@ -241,7 +241,7 @@ if ($havePlan) {
     }
   }
   if (count($mainMeals) == 0) {
-    echo '<script>window.location.replace("http://localhost/dietYou/noMealsError.php");</script>';
+    echo '<script>window.location.replace("noMealsError.php");</script>';
   }
 
   $start_time = microtime(true);
@@ -381,7 +381,7 @@ if ($havePlan) {
   }
 
   if (count($dietPlans) == 0) {
-    echo '<script>window.location.replace("http://localhost/dietYou/nomeals.php");</script>';
+    echo '<script>window.location.replace("noMealsError.php");</script>';
   } else {
 
   }
@@ -417,7 +417,7 @@ if ($havePlan) {
 
   if (count($finalDPlans) == 0) {
     die("no diet plans");
-    echo '<script>window.location.replace("http://localhost/dietYou/nomeals.php");</script>';
+    echo '<script>window.location.replace("noMealsError.php");</script>';
   } else {
     $estimatedWloss = 0;
     if ($TEEreduction != 0) {
