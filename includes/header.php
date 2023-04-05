@@ -7,12 +7,12 @@
             <!-- <button class="btn theme-btn mx-2">Login</button> -->
             <?php 
             if(islogged(isset($_SESSION['username']),$_SESSION["userVerified"])){
-                echo '<a href="logout.php"><button class="btn theme-btn mx-2">Logout</button></a>';
+                echo '<a class="col-2 mx-2" href="logout.php"><button class="btn theme-btn">Logout</button></a>';
             }else{
-                echo '<a href="login.php">button class="btn theme-btn mx-2">Login</button></a>';
+                echo '<a class="col-2 mx-2" href="login.php"><button class="btn theme-btn">Login</button></a>';
             }
             ?>
-            <button href="dashboard.php" class="btn theme-btn mx-2">Dashboard</button>
+            <a class="col-2 mx-2" href="dashboard.php"><button class="btn theme-btn">Dashboard</button></a>
 
         </div>
     </div>
