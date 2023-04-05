@@ -372,10 +372,14 @@ if (isset($_POST['submit'])) {
             const totalCaloriesElement = document.getElementById('totalCalories');
             const currentCaloriesElement = document.getElementById('currentCalories');
 
-            const progress = (currentCalories / totalCalories) * 100;
+            let progress = (currentCalories / totalCalories) * 100;
+            let textProgress = progress;
+            if(progress > 100){
+                progress = 100;
+            }
             progressBar.style.width = progress + '%';
             progressBar.setAttribute('aria-valuenow', progress);
-            progressPercentage.textContent = progress.toFixed(1) + '%';
+            progressPercentage.textContent = textProgress.toFixed(1) + '%';
             totalCaloriesElement.textContent = totalCalories;
             currentCaloriesElement.textContent = currentCalories;
         }

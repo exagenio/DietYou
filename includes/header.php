@@ -7,9 +7,9 @@
             <!-- <button class="btn theme-btn mx-2">Login</button> -->
             <?php 
             if(islogged(isset($_SESSION['username']),$_SESSION["userVerified"])){
-                echo '<button class="btn theme-btn mx-2">Logout</button>';
+                echo '<button class="btn theme-btn mx-2 >Logout</button>';
             }else{
-                echo 'button class="btn theme-btn mx-2">Login</button>';
+                echo 'button class="btn theme-btn mx-2 href="login.php"">Login</button>';
             }
             ?>
             <button href="dashboard.php" class="btn theme-btn mx-2">Dashboard</button>
