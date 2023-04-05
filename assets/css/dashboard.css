@@ -128,7 +128,9 @@ body{
   align-content: center;
   
 }
-
+.cal_count{
+  
+}
 .cal_progress{
   width: 20px;
   height: 120px;
@@ -186,6 +188,11 @@ section{
   grid-area: nav;
 } */
 
+.main-meals{
+  
+  
+}
+
 .card2{
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -226,7 +233,13 @@ section{
   font-size: 20px;
 }
 
+.snacks{
+  
+
+}
+
 .snacks h1{
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -279,6 +292,16 @@ section{
   font-size: 15px;
   margin-top: 30px;
 
+}
+
+.diet-2{
+  /* position: relative;
+  top: 1.875rem; */
+}
+
+.diet-3{
+  /* position: relative;
+  top: 3.75rem; */
 }
 
 .snacks-recipes{
