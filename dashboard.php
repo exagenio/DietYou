@@ -263,9 +263,12 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div>
                 <div class="col-md-5 p-4">
+                    <a href="exercises.php">
                     <div class="d-flex justify-content-center align-items-center exercise">
                         <p>Exercise</p>
                     </div>
+                    </a>
+
                 </div>
             </div>
         </div>
