@@ -241,7 +241,7 @@ if ($havePlan) {
     }
   }
   if (count($mainMeals) == 0) {
-    echo '<script>window.location.replace("http://localhost/dietYou/nomeals.php");</script>';
+    echo '<script>window.location.replace("http://localhost/dietYou/noMealsError.php");</script>';
   }
 
   $start_time = microtime(true);
@@ -383,6 +383,7 @@ if ($havePlan) {
   if (count($dietPlans) == 0) {
     echo '<script>window.location.replace("http://localhost/dietYou/nomeals.php");</script>';
   } else {
+
   }
 
   $finalDPlans = [];
@@ -436,7 +437,7 @@ if ($havePlan) {
 
     // Format the date as a string
     $dateString = $date->format('Y-m-d H:i:s');
-
+    $_SESSION["finalPlans"] = $finalDPlans;
     $jsonPlans = json_encode($finalDPlans);
   }
   mysqli_close($connection);
@@ -506,42 +507,21 @@ if ($havePlan) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.21.3/bootstrap-table.min.js"></script>
   <!-- <script src="assets/js/mealGenarate.js"></script> -->
   <script>
-    // Parse the JSON object into a JavaScript array
-    // jsArray = [];
-    // console.log(wLoss);
-    // Log the JavaScript array to the console
-
-    // var checkedIDs = [];
-
-    // $('input[type=checkbox]').change(function() {
-    //   var checkboxID = $(this).attr('id');
-
-    //   if ($(this).is(':checked')) {
-    //     checkedIDs.push(checkboxID);
-    //   } else {
-    //     var index = checkedIDs.indexOf(checkboxID);
-    //     checkedIDs.splice(index, 1);
-    //   }
-
-    //   console.log(checkedIDs); // display the array of checked IDs in the console
-    // });
     $('#dietSubmit').on('click', function(e) {
       e.preventDefault(); // prevent default form submission
-      dietArry = JSON.parse('<?php echo $jsonPlans; ?>');
-      // console.log(test[0])
       planIdArry = [];
       $("input[type=checkbox]:checked").each(function() { // loop through all checked checkboxes
         planId = parseInt($(this).attr("id"));
-        mealArry = [];
-        snckArry = [];
-        for (n = 0; n < 3; n++) {
-          mealId = dietArry[planId][0][n]["food_code"] + "-" + dietArry[planId][0][n]['sRatio'];
-          snckId = dietArry[planId][1][n]["food_code"] + "-" + dietArry[planId][1][n]['sRatio'];
-          mealArry.push(mealId);
-          snckArry.push(snckId);
-        }
-        finalMeal = [mealArry.toString(), snckArry.toString()];
-        planIdArry.push(finalMeal);
+        // mealArry = [];
+        // snckArry = [];
+        // for (n = 0; n < 3; n++) {
+        //   mealId = dietArry[planId][0][n]["food_code"] + "-" + dietArry[planId][0][n]['sRatio'];
+        //   snckId = dietArry[planId][1][n]["food_code"] + "-" + dietArry[planId][1][n]['sRatio'];
+        //   mealArry.push(mealId);
+        //   snckArry.push(snckId);
+        // }
+        // finalMeal = [mealArry.toString(), snckArry.toString()];
+        planIdArry.push(planId);
         // checkedIds.push(mealArry[planId]); // add checked ID to array
       });
       $.ajax({
@@ -551,6 +531,7 @@ if ($havePlan) {
           checkedIds: planIdArry
         },
         success: function(response) {
+          console.log(response)
           if (response == "success") {
             window.location.replace("dashboard.php");
           }

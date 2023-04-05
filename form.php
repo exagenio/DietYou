@@ -1,17 +1,20 @@
 <?php
 include "backend/db.php";
-include "backend/functions.php";
+include "classes/User.php";
 
 //set session values
 session_start();
 $username = $_SESSION['username'];
 //check the login status of the user
-if ((isset($_SESSION['username'])) && $_SESSION["userVerified"] == 1) {
-  //logged in
-} else {
-  // Session variable is not set
-  header('Location: http://localhost/dietYou/login.php');
+if(islogged(isset($_SESSION['username']),$_SESSION["userVerified"])){
+    
+}else{
+    echo'<script>window.location.replace("login.php");</script>';
 }
+if(havePlans($username, $connection)){
+  echo'<script>window.location.replace("dashboard.php");</script>';
+}
+
 //get submitted data
 if (isset($_POST["submit"])) {
   $age = $_POST["age"];

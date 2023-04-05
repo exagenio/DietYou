@@ -44,7 +44,12 @@ function userExist($username){
 
 //calculate BMI
 function bmiCalculate($height, $weight){
-    $bmi = $weight/(($height*$height)/10000);
+    $bmi = 0;
+    if((($height*$height)/10000) == 0){
+
+    }else{
+        $bmi = $weight/(($height*$height)/10000);
+    }
     return $bmi;
 }
 
@@ -141,5 +146,15 @@ function allergyFilter($connection, $username){
         }
     }
     return $fullResArray;
+}
+
+function havePlans($username, $connection){
+    $user = new User($username, $connection);
+    if($user->getPlanDate() == null){
+        return false;
+    }else{
+        return true;
+    }
+
 }
 ?>
