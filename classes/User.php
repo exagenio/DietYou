@@ -17,6 +17,7 @@ class User{
     private $planDate;
     private $countries;
     private $preferences;
+    private $uId;
 
     function __construct($username, $connection) {
         if(userExist($username)){
@@ -45,6 +46,7 @@ class User{
                 $this->preferences = $userInfo[12];
                 $this->fName = $userInfo[2];
                 $this->lName = $userInfo[3];
+                $this->uId = $userInfo[0];
             }
         }
     }
@@ -108,6 +110,8 @@ class User{
     public function getlName(){
         return $this->lName;
     }
-
+    public function getUid(){
+        return $this->uId;
+    }
 }
 ?>

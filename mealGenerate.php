@@ -33,30 +33,7 @@ $eggString = ["egg"];
 $meat = [2002, 2004, 2006, 2008, 2010, 2202, 2602, 2204, 2206, 2604, 3002, 3004, 3006, 3602, 3702, 3704, 3742];
 $meatString = ["meat", "chicken", "poultry", "beef", "pork", "meatballs", "turkey"];
 
-$cPlanDate = $user->getPlanDate();
-$havePlan = false;
-if ($cPlanDate != null) {
-  // Create two DateTime objects
-  $date1 = new DateTime($cPlanDate);
-  $date2 = new DateTime();
-
-  // Get the difference between the two dates
-  $diff = $date1->diff($date2);
-  $changeDays = $diff->days;
-  if ($changeDays >= 7) {
-    $query =   "DELETE FROM mealplans WHERE user = 1";
-    $query = mysqli_query($connection, $query);
-    if ($query) {
-    } else {
-      die("query failed" . mysqli_error($connection));
-    }
-    $havePlan = false;
-  } else {
-    $havePlan = true;
-  }
-}
-
-if ($havePlan) {
+if (havePlans($username, $connection)) {
   echo '<script>window.location.replace("formValidError.php");</script>';
 } else {
   $TEEtot = $user->getTEE();
