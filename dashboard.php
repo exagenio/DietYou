@@ -6,10 +6,15 @@ session_start();
 //check the login status of the user
 
 if (islogged(isset($_SESSION['username']), $_SESSION["userVerified"])) {
-} else {
+}else{
     echo '<script>window.location.replace("login.php");</script>';
 }
 $username = $_SESSION['username'];
+if(havePlans($username, $connection)){
+
+  }else{
+    echo'<script>window.location.replace("form.php");</script>';
+  }
 $userID = findUser($username, $connection);
 $query = "SELECT * FROM mealplans where user=$userID";
 $findQuery = mysqli_query($connection, $query);

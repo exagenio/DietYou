@@ -153,7 +153,35 @@ function havePlans($username, $connection){
     if($user->getPlanDate() == null){
         return false;
     }else{
-        return true;
+        $cPlanDate = $user->getPlanDate();
+
+        // Create two DateTime objects
+        $date1 = new DateTime($cPlanDate);
+        $date2 = new DateTime();
+        
+        // Get the difference between the two dates
+        $diff = $date1->diff($date2);
+        $changeDays = $diff->days;
+        if($changeDays > 7){
+            $userId = findUser($username, $connection);
+            $query =   "DELETE FROM mealplans WHERE user = $userId";
+            $query = mysqli_query($connection, $query);
+            if ($query) {
+            } else {
+              die("query failed" . mysqli_error($connection));
+            }
+            $query =   "DELETE FROM dietinfo WHERE userId = $userId";
+            $query = mysqli_query($connection, $query);
+            if ($query) {
+                return false;
+            } else {
+              die("query failed" . mysqli_error($connection));
+            }
+        
+        }else{
+            return true;
+        }
+
     }
 
 }
