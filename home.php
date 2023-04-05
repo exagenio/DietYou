@@ -32,15 +32,9 @@
     </nav>
 
     <!-- side nav -->
-    <div>
+    <!-- <div>
         <nav class="sidenav">
             <ul>
-                <!-- <li>
-                    <a href="#">
-                        <i data-feather="menu"></i>
-                        <span class="nav-item">DietYou</span>
-                    </a>
-                </li> -->
                 <li><a href="#">
                         <i data-feather="home"></i>
                         <span class="nav-item">Home</span>
@@ -75,7 +69,7 @@
                     </a></li>
             </ul>
         </nav>
-    </div>
+    </div> -->
 
 
     <!--first body part-->
@@ -165,10 +159,10 @@
                 </div>
                 <div class="row m-5 text-center">
                     <div class="col">
-                        <img src="assets/img/bruce-mars-gJtDg6WfMlQ-unsplash 1.jpg" class="rounded-image" alt="Image" style="width:400px; height:200px">
+                        <img src="assets/img/stretching.jpg" class="rounded-image" alt="Image" style="width:400px; height:200px">
                     </div>
                     <div class="col" style="text-align: left;">
-                        <p style="font-weight: bolder;" class="ehead">Find Workouts that<br>suits you</p>
+                        <p style="font-weight: bolder;" class="ehead">Find Workouts that suits you</p>
                         <p class="edesc">Get a unique workout plan that is tailoredto your desired needs</p>
                     </div>
 

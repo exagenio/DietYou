@@ -80,6 +80,13 @@
         </div>
     </div>
 
+    <div class="container mt-5">
+        <div class="progress">
+          <div id="progressBar" class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+      
+
 
     <!-- code changes made -->
     <section class="container2">
@@ -283,6 +290,33 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+
+      <script>
+        // Set target value
+        const target = 75;
+
+        // Function to update progress bar
+        function updateProgressBar(progress) {
+        const progressBar = document.getElementById('progressBar');
+        progressBar.style.width = progress + '%';
+        progressBar.setAttribute('aria-valuenow', progress);
+        if (progress >= target) {
+            progressBar.classList.remove('progress-bar-animated');
+            progressBar.classList.remove('progress-bar-striped');
+        }
+        }
+
+        // Simulate progress by incrementing variable
+        let progress = 0;
+        const interval = setInterval(function() {
+        progress += 25;
+        if (progress > 100) {
+            clearInterval(interval);
+        } else {
+            updateProgressBar(progress);
+        }
+        }, 1000);
+      </script>
 
 </body>
 </html>
