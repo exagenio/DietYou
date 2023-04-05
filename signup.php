@@ -41,11 +41,9 @@ include "backend/crypt.php";
                     include "backend/db.php";
                     $username = $_POST["username"];
                     $password = $_POST["password"];
-                    $firstName =$_POST["fName"];
-                    $lastName =$_POST["lName"];
                     $name = $_POST["fullName"];
                     $testUser = userExist($username);
-                    if($password && $username && $firstName && $lastName){
+                    if($password && $username && $name){
                         if($testUser){
                             $message =`
                             <div class="alert alert-danger" role="alert">
@@ -55,7 +53,7 @@ include "backend/crypt.php";
                             echo ' <div class="alert alert-danger" role="alert"> This email is already registered. Please try again!</div>';
                         }else{
                             $pass = encrypt_pw($password);
-                            $query =   "INSERT INTO users (email, password, firstname, lastname ) VALUES('$username','$pass','$firstName', '$lastName')";
+                            $query =   "INSERT INTO users (email, password, firstname, lastname ) VALUES('$username','$pass','$name', '$name')";
                             $query = mysqli_query($connection, $query); 
                             if($query){
                                 $message ='<div class="alert alert-success" role="alert"> You have succesfully signed up to the website. Now you can<a href="#" class="alert-link">Log in</a>. to the application.</div>';
@@ -65,23 +63,21 @@ include "backend/crypt.php";
                             }
                         }
                     }else{
-                        $message ='<div class="alert alert-danger" role="alert">Fill all the details. </div>';
-                        echo $message;
+                        echo"asda ada da";
                     }
                     mysqli_close($connection);
                 }
             ?>
-            <p>Already have an Account? <span><a class="login_link" href="login.php">Login</a></span></p>
+            <p>Already have an Account? <span><a class="login_link" href="">Login</a></span></p>
             <form class="login-form" action="signup.php" method="post">
                 <div class="d-flex flex-column justify-content-center form-wrap">
-                    <input type="text" name="fName" id="" placeholder="First Name " required>
-                    <input type="text" name="lName" id="" placeholder="Last Name" required>
-                    <input type="email" name="username" id="" placeholder="Email" required>
-                    <input type="password" class="form-control" name="password" id="" placeholder="Password" required>
+                    <input type="text" name="fullName" id="" placeholder="Full Name">
+                    <input type="email" name="username" id="" placeholder="Email">
+                    <input type="password" class="form-control" name="password" id="" placeholder="Password">
                     <input type="submit" name="submit" class="btn secndry-btn my-4">
                 </div>
             </form>
-            <!-- <div class="row d-flex justify-content-center align-items-center">
+            <div class="row d-flex justify-content-center align-items-center">
                 <hr class="col-5">
                 <p class="col-2 text-center">OR</p>
                 <hr class="col-5">
@@ -90,7 +86,7 @@ include "backend/crypt.php";
                 <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center signin-btns"><img height="35" src="assets/img/Google.png" alt="google">  Continue with Google</button>
                 <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center signin-btns"><img height="35" src="assets/img/fb.png" alt="google">  Continue with Facebook</button>
                 <button class="btn alt-btn mb-2 d-flex justify-content-start align-items-center signin-btns"><img height="35" src="assets/img/apple.png" alt="google">  Continue with Apple</button>
-            </div> -->
+            </div>
         </div>
     </section>
 
