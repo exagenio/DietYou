@@ -206,7 +206,7 @@ if (isset($_POST['submit'])) {
 
 
 
-            <div class="col-md-8 p-4 mx-auto row">
+            <div class="col-md-8 p-4 mx-auto row" style="margin-bottom: 0;">
                 <div class="water_consumption row align-items-center justify-content-center p-2 col-12" id="card">
                     <div class="cups d-flex flex-column align-items-center col-md col-12">
                         <img src="assets/img/glass-of-water.png" alt="water cup">

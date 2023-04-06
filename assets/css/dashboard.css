@@ -3,6 +3,7 @@ body{
   background-image:linear-gradient(orange, #D8D8D8);
   font-family: 'Roboto';
 }
+
 #card{
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -280,18 +281,16 @@ section{
 
 
 
-.snacks h1{
-  
+/* .snacks h1{
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'outfit', sans-serif ;
   color: whitesmoke;
   font-size: 20px;
-  
-}
+} */
 
-.main-recipes{
+/* .main-recipes{
   
   position: relative;
   text-align: center;
@@ -305,10 +304,10 @@ section{
 
 
 
-}
+} */
 
 
-.snacks-recipes{
+/* .snacks-recipes{
   
   position: relative;
   text-align: center;
@@ -317,7 +316,7 @@ section{
   height: 100vh;
   grid-template-columns: 1fr;
   grid-template-rows: 0.2fr 0.2fr 0.2fr;
-}
+} */
 
 
 /* .snacks-1{
@@ -405,6 +404,7 @@ font-family: 'outfit', sans-serif;
   font-family: 'outfit', sans-serif;
 }
 
+
 .dietM h1{
   font-size: 16px;
   text-align: center;
@@ -434,19 +434,25 @@ font-family: 'outfit', sans-serif;
 a{
   width: 70%;
   text-decoration: none;
+  padding: 8px 0px;
 }
 a:hover{
   background-color: transparent;
 }
 
 .dot{
-  margin-bottom: 5px;
+  margin-bottom: 0px;
 }
 .heading{
   padding-bottom: 0;
 }
 .heading p{
   padding-bottom: 0;
+}
+
+.dot li{
+  /* border-radius: 80px; */
+  /* padding-top: 10px; */
 }
 
 
