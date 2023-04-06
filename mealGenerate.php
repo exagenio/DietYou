@@ -437,14 +437,15 @@ if (havePlans($username, $connection)) {
 
 <body>
   <div class="container">
+  <p class="text-center font-weight-bold">We Recommend to Select at least 7 meal plans as this will be used throughout the week.</p>
     <div class="row">
       <div class="col-md-12">
         <form id="myForm">
-          <table id="table" data-toggle="table" data-search="true" data-search-highlight="true">
+          <table style="background-color:white;" id="table" data-toggle="table" data-search="true" data-search-highlight="true">
             <thead>
-              <tr>
+              <tr class="first-tr">
                 <th data-field="id" rowspan="2"></th>
-                <th colspan="3" class="center-header">Meals</th>
+                <th style="color:orange !important; font-size:24px ;" colspan="3" class="center-header">Meals</th>
                 <th colspan="3" class="center-header">Snacks</th>
               </tr>
               <tr>
