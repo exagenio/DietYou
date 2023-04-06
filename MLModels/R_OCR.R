@@ -20,14 +20,20 @@ serving_size_index <- grep("Serving size", lines)
 # Find the index of the line containing "Serving size"
 serving_size_index <- grep("Serving size", lines)
 
-# Extract the serving size line
-serving_size_line <- lines[serving_size_index]
+if (length(serving_size_index) == 0) {
+  cat("No serving size found")
+} else {
+  # Extract the serving size line
+  serving_size_line <- lines[serving_size_index]
 
-# Extract the serving size value and its unit from the serving size line
-serving_size_value <- gsub(".*Serving size: (\\d+\\.?\\d*)\\s*(g|ml).*", "\\1 \\2", serving_size_line)
+  # Extract the serving size value and its unit from the serving size line
+  serving_size_value <- gsub(".*Serving size: (\\d+\\.?\\d*)\\s*(g|ml).*", "\\1 \\2", serving_size_line)
 
-# Print the serving size value and its unit
-cat(serving_size_value, "\n")
+  # Print the serving size value and its unit
+  cat(serving_size_value, "\n")
+}
+
+
 
 # Find the line with either "Energy" or "Calories"
 energy_line_index <- grep("Energy|Calories", lines)
