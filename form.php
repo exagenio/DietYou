@@ -234,7 +234,7 @@ if (isset($_POST["submit"])) {
         </fieldset>
 
         <div class="col-auto">
-          <input name="submit" type="submit" class="btn secndry-btn my-4 form-control">
+          <input name="submit" type="submit" class="btn btn-warning rounded-pill px-4 py-1.5 text=white form-control">
         </div>
 
       </form>
