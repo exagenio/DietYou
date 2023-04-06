@@ -102,18 +102,6 @@ ul{
 
 }
 
-/* a{
-  text-decoration: none;
-  position: relative;
-  color: #865515;
-  font-size: 14px;
-  display: table;
-  width: 300px;
-  padding: 10px;
-
-
-} */
-
 li{
   position: relative;
   padding: 10px;
@@ -175,6 +163,11 @@ a:hover{
   top:100px ;
 }
 
+@media only screen and (max-width: 480px) {
+  .navBtnDash {
+    display: none;
+  }
+}
 
 
 
