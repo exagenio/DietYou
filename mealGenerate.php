@@ -9,7 +9,7 @@ if ((isset($_SESSION['username'])) && $_SESSION["userVerified"] == 1) {
   //logged in
 } else {
   // Session variable is not set
-  echo '<script>window.location.replace("http://localhost/dietYou/login.php");</script>';
+  echo '<script>window.location.replace("login.php");</script>';
 }
 $username = $_SESSION['username'];
 
@@ -18,7 +18,7 @@ $user = new User($username, $connection);
 $age = $user->getAge();
 $gender = $user->getGender();
 if ($age == null || $gender == null) {
-  echo '<script>window.location.replace("http://localhost/dietYou/form.php");</script>';
+  echo '<script>window.location.replace("form.php");</script>';
 }
 
 //the below array only takes into consideration the food codes that has fish 
@@ -60,7 +60,7 @@ if (havePlans($username, $connection)) {
     }
     //reduce the carb amount if the BMI value is greater than the normal range.
     $carbTot = $remainEnergy / 4;
-  } else if ($bmi >= 25 || $ncds == 1) {
+  } else if ($bmi >= 25) {
     $TEEreduction = 750;
     $proteinEnergy = $proteinTot * 4;
     $fatEnergy = $fatTot * 9;
@@ -284,12 +284,10 @@ if (havePlans($username, $connection)) {
       if ($totSodium < 1900 && $totProtein > 60) {
         array_push($mealPackages, $mealPack);
       }
-    }
-    if ($ncds == null) {
+    }else{
       array_push($mealPackages, $mealPack);
     }
   }
-
   if(count($snacks) > 33){
     $totCombinations = 5456;
   }else{
@@ -393,7 +391,6 @@ if (havePlans($username, $connection)) {
   }
 
   if (count($finalDPlans) == 0) {
-    die("no diet plans");
     echo '<script>window.location.replace("noMealsError.php");</script>';
   } else {
     $estimatedWloss = 0;
@@ -415,7 +412,6 @@ if (havePlans($username, $connection)) {
     // Format the date as a string
     $dateString = $date->format('Y-m-d H:i:s');
     $_SESSION["finalPlans"] = $finalDPlans;
-    $jsonPlans = json_encode($finalDPlans);
   }
   mysqli_close($connection);
 }
