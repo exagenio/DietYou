@@ -2,6 +2,7 @@
 
 
 body{
+    width: 100%;
     background-color: #D8D8D8;
 }
 
@@ -18,44 +19,38 @@ body::-webkit-scrollbar{
     background: #865515;
   } 
 
-.container{
+/* .container{
     display: grid;
     height: 100vh;
     grid-template-rows: 10% auto 40%;
-}
+} */
 
 .heading{
     background-color: #83633a;
-    
+    min-height: 200px;
+    width: 100%;
 }
 
 
 
 .heading h1{
     color: #EA8E17;
-    position: relative;
-    top:1.25rem ;
-    left: 1.25rem;
     font-family: 'outfit', sans-serif;
     font-size: 3rem;
 }
 
 .heading h3{
-    position: relative;
     color: #614520;
     font-size: 1.8rem;
-    left: 1.36rem;
     font-family: 'outfit', sans-serif;
 }
 
-.ingredient{
-    
-}
 
 .ingredient h2{
-    position: relative;
-    left: 1.36rem; ;
     font-family: 'outfit', sans-serif;
+}
+.ingredient{
+    min-height: 500px;
 }
 
 
