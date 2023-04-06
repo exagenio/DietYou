@@ -80,7 +80,7 @@ if (isset($_POST['submit'])) {
     $isSuccess = true;
     if ($imageInput == 0) {
         $kcalAmount = $kcalAmount + $_POST['kcal'];
-        echo "working";
+        
     } else {
         $servings = $_POST['servings'];
         $fileDestination;
