@@ -16,23 +16,7 @@ include "backend/crypt.php";
     <link rel="stylesheet" href="assets/css/signup.css">
 </head>
 <body>
-    <nav class="container">
-        <div class="row py-3">
-            <div class="col-4 d-flex justify-content-start align-items-center">
-                <i class="feather mx-2" data-feather="menu"></i>
-                <i class="feather mx-2" data-feather="search"></i>
-            </div>
-            <div class="col-4 d-flex justify-content-center align-items-center">
-                <img src="assets/img/logo-min.png" height="60" alt="logo">
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-                <button class="btn theme-btn mx-2">Login</button>
-                <i class="feather mx-2" data-feather="bar-chart-2"></i>
-                <i class="feather mx-2" data-feather="user"></i>
-
-            </div>
-        </div>
-    </nav>
+<?php include "includes/header.php"; ?>
     <section class="d-flex py-4 align-items-center justify-content-center background-dark ">
         <div class="py-4 formMainWrap">
             <h1>Sign Up</h1>

@@ -15,62 +15,15 @@
 <body>
     <nav class="header sticky-top px-4">
         <div class="row py-3">
-            <div class="col-4 d-flex justify-content-start align-items-center">
-                <i class="feather mx-2" data-feather="menu"></i>
-                <i class="feather mx-2" data-feather="search"></i>
-            </div>
-            <div class="col-4 d-flex justify-content-center align-items-center">
-                <img src="assets/img/logo-min.png" height="60" alt="logo">
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-                <button class="btn theme-btn mx-2">Login</button>
-                <i class="feather mx-2" data-feather="bar-chart-2"></i>
-                <i class="feather mx-2" data-feather="user"></i>
-
-            </div>
+        <div class="col-6 d-flex justify-content-start align-items-center">
+            <img src="assets/img/logo-min.png" height="60" alt="logo">
         </div>
+        <div class="col-6 d-flex justify-content-end align-items-center">
+            <a class="col-2 mr-4" href="login.php"><button class="btn theme-btn">Login</button></a>
+            <a class="col-2 mr-4" href="signup.php"><button class="btn theme-btn">Signup</button></a>
+        </div>
+    </div>
     </nav>
-
-    <!-- side nav -->
-    <!-- <div>
-        <nav class="sidenav">
-            <ul>
-                <li><a href="#">
-                        <i data-feather="home"></i>
-                        <span class="nav-item">Home</span>
-                    </a></li>
-                <li><a href="#">
-                        <i data-feather="user"></i>
-                        <span class="nav-item">Profile</span>
-                    </a></li>
-                <li><a href="#">
-                        <i data-feather="paperclip"></i>
-                        <span class="nav-item">Guides</span>
-                    </a></li>
-                <li><a href="#">
-                        <i data-feather="book-open"></i>
-                        <span class="nav-item">Meal Plans</span>
-                    </a></li>
-                <li><a href="#">
-                        <i data-feather="clipboard"></i>
-                        <span class="nav-item">Exercise</span>
-                    </a></li>
-                <li><a href="#">
-                        <i data-feather="settings"></i>
-                        <span class="nav-item">Settings</span>
-                    </a></li>
-                <li><a href="#">
-                        <i data-feather="help-circle"></i>
-                        <span class="nav-item">Help</span>
-                    </a></li>
-                <li><a href="#" class="log-in">
-                        <i data-feather="log-in"></i>
-                        <span class="nav-item">Log In</span>
-                    </a></li>
-            </ul>
-        </nav>
-    </div> -->
-
 
     <!--first body part-->
     <section class="background-dark pt-4">

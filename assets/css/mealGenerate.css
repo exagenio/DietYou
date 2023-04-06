@@ -6,10 +6,13 @@ table{
     margin-top: 50px;
     background-color: lightgray;
 }
+
+
+
+
 .table tbody tr {
     padding: 10px;
-}
-  
+  }
   
   /* Set the font size and padding for the table cells */
   .table tbody td {
@@ -19,7 +22,7 @@ table{
   
   /* Add a hover effect to the table rows */
   .table tbody tr:hover {
-    background-color: #ddd;
+    background-color: #f8f6f6;
     font-weight: 700;
   }
 
@@ -27,6 +30,7 @@ table{
     margin: 30px;
     position: fixed;
     bottom: 0px;
+    
 }
 .search-input{
     position: fixed;
@@ -34,3 +38,4 @@ table{
     width: 20%;
     z-index: 1000;
 }
+

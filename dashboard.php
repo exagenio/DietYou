@@ -61,7 +61,7 @@ $modifiedDate = ucfirst(substr($cDate, 0, 3)) . " " . substr($cDate, 3);
 debug_to_console($modifiedDate);
 
 $kcalAmount = 0;
-$query = "SELECT $cDate FROM dietinfo WHERE id= $userID";
+$query = "SELECT $cDate FROM dietinfo WHERE userId= $userID";
 $findQuery = mysqli_query($connection, $query);
 $row = mysqli_fetch_row($findQuery);
 if (mysqli_num_rows($findQuery) == 0) {
@@ -80,7 +80,7 @@ if (isset($_POST['submit'])) {
     $isSuccess = true;
     if ($imageInput == 0) {
         $kcalAmount = $kcalAmount + $_POST['kcal'];
-        echo "working";
+        
     } else {
         $servings = $_POST['servings'];
         $fileDestination;
@@ -263,27 +263,41 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div>
                 <div class="col-md-5 p-4">
+                    <a href="exercises.php">
                     <div class="d-flex justify-content-center align-items-center exercise">
                         <p>Exercise</p>
                     </div>
+                    </a>
+
                 </div>
             </div>
         </div>
     </div>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators dot">
+            <?php 
+            for($i=0; $i<count($plans); $i++){
+                if($i == 0){
+                    echo '<li data-target="#carouselExampleIndicators"  class="dot1" data-slide-to="0" class="active"></li>';
+                }else{
+                    echo '<li data-target="#carouselExampleIndicators" data-slide-to="'.$i.'"></li>';
+                }
+            }
+            ?>
+        </ol>
+        <div class="carousel-inner d-flex justify-content-center align-items-center">    
     <?php
     $count = 1;
     //   echo $plans[0]["meals"];
     foreach ($plans as $plan) {
+        $attrC = "";
+        if($count == 1){
+            $attrC = "active";
+        }
         echo <<<HTML
-            <section>
-            <h1 class="title">DIET {$count}</h1>
-            <div class="container2">
-                <div class="main-meals">
-                    <h1>MAIN MEALS</h1>
-                </div>
-                <div class="snacks">
-                    <h1>SNACKS</h1>
-                </div>
+        <section class="container2 carousel-item {$attrC}">
+            <a href="#" class="heading"><p>DIET {$count}</p></a>
+            <div class="p-4 row gx-5">
         HTML;
         $originalString = $plan["meals"];
         $beforeArray = array();
@@ -295,7 +309,10 @@ if (isset($_POST['submit'])) {
             $afterArray[] = $parts[1];
         }
         echo <<<HTML
-                <div class="main-recipes">
+                <div class="main-recipes col-12 col-md-6 d-flex flex-column justify-content-start align-items-center">
+                        <div class="main-meals">
+                            <h1>MAIN MEALS</h1>
+                        </div>
         HTML;
 
         for ($i = 0; $i < 3; $i++) {
@@ -308,7 +325,7 @@ if (isset($_POST['submit'])) {
                 $weight = $row[2] * round($afterArray[$i], 1);
                 $ratio = round($afterArray[$i], 1);
                 echo <<<HTML
-                <div class="diet-1 dietM" id="card2">
+                <div class="dietM" id="card2">
                     <a href="ingredients.php?food={$row[1]}&ratio={$ratio}">
                         <h1>{$row[0]}</h1>
                         <h3>{$weight}g</h3>
@@ -319,7 +336,10 @@ if (isset($_POST['submit'])) {
         }
         echo <<<HTML
             </div>
-            <div class="snacks-recipes">
+            <div class="snacks-recipes col-12 col-md-6 p-6 flex-column d-flex justify-content-start align-items-center">
+                <div class="snacks">
+                    <h1>SNACKS</h1>
+                </div>
         HTML;
 
         $originalString = $plan["snacks"];
@@ -343,7 +363,7 @@ if (isset($_POST['submit'])) {
                 $weight = $row[2] * round($afterArray[$i], 1);
                 $ratio = round($afterArray[$i], 1);
                 echo <<<HTML
-                <div class="diet-1 dietM" id="card2">
+                <div class="dietS" id="card2">
                     <a href="ingredients.php?food={$row[1]}&ratio={$ratio}">
                         <h1>{$row[0]}</h1>
                         <h3>{$weight}g</h3>
@@ -353,13 +373,15 @@ if (isset($_POST['submit'])) {
             }
         }
         echo <<<HTML
-            </div>
-        </div>
-        </section>
+                    </div>
+                </div>
+            </section>
         HTML;
         $count++;
     }
     ?>
+            </div>
+      </div>
     
 
 
