@@ -57,12 +57,15 @@ if(isset($_GET['food']) && isset($_GET['ratio'])){
 </head>
 <body>
     <?php include "includes/header.php";?>
-    <div class="container">
-        <div class="heading">
+    <div>
+        <div class="heading p-4">
+            <div class="container">
             <h1><?php echo $ingredients[0]["name"]; ?></h1>
             <h3><?php echo $weightR?>g</h3>
+            </div>
         </div>
-        <div class="ingredient">
+        <div class="ingredient p-4">
+            <div class="container">
             <h2>INGREDIENTS:</h2>
             <ul>
             <?php
@@ -71,6 +74,7 @@ if(isset($_GET['food']) && isset($_GET['ratio'])){
             }
             ?>
             </ul>
+            </div>
         </div>
     </div>
     <?php include "includes/footer.php";?>
