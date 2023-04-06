@@ -59,7 +59,7 @@ foreach($exercises as $exercise){
 </head>
 <body>
     <?php include "includes/header.php"; ?>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="parentCont d-flex justify-content-center align-items-center">
         <div class="exContainer">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
@@ -87,11 +87,11 @@ foreach($exercises as $exercise){
                     }
                     ?>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <a class="carousel-control-prev holdEl1" href="#carouselExampleControls" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <!-- <span class="sr-only mr-4">Previous</span> -->
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <a class="carousel-control-next holdEl2" href="#carouselExampleControls" role="button" data-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <!-- <span class="sr-only">Next</span> -->
                 </a>
