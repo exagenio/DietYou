@@ -16,3 +16,10 @@
 .alt-btn img{
     margin-right: 90px;
 }
+
+button{
+    background-color: #ffc107;
+}
+button:hover{
+    background-color: lightgrey;
+}

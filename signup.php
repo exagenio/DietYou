@@ -62,7 +62,7 @@ include "backend/crypt.php";
                     <input type="text" name="lName" id="" placeholder="Last Name" required>
                     <input type="email" name="username" id="" placeholder="Email" required>
                     <input type="password" class="form-control" name="password" id="" placeholder="Password" required>
-                    <input type="submit" name="submit" class="btn secndry-btn my-4">
+                    <input type="submit" name="submit" class="btn btn-warning rounded-pill px-4 py-1.5 text=white">
                 </div>
             </form>
             <!-- <div class="row d-flex justify-content-center align-items-center">
