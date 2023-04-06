@@ -1,9 +1,9 @@
 <nav class="header sticky-top px-4">
     <div class="row py-3 pr-4">
-        <div class="col-2 d-flex justify-content-start align-items-center">
+        <div class="col-md-6 col-2 d-flex justify-content-start align-items-center">
             <img src="assets/img/logo-min.png" height="60" alt="logo">
         </div>
-        <div class="col-10 d-flex justify-content-end head">
+        <div class="col-md-6 col-10 d-flex justify-content-end head">
             <!-- <button class="btn theme-btn mx-2">Login</button> -->
             <?php 
             if(islogged(isset($_SESSION['username']),$_SESSION["userVerified"])){
