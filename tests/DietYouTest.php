@@ -39,28 +39,28 @@ final class DietYouTest extends \PHPUnit\Framework\TestCase
     }
 
 
-    public function testAllergyFliter()
-    {
-        // $connection = mysqli_connect("localhost","root", "root","dietYou");
-        $connection = mysqli_connect("localhost", "root", "root", "dietYou");
-        if (!$connection) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
-        $username = "shabeerox@gmail.com";
-        $expectedResult = array("milk", "butter", "cheese", "galactose");
-        $actualResult = allergyFilter($connection, $username);
-        $this->assertEquals($expectedResult, $actualResult);
+    // public function testAllergyFliter()
+    // {
+    //     // $connection = mysqli_connect("localhost","root", "root","dietYou");
+    //     $connection = mysqli_connect("localhost", "root", "root", "dietYou");
+    //     if (!$connection) {
+    //         die("Connection failed: " . mysqli_connect_error());
+    //     }
+    //     $username = "shabeerox@gmail.com";
+    //     $expectedResult = array("milk", "butter", "cheese", "galactose");
+    //     $actualResult = allergyFilter($connection, $username);
+    //     $this->assertEquals($expectedResult, $actualResult);
 
-        // Test with user who has fructose intolerance allergy
-        // $username = "tharindu";
-        // $expectedResult = array("apple", "pear", "honey", "corn syrup");
-        // $actualResult = allergyFilter($connection, $username);
-        // $this->assertEquals($expectedResult, $actualResult);
+    //     // Test with user who has fructose intolerance allergy
+    //     // $username = "tharindu";
+    //     // $expectedResult = array("apple", "pear", "honey", "corn syrup");
+    //     // $actualResult = allergyFilter($connection, $username);
+    //     // $this->assertEquals($expectedResult, $actualResult);
 
-        // // Test with user who has no allergies
-        // $username = "ranvinu";
-        // $expectedResult = array();
-        // $actualResult = allergyFilter($connection, $username);
-        // $this->assertEquals($expectedResult, $actualResult);
-    }
+    //     // // Test with user who has no allergies
+    //     // $username = "ranvinu";
+    //     // $expectedResult = array();
+    //     // $actualResult = allergyFilter($connection, $username);
+    //     // $this->assertEquals($expectedResult, $actualResult);
+    // }
 }

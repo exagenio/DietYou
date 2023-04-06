@@ -69,7 +69,7 @@ include "backend/crypt.php"
                     <input type="email" name="username" id="" placeholder="Email">
                     <input type="password" name="password" id="" placeholder="Password">
                     <a href="http://">Forgot your password?</a>
-                    <input type="submit" name="Submit" class="btn btn-warning rounded-pill px-4 py-1.5 text=white my-4 button">
+                    <input type="submit" name="submit" class="btn btn-warning rounded-pill px-4 py-1.5 text=white my-4 button">
                 </div>
             </form>
         </div>
