@@ -87,7 +87,7 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
-  <!-- <nav class="container">
+  <nav class="container">
     <div class="row py-3">
       <div class="col-4 d-flex justify-content-start align-items-center">
         <i class="feather mx-2" data-feather="menu"></i>
@@ -103,9 +103,9 @@ if (isset($_POST["submit"])) {
 
       </div>
     </div>
-  </nav> -->
+  </nav>
 
-  <?php include "includes/header.php"; ?>
+
   <section class="d-flex py-4 align-items-center justify-content-center background-dark ">
 
 
@@ -234,7 +234,7 @@ if (isset($_POST["submit"])) {
         </fieldset>
 
         <div class="col-auto">
-          <input name="submit" type="submit" class="btn btn-warning rounded-pill px-4 py-1.5 text=white form-control">
+          <input name="submit" type="submit" class="btn btn-warning rounded-pill px-4 py-1.5 text=white my-4 form-control">
         </div>
 
       </form>
